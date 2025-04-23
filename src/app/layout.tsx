@@ -5,8 +5,14 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-poppins",
-  display: "swap", // penting untuk menghindari flicker/mismatch
+  display: "swap",
 });
+export const metadata = {
+  title: "Personal Web",
+  icons: {
+    icon: "/logo.svg",
+  },
+};
 
 export default function RootLayout({
   children,

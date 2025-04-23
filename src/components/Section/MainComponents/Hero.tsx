@@ -7,7 +7,7 @@ import { RiFileDownloadLine } from "react-icons/ri";
 
 export default function HeroComponent() {
   return (
-    <div className="lg:flex lg:gap-10 xl:p-10 xl:gap-20 items-center lg:flex-row  lg:justify-between lg:items-center xl:">
+    <div className="lg:flex lg:gap-10 xl:p-10 xl:gap-20 mb-30 items-center lg:flex-row  lg:justify-between lg:items-center xl:">
       {/* Image */}
 
       <div className="flex w-full justify-center">

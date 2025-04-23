@@ -1,4 +1,6 @@
 import HeroComponent from "./MainComponents/Hero";
+import StackComponent from "./MainComponents/Stack";
+import WorkExperienceComponent from "./MainComponents/WorkExperience";
 
 export default function MainContent() {
   return (
@@ -6,9 +8,9 @@ export default function MainContent() {
       {/* Card Container */}
       <HeroComponent />
       {/* Tech Stack */}
-      {/* <StackComponent /> */}
+      <StackComponent />
       {/* Work Experience */}
-      {/* <WorkExperienceComponent /> */}
+      <WorkExperienceComponent />
       {/* Projects */}
       {/* <ProjectComponent /> */}
       {/* Qoutes */}
