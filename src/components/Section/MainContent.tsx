@@ -1,5 +1,5 @@
 import HeroComponent from "./MainComponents/Hero";
-import ProjectComponent from "./MainComponents/Project";
+import ProjectComponent from "./MainComponents/Projects";
 import QuoteComponent from "./MainComponents/Quote";
 import StackComponent from "./MainComponents/Stack";
 import WorkExperienceComponent from "./MainComponents/WorkExperience";

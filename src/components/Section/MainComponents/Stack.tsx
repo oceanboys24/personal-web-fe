@@ -16,7 +16,7 @@ const stacks: Stack[] = [
 
 export default function StackComponent() {
   return (
-    <div className=" px-15 mb-32">
+    <div className=" px-15 mb-32" id="tech-stack">
       <h2 className="text-2xl md:text-3xl font-bold mb-12">
         Tech Stack - Tools I Use Everyday
       </h2>

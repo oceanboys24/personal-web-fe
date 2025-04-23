@@ -4,7 +4,7 @@ import NavbarComponent from "./Section/Navbar";
 
 export default function LayoutComponent() {
   return (
-    <div className="bg-white w-screen h-screen overflow-x-hidden ">
+    <div className="bg-white w-screen min-h-screen  ">
       <NavbarComponent />
       <MainContent />
       <FooterComponent />

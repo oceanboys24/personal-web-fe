@@ -1,9 +1,9 @@
 import { FaGithub } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
-export default function ProjectComponent() {
+export default function ProjectsComponent() {
   return (
-    <div className="mb-32 lg:px-15">
+    <div className="mb-32 lg:px-15" id="projects">
       {/* Title Project */}
       <div className="flex justify-between items-center mb-12 ">
         <h2 className="text-2xl md:text-3xl font-bold">My Project:</h2>

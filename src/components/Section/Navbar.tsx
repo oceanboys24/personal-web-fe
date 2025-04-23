@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Moon } from "lucide-react";
@@ -9,12 +11,13 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTheme } from "next-themes";
 
 export default function NavbarComponent() {
+  const { setTheme } = useTheme();
+
   return (
     <div className="flex px-3 md:px-6 md:py-4  w-full justify-between flex-row py-3 2 xl:px-[80px] mb-10">
       <div className="flex justify-start">
@@ -29,15 +32,21 @@ export default function NavbarComponent() {
 
       <div className="flex gap-3  justify-center items-center">
         <div className="hidden md:flex gap-5 flex-row w-full justify-center  ">
-          <Link href="#" className="text-gray-400 hover:text-black text-sm">
+          <a
+            href="#tech-stack"
+            className="text-gray-400 hover:text-black text-sm"
+          >
             Tech Stack
-          </Link>
-          <Link href="#" className="text-gray-400 hover:text-black text-sm">
+          </a>
+          <a
+            href="#work-experience"
+            className="text-gray-400 hover:text-black text-sm"
+          >
             Experience
-          </Link>
-          <Link href="#" className="text-gray-400 hover:text-black text-sm">
-            Project
-          </Link>
+          </a>
+          <a href="#projects" className="text-gray-400 hover:text-black text-sm">
+            Projects
+          </a>
         </div>
         <div className="flex flex-row gap-2">
           <div className="hidden md:flex gap-5">
@@ -48,7 +57,7 @@ export default function NavbarComponent() {
               <RiFileDownloadLine /> Download CV
             </Button>
           </div>
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={() => setTheme("light")}>
             <Moon color="#111827" />
           </Button>
           <DropdownMenu>
@@ -59,7 +68,9 @@ export default function NavbarComponent() {
               <DropdownMenuItem>Tech Stack</DropdownMenuItem>
               <DropdownMenuItem>Experience</DropdownMenuItem>
               <DropdownMenuItem>Projects</DropdownMenuItem>
-              <DropdownMenuItem className="font-bold">Download CV</DropdownMenuItem>
+              <DropdownMenuItem className="font-bold">
+                Download CV
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
