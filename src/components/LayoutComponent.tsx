@@ -7,7 +7,7 @@ export default function LayoutComponent() {
     <div className="bg-white w-screen h-screen overflow-x-hidden ">
       <NavbarComponent />
       <MainContent />
-      {/* <FooterComponent /> */}
+      <FooterComponent />
     </div>
   );
 }
