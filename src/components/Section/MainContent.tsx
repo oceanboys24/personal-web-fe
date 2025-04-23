@@ -1,22 +1,18 @@
-import CardComponent from "./MainComponents/Card";
-import StackComponent from "./MainComponents/Stack";
-import WorkExperienceComponent from "./MainComponents/WorkExperience";
-import ProjectComponent from "./MainComponents/Project";
-import QuoteComponent from "./MainComponents/Quote";
+import HeroComponent from "./MainComponents/Hero";
 
 export default function MainContent() {
   return (
     <div className="flex flex-col p-10">
       {/* Card Container */}
-      <CardComponent />
+      <HeroComponent />
       {/* Tech Stack */}
-      <StackComponent />
+      {/* <StackComponent /> */}
       {/* Work Experience */}
-      <WorkExperienceComponent />
+      {/* <WorkExperienceComponent /> */}
       {/* Projects */}
-      <ProjectComponent />
+      {/* <ProjectComponent /> */}
       {/* Qoutes */}
-      <QuoteComponent />
+      {/* <QuoteComponent /> */}
     </div>
   );
 }
