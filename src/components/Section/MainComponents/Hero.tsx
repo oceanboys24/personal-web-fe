@@ -15,7 +15,7 @@ export default function HeroComponent() {
           src="/profile.jpg"
           width={500}
           height={500}
-          className="object-cover h-[300px] w-[300px] rounded-xl shadow-2xl/30 md:mb-5 mb-5"
+          className="object-cover h-[300px] w-[300px] rounded-xl shadow-2xl/30 md:mb-5 mb-5  transform transition duration-500 hover:scale-105 hover:shadow-2xl"
           alt="Picture of the author"
         />
       </div>
@@ -45,10 +45,10 @@ export default function HeroComponent() {
           Available for new projects
         </p>
         <div className="flex flex-col gap-5 md:flex-row md:justify-center lg:justify-start ">
-          <Button className="bg-green-500 py-6 px-4 md:py-6 md:px-4 lg:font-medium">
+          <Button className="bg-green-500 py-6 px-4 md:py-6 md:px-4 lg:font-medium hover:bg-green-600 ">
             <FaWhatsapp /> Let's Talk
           </Button>
-          <Button className="py-6 px-4 md:px-4 md:py-6  lg:font-medium">
+          <Button className="py-6 px-4 md:px-4 md:py-6  lg:font-medium hover:bg-gray-800">
             <RiFileDownloadLine /> Download CV
           </Button>
         </div>
