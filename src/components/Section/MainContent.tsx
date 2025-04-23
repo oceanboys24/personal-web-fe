@@ -1,4 +1,5 @@
 import HeroComponent from "./MainComponents/Hero";
+import ProjectComponent from "./MainComponents/Project";
 import StackComponent from "./MainComponents/Stack";
 import WorkExperienceComponent from "./MainComponents/WorkExperience";
 
@@ -12,7 +13,7 @@ export default function MainContent() {
       {/* Work Experience */}
       <WorkExperienceComponent />
       {/* Projects */}
-      {/* <ProjectComponent /> */}
+      <ProjectComponent />
       {/* Qoutes */}
       {/* <QuoteComponent /> */}
     </div>
