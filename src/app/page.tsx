@@ -1,4 +1,4 @@
-import LayoutComponent from "@/components/LayoutComponent";
+import LayoutComponent from "@/components/layout/LayoutHome";
 
 export default function Pages() {
   return (

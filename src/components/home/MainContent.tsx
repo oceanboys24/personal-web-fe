@@ -1,8 +1,8 @@
-import HeroComponent from "./MainComponents/Hero";
-import ProjectComponent from "./MainComponents/Projects";
-import QuoteComponent from "./MainComponents/Quote";
-import StackComponent from "./MainComponents/Stack";
-import WorkExperienceComponent from "./MainComponents/WorkExperience";
+import HeroComponent from "./Components/Hero";
+import ProjectComponent from "./Components/Projects";
+import QuoteComponent from "./Components/Quote";
+import StackComponent from "./Components/Stack";
+import WorkExperienceComponent from "./Components/WorkExperience";
 
 export default function MainContent() {
   return (
