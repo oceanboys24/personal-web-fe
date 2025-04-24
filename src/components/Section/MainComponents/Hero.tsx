@@ -45,7 +45,7 @@ export default function HeroComponent() {
           Available for new projects
         </p>
         <div className="flex flex-col gap-5 md:flex-row md:justify-center lg:justify-start ">
-          <Button className="bg-green-500 dark:text-white  py-6 px-4 md:py-6 md:px-4 lg:font-semibold hover:bg-green-600 ">
+          <Button className="bg-green-500 dark:text-white  py-6 px-4 md:py-5 md:px-4 lg:font-semibold hover:bg-green-600 ">
             <a
               className="md:flex gap-2 flex items-center "
               target="_blank"
@@ -54,7 +54,7 @@ export default function HeroComponent() {
               <FaWhatsapp /> Let's Talk
             </a>
           </Button>
-          <Button className="py-6 px-4 md:px-4 md:py-6  dark:hover:bg-gray-300 font-semibold hover:bg-gray-800">
+          <Button className="py-6 px-4 md:px-4 md:py-5  dark:hover:bg-gray-300 font-semibold hover:bg-gray-800">
             <RiFileDownloadLine /> Download CV
           </Button>
         </div>

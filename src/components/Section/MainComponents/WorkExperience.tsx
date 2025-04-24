@@ -3,6 +3,7 @@ import Image from "next/image";
 export default function WorkExperienceComponent() {
   return (
     <div className="mb-32 lg:px-15" id="work-experience">
+      <div className="md:h-20"></div>
       <h2 className="text-2xl md:text-3xl font-bold mb-12">Work Experience</h2>
       <div className="flex flex-col md:flex-row p-6  shadow-sm dark:bg-gray-800 rounded-xl">
         {/* Image */}

@@ -4,6 +4,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 export default function ProjectsComponent() {
   return (
     <div className="mb-32 lg:px-15" id="projects">
+      <div className="md:h-20"></div>
       {/* Title Project */}
       <div className="flex justify-between items-center mb-12 ">
         <h2 className="text-2xl md:text-3xl font-bold">My Project:</h2>
@@ -13,7 +14,7 @@ export default function ProjectsComponent() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Project */}
           <div className="shadow-sm dark:bg-gray-800 rounded-xl">
-            <div className="h-52 items-center justify-center bg-gray-100">
+            <div className="h-52 items-center   rounded-t-xl justify-center bg-gray-100">
               <img
                 src="/fakturly.png"
                 className="w-full h-full object-contain"

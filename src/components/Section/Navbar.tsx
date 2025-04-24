@@ -28,9 +28,15 @@ import {
 
 export default function NavbarComponent() {
   const { theme, setTheme } = useTheme();
-
+  const scrollToId = (id: string) => {
+    const e = document.getElementById(id);
+    if (e) {
+      e.scrollIntoView({ behavior: "smooth" });
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  };
   return (
-    <div className="flex 2xl:px-100 bg-white dark:bg-gray-900 px-3 md:px-6 md:py-4  fixed top-0 z-500 w-full mnb justify-between flex-row py-3 2 xl:px-[80px] mb-10">
+    <div className="flex 2xl:px-100   bg-white dark:bg-gray-900 px-3 md:px-6 md:py-4  fixed top-0  z-30 w-full mnb justify-between flex-row py-3 2 xl:px-[97px] mb-10">
       <div className="flex justify-start">
         <Image
           src="/logo.png"
@@ -42,30 +48,34 @@ export default function NavbarComponent() {
       </div>
 
       <div className="flex gap-3  justify-center items-center">
-        <div className="hidden md:flex gap-5 flex-row w-full justify-center  ">
-          <a
-            href="#tech-stack"
+        <div className="hidden md:flex gap-3 flex-row w-full justify-center  ">
+          <button
+            onClick={() => scrollToId("tech-stack")}
             className="text-gray-400 hover:text-black text-sm dark:text-gray-400 dark:hover:text-white"
           >
             Tech Stack
-          </a>
-          <a
-            href="#work-experience"
+          </button>
+          <button
+             onClick={() => scrollToId("work-experience")}
             className="text-gray-400 hover:text-black text-sm dark:text-gray-400 dark:hover:text-white"
           >
             Experience
-          </a>
-          <a
-            href="#projects"
+          </button>
+          <button
+             onClick={() => scrollToId("projects")}
             className="text-gray-400 hover:text-black text-sm dark:text-gray-400 dark:hover:text-white"
           >
             Projects
-          </a>
+          </button>
         </div>
         <div className="flex flex-row gap-2">
           <div className="hidden md:flex gap-5">
-            <Button className="bg-green-500 font-semibold hover:bg-green-600 dark:text-white">
-              <a className="md:flex gap-2 flex items-center " target="_blank" href="https://wa.me/6281333143154">
+            <Button className="bg-green-500  font-semibold hover:bg-green-600 dark:text-white">
+              <a
+                className="md:flex gap-2 flex items-center "
+                target="_blank"
+                href="https://wa.me/6281333143154"
+              >
                 <FaWhatsapp /> Let's Talk
               </a>
             </Button>

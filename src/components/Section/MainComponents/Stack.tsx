@@ -28,6 +28,7 @@ const stacks: Stack[] = [
 export default function StackComponent() {
   return (
     <div className=" mb-32 lg:px-12" id="tech-stack">
+      <div className="md:h-20"></div>
       <h2 className="text-2xl md:text-3xl font-bold mb-12">
         Tech Stack - Tools I Use Everyday
       </h2>
@@ -39,18 +40,18 @@ export default function StackComponent() {
         <div>
           <Marquee>
             {stacks.map((stack, k) => (
-             <div  key={k}>
-             <div className="mx-8 flex items-center border p-2 bg-white/30 backdrop-blur-sm rounded-2xl w-16 h-16 mb-3">
-               <Image
-                 src={stack.img}
-                 alt="icons"
-                 width={100}
-                 height={100}
-                 className="hover:scale-110 cursor-pointer rounded-md"
-               />
-             </div>
-             <h3 className="text-center">{stack.name}</h3>
-           </div>
+              <div key={k}>
+                <div className="mx-8 flex items-center border p-2 bg-white/30 backdrop-blur-sm rounded-2xl w-16 h-16 mb-3">
+                  <Image
+                    src={stack.img}
+                    alt="icons"
+                    width={100}
+                    height={100}
+                    className="hover:scale-110 cursor-pointer rounded-md"
+                  />
+                </div>
+                <h3 className="text-center">{stack.name}</h3>
+              </div>
             ))}
           </Marquee>
         </div>
@@ -58,4 +59,3 @@ export default function StackComponent() {
     </div>
   );
 }
-
