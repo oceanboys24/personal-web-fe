@@ -19,7 +19,7 @@ export default function NavbarComponent() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex dark:bg-gray-900 px-3 md:px-6 md:py-4 bg-white fixed top-0 z-5 w-full mnb justify-between flex-row py-3 2 xl:px-[80px] mb-10">
+    <div className="flex 2xl:px-140 bg-white dark:bg-gray-900 px-3 md:px-6 md:py-4  fixed top-0 z-5 w-full mnb justify-between flex-row py-3 2 xl:px-[80px] mb-10">
       <div className="flex justify-start">
         <Image
           src="/logo.png"
@@ -61,11 +61,19 @@ export default function NavbarComponent() {
             </Button>
           </div>
           {theme === "light" ? (
-            <Button variant="ghost" onClick={() => setTheme("dark")}>
+            <Button
+              variant="ghost"
+              className="cursor-pointer"
+              onClick={() => setTheme("dark")}
+            >
               <Moon color="#111827" />
             </Button>
           ) : (
-            <Button variant="ghost" onClick={() => setTheme("light")}>
+            <Button
+              variant="ghost"
+              className="cursor-pointer"
+              onClick={() => setTheme("light")}
+            >
               <Sun />
             </Button>
           )}

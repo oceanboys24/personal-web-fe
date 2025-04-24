@@ -21,14 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="{poppins.variable} scroll-smooth" >
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${poppins.variable} scroll-smooth`}
+    >
+      <body className="transition-colors duration-900 ease-in-out">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
       </body>
