@@ -22,7 +22,7 @@ export default function StackComponent() {
       </h2>
       <div className="w-full  ">
         <Swiper
-          spaceBetween={5}
+          spaceBetween={10}
           slidesPerView={3}
           speed={2700}
           loop={true}
@@ -34,11 +34,11 @@ export default function StackComponent() {
         >
           {stacks.map((stack, key) => (
             <SwiperSlide>
-              <div className="flex flex-col justify-center items-center ">
-                <div className="rounded-2xl mb-2 transform transition duration-300 hover:scale-110 hover:shadow-xl">
+              <div className="flex flex-col pt-3 items-center">
+                <div className="rounded-2xl mb-2 dark:bg-gray-700  p-2 transform transition duration-300 hover:scale-110 hover:shadow-xl">
                   <img
                     src={stack.img}
-                    className="w-20 p-5 "
+                    className="w-20 "
                     alt="Golang Logo"
                   />
                 </div>

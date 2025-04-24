@@ -12,7 +12,7 @@ export default function ProjectsComponent() {
         {/* List Project */}
         <div className="grid md:grid-cols-2 gap-8">
           {/* Project */}
-          <div className="shadow-sm ">
+          <div className="shadow-sm dark:bg-gray-800 rounded-xl">
             <div className="h-52 items-center justify-center bg-gray-100">
               <img
                 src="/fakturly.png"
@@ -30,96 +30,16 @@ export default function ProjectsComponent() {
             </div>
             {/* Stack */}
             <div className="flex flex-wrap gap-2 pl-6 pb-3 lg:pl-6 lg:pb-3 ">
-              <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 ">
+              <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-400 rounded-full text-xs font-medium text-gray-600 ">
                 Golang
               </span>
-              <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 ">
+              <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-400 rounded-full text-xs font-medium text-gray-600 ">
                 Javascript
               </span>
             </div>
             {/* Demo */}
             <div className="flex gap-3 pl-5 pb-5">
-              <span className="inline-flex items-center px-3 py-1.5 text-xs text-gray-500 gap-2 ">
-                <FaGithub /> Private Repository
-              </span>
-              <a
-                href="#"
-                className="inline-flex items-center px-3 py-1.5 text-xs gap-3 text-blue-600 hover:text-blue-800  transition-colors"
-              >
-                <FaExternalLinkAlt />
-                Live Demo
-              </a>
-            </div>
-          </div>
-          {/* Project */}
-          <div className="shadow-sm ">
-            <div className="h-52 items-center justify-center bg-gray-100">
-              <img
-                src="/fakturly.png"
-                className="w-full h-full object-contain"
-                alt="Fakturly"
-              />
-            </div>
-            <div className="p-6 md:p-8 ">
-              <h3 className="font-semibold text-xl mb-3">Fakturly</h3>
-              <p className="text-sm  text-gray-400">
-                Digital invoice and payment reminder solution that makes billing
-                management easier. Built with modern tech stack for optimal
-                performance.
-              </p>
-            </div>
-            {/* Stack */}
-            <div className="flex flex-wrap gap-2 pl-6 pb-3 lg:pl-6 lg:pb-3 ">
-              <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 ">
-                Golang
-              </span>
-              <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 ">
-                Javascript
-              </span>
-            </div>
-            {/* Demo */}
-            <div className="flex gap-3 pl-5 pb-5">
-              <span className="inline-flex items-center px-3 py-1.5 text-xs text-gray-500 gap-2 ">
-                <FaGithub /> Private Repository
-              </span>
-              <a
-                href="#"
-                className="inline-flex items-center px-3 py-1.5 text-xs gap-3 text-blue-600 hover:text-blue-800  transition-colors"
-              >
-                <FaExternalLinkAlt />
-                Live Demo
-              </a>
-            </div>
-          </div>
-          {/* Project */}
-          <div className="shadow-sm ">
-            <div className="h-52 items-center justify-center bg-gray-100">
-              <img
-                src="/fakturly.png"
-                className="w-full h-full object-contain"
-                alt="Fakturly"
-              />
-            </div>
-            <div className="p-6 md:p-8 ">
-              <h3 className="font-semibold text-xl mb-3">Fakturly</h3>
-              <p className="text-sm  text-gray-400">
-                Digital invoice and payment reminder solution that makes billing
-                management easier. Built with modern tech stack for optimal
-                performance.
-              </p>
-            </div>
-            {/* Stack */}
-            <div className="flex flex-wrap gap-2 pl-6 pb-3 lg:pl-6 lg:pb-3 ">
-              <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 ">
-                Golang
-              </span>
-              <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 ">
-                Javascript
-              </span>
-            </div>
-            {/* Demo */}
-            <div className="flex gap-3 pl-5 pb-5">
-              <span className="inline-flex items-center px-3 py-1.5 text-xs text-gray-500 gap-2 ">
+              <span className="inline-flex dark:text-gray-400 items-center px-3 py-1.5 text-xs text-gray-500 gap-2 ">
                 <FaGithub /> Private Repository
               </span>
               <a
