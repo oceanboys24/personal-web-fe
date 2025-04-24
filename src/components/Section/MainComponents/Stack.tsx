@@ -22,6 +22,7 @@ const stacks: Stack[] = [
   { name: "Javascript", img: "/stack/js.png" },
   { name: "Docker", img: "/stack/docker.png" },
   { name: "Postgres SQL", img: "/stack/postgres.png" },
+  { name: "Nginx", img: "/stack/nginx.svg" },
 ];
 
 export default function StackComponent() {

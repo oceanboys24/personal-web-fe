@@ -15,6 +15,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
 export default function NavbarComponent() {
   const { theme, setTheme } = useTheme();
 
@@ -54,7 +65,9 @@ export default function NavbarComponent() {
         <div className="flex flex-row gap-2">
           <div className="hidden md:flex gap-5">
             <Button className="bg-green-500 font-semibold hover:bg-green-600 dark:text-white">
-              <FaWhatsapp /> Let's Talk
+              <a className="md:flex gap-2 flex items-center " target="_blank" href="https://wa.me/6281333143154">
+                <FaWhatsapp /> Let's Talk
+              </a>
             </Button>
             <Button className=" dark:hover:bg-gray-300 dark:bg-white bg-gray-900 font-semibold hover:bg-gray-800 ">
               <RiFileDownloadLine /> Download CV
@@ -77,20 +90,42 @@ export default function NavbarComponent() {
               <Sun />
             </Button>
           )}
-
-          <DropdownMenu>
-            <DropdownMenuTrigger>
+          <Drawer direction="bottom">
+            <DrawerTrigger>
               <IoMdMenu className=" md:hidden" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem>Tech Stack</DropdownMenuItem>
-              <DropdownMenuItem>Experience</DropdownMenuItem>
-              <DropdownMenuItem>Projects</DropdownMenuItem>
-              <DropdownMenuItem className="font-bold">
-                Download CV
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </DrawerTrigger>
+            <DrawerContent className="p-5 flex flex-col gap-5">
+              <DrawerClose>
+                <a
+                  href="#tech-stack"
+                  className="text-gray-400 hover:text-black text-sm dark:text-gray-400 dark:hover:text-white"
+                >
+                  Tech Stack
+                </a>
+              </DrawerClose>
+              <DrawerClose>
+                <a
+                  href="#work-experience"
+                  className="text-gray-400 hover:text-black text-sm dark:text-gray-400 dark:hover:text-white"
+                >
+                  Experience
+                </a>
+              </DrawerClose>
+              <DrawerClose>
+                <a
+                  href="#projects"
+                  className="text-gray-400 hover:text-black text-sm dark:text-gray-400 dark:hover:text-white"
+                >
+                  Projects
+                </a>
+              </DrawerClose>
+              <div className="w-full justify-center  flex">
+                <Button className=" dark:hover:bg-gray-300 dark:bg-white bg-gray-900 font-semibold hover:bg-gray-800 ">
+                  <RiFileDownloadLine /> Download CV
+                </Button>
+              </div>
+            </DrawerContent>
+          </Drawer>
         </div>
       </div>
     </div>
