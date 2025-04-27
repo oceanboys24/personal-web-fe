@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import useHandleImage from "../hooks/useHandleImage";
+import useHandleImage from "./hooks/useHandleImage";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import ImagePreviewComponent from "./component/imagePreview";
 
 export default function StackComponent() {
   // Handle Image
@@ -32,9 +33,7 @@ export default function StackComponent() {
           <Input type="text" placeholder="Name Stack" />
           <div className="flex justify-center flex-col items-center gap-1.5">
             <Input id="picture" type="file" onChange={HandleImagePreview} />
-            {preview && (
-              <img src={preview} alt="Preview" className="w-32 h-32 " />
-            )}
+            {preview && <ImagePreviewComponent preview={preview} />}
           </div>
         </div>
       </CardContent>
