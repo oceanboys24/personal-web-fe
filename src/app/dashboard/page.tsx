@@ -1,10 +1,11 @@
-"use client"
-import LayoutDashboard from "@/components/layout/LayoutDashboard";
+"use client";
+
+import DashboardComponent from "@/components/dashboard/dashboard";
 
 export default function DashboardPage() {
   return (
-    <div>
-      <LayoutDashboard />
+    <div className=" h-full ">
+      <DashboardComponent />
     </div>
   );
 }

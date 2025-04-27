@@ -13,25 +13,44 @@ import { Label } from "../ui/label";
 import { useForm } from "react-hook-form";
 import { AdminUserZod, LoginSchemaAdmin } from "./types/Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { signIn } from "next-auth/react";
+import { DEFAULT_LOGIN_REDIRECT } from "@/constants/router";
+
+import { useSession } from "next-auth/react";
 
 export default function LoginComponent() {
+  const { data, status } = useSession();
+
+  console.log("data", data);
+  console.log("status", status);
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<AdminUserZod>({
     resolver: zodResolver(LoginSchemaAdmin),
     mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
+  const onSubmit = async (data: AdminUserZod) => {
+    await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+    });
+  };
+
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle className="dark:text-white">Login CMS</CardTitle>
-        <CardDescription>Please Login to access Dashboard</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Card className="w-[350px]">
+        <CardHeader>
+          <CardTitle className="dark:text-white">Login CMS</CardTitle>
+          <CardDescription>Please Login to access Dashboard</CardDescription>
+        </CardHeader>
+        <CardContent>
           <div className="grid w-full items-center gap-3">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="email">Email</Label>
@@ -61,11 +80,16 @@ export default function LoginComponent() {
             </div>
             <div className="flex flex-col space-y-1.5"></div>
           </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-center ">
-        <Button className="w-full dark:bg-white dark:text-black">Login</Button>
-      </CardFooter>
-    </Card>
+        </CardContent>
+        <CardFooter className="flex justify-center ">
+          <Button
+            className="w-full dark:bg-white dark:text-black"
+            type="submit"
+          >
+            Login
+          </Button>
+        </CardFooter>
+      </Card>
+    </form>
   );
 }
