@@ -30,7 +30,7 @@ export function AppSidebar() {
             <SidebarMenuButton asChild>
               <Link href="/dashboard/edit-hero">
                 <CgProfile />
-                <span>Edit Profile</span>
+                <span>Edit Hero</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

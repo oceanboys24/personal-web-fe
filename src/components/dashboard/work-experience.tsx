@@ -12,18 +12,13 @@ import { Button } from "../ui/button";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+} from "../ui/dialog";
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import AddWorkExperienceComponent from "./component/work-experience/add-work-experience";
 import EditWorkExperienceComponent from "./component/work-experience/edit-work-experience";
 import { AlertDeleteComponent } from "./component/work-experience/delete-work-experience";
@@ -34,12 +29,17 @@ export default function WorkExperience() {
       {/* Add Work Experience */}
       <div>
         <Dialog>
-          <DialogTrigger>
-            <Button>
-              <IoMdAdd />
+          <DialogTrigger asChild>
+            <Button className="w-12">
+              <span>
+                <IoMdAdd />
+              </span>
             </Button>
           </DialogTrigger>
           <DialogContent>
+            <DialogTitle className="text-center">
+              Add Work Experience
+            </DialogTitle>
             <AddWorkExperienceComponent />
           </DialogContent>
         </Dialog>
@@ -62,12 +62,15 @@ export default function WorkExperience() {
               {/* Edit Work Experience */}
               <div>
                 <Dialog>
-                  <DialogTrigger>
+                  <DialogTrigger asChild>
                     <Button>
                       <CiEdit />
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
+                    <DialogTitle className="text-center">
+                      Edit Work Experience
+                    </DialogTitle>
                     <EditWorkExperienceComponent />
                   </DialogContent>
                 </Dialog>

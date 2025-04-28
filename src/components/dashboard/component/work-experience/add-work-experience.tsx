@@ -22,9 +22,7 @@ export default function AddWorkExperienceComponent() {
   const { preview, HandleImagePreview } = useHandleImage();
   return (
     <div className="flex flex-col gap-5">
-      <CardHeader>
-        <CardTitle className="text-center">Add Work Experience</CardTitle>
-      </CardHeader>
+
       <CardContent>
         <div className="flex flex-col gap-3">
           <Input type="text" placeholder="Role" />

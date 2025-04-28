@@ -1,80 +1,68 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { IoMdAdd } from "react-icons/io";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog";
+import AddStackComponent from "./component/stack/add-stack";
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import useHandleImage from "./hooks/useHandleImage";
-import ImagePreviewComponent from "./component/imagePreview";
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
+import { AlertDialog, AlertDialogTrigger } from "../ui/alert-dialog";
+import { MdOutlineDeleteOutline } from "react-icons/md";
+import { DeleteStackComponent } from "./component/stack/delete-stack";
 
 export default function StackComponent() {
-  const { preview, HandleImagePreview } = useHandleImage();
-
   return (
-    <Card className="w-[450px] min-h-[250px]">
-      <CardHeader>
-        <CardTitle className="text-center">Stack Management</CardTitle>
-      </CardHeader>
+    <Card className="w-[550px] min-h-[450px] p-5">
+      {/* Add Work Experience */}
+      <div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="w-12">
+              <IoMdAdd />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogTitle className="text-center">
+              Add Stack
+            </DialogTitle>
+            <AddStackComponent />
+          </DialogContent>
+        </Dialog>
+      </div>
 
-      <CardContent>
-        <div className="flex flex-col gap-4">
-          {/* Input Stack Name */}
-          <Input type="text" placeholder="Name Stack" />
-
-          {/* Upload Image */}
-          <div className="flex flex-col items-center gap-2">
-            <Input id="picture" type="file" onChange={HandleImagePreview} />
-            {preview && <ImagePreviewComponent preview={preview} />}
-          </div>
-        </div>
-      </CardContent>
-
-      <CardFooter>
-        <div className="w-full flex justify-between">
-          {/* List Stack Dialog */}
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="default">List Stack</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>List Stack</DialogTitle>
-              </DialogHeader>
-
-              <div className="flex flex-col gap-3 mt-4">
-                {/* Dummy List Stack */}
-                {["React", "Next.js"].map((stack, index) => (
-                  <div
-                    key={index}
-                    className="flex justify-between items-center"
-                  >
-                    <p>{stack}</p>
-                    <Button variant="destructive" size="sm">
-                      Delete
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            </DialogContent>
-          </Dialog>
-
-          {/* Edit Hero Button */}
-          <Button variant="secondary">Edit Hero</Button>
-        </div>
-      </CardFooter>
+      <Table>
+        <TableCaption>A list of Stack.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Name</TableHead>
+            <TableHead className="text-right">Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="font-medium">Golang</TableCell>
+            <TableCell className="text-right flex gap-2 justify-end">
+              {/* Delete Work Experience */}
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button>
+                    <MdOutlineDeleteOutline />
+                  </Button>
+                </AlertDialogTrigger>
+                <DeleteStackComponent />
+              </AlertDialog>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </Card>
   );
 }

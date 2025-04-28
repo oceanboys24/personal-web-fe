@@ -27,8 +27,8 @@ export default function ProjectComponent() {
       {/* Add Work Experience */}
       <div>
         <Dialog>
-          <DialogTrigger>
-            <Button>
+          <DialogTrigger asChild>
+            <Button className="w-12">
               <IoMdAdd />
             </Button>
           </DialogTrigger>
@@ -53,9 +53,9 @@ export default function ProjectComponent() {
               {/* Edit Work Experience */}
               <div>
                 <Dialog>
-                  <DialogTrigger>
+                  <DialogTrigger asChild>
                     <Button>
-                      <CiEdit />
+                      <CiEdit  />
                     </Button>
                   </DialogTrigger>
                   <DialogContent>

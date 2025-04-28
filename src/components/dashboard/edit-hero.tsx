@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,8 +12,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import useHandleImage from "./hooks/useHandleImage";
+import ImagePreviewComponent from "./component/imagePreview";
 
 export default function EditHero() {
+  const { preview, HandleImagePreview } = useHandleImage();
   return (
     <Card className="w-[450px] min-h-[450px] ">
       <CardHeader>
@@ -26,12 +30,13 @@ export default function EditHero() {
           <Input type="text" placeholder="Profession" />
           <Textarea className="max-h-30" placeholder="Description" />
           <Input type="text" placeholder="Location" />
-          <div className="flex items-center space-x-2">
-            <Switch id="available" />
+          <div className="flex justify-end items-center space-x-2">
             <Label htmlFor="available">Is Available</Label>
+            <Switch id="available" />
           </div>
-          <div className="grid items-center gap-1.5">
-            <Input id="picture" type="file" />
+          <div className="flex justify-center flex-col items-center gap-1.5">
+            <Input id="picture" type="file" onChange={HandleImagePreview} />
+            {preview && <ImagePreviewComponent preview={preview} />}
           </div>
         </div>
       </CardContent>

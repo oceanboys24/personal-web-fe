@@ -20,9 +20,6 @@ import { useSession } from "next-auth/react";
 
 export default function LoginComponent() {
   const { data, status } = useSession();
-
-  console.log("data", data);
-  console.log("status", status);
   const {
     register,
     handleSubmit,
