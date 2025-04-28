@@ -50,29 +50,11 @@ export function AppSidebar() {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <a href="#">
+              <a href="/dashboard/work-experience">
                 <MdOutlineWorkOutline />
                 <span>Work Experience</span>
               </a>
             </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction>
-                  <MoreHorizontal />
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="right" align="start">
-                <DropdownMenuItem>
-                  <span>List Work Experience</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Add Work Experience</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Update Work Experience</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
@@ -81,24 +63,6 @@ export function AppSidebar() {
                 <span>Project</span>
               </a>
             </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction>
-                  <MoreHorizontal />
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="right" align="start">
-                <DropdownMenuItem>
-                  <span>List Project</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Add Project</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Update Project</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarGroup />

@@ -1,9 +1,9 @@
-import StackComponent from "@/components/dashboard/stack";
+import WorkExperience from "@/components/dashboard/work-experience";
 
 export default function DashboardComponent() {
   return (
     <div className="flex justify-center items-center h-full">
-      <StackComponent />
+      <WorkExperience />
     </div>
   );
 }

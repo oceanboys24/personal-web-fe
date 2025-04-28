@@ -1,88 +1,90 @@
-"use client";
-import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { FiTrash } from "react-icons/fi";
-import useHandleTask from "./hooks/useHandleTask";
-import useHandleTags from "./hooks/useHandleTags";
-import ImagePreviewComponent from "./component/imagePreview";
-import useHandleImage from "./hooks/useHandleImage";
-import { Calendar } from "../ui/calendar";
-import { CalenderComponent } from "./component/calender";
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
+import { CiEdit } from "react-icons/ci";
+import { MdOutlineDeleteOutline } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io";
+import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import AddWorkExperienceComponent from "./component/work-experience/add-work-experience";
+import EditWorkExperienceComponent from "./component/work-experience/edit-work-experience";
+import { AlertDeleteComponent } from "./component/work-experience/delete-work-experience";
 
-export default function WorkExperienceComponent() {
-  const { tasks, handleAddTask, handleRemoveTask } = useHandleTask();
-  const { input, setInput, addTag, removeTag, tags } = useHandleTags();
-  const { preview, HandleImagePreview } = useHandleImage();
+export default function WorkExperience() {
   return (
-    <Card className="w-[450px] min-h-[450px] ">
-      <CardHeader>
-        <CardTitle className="text-center">
-          Work Experience Management
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-3">
-          <Input type="text" placeholder="Role" />
-          <Input type="text" placeholder="Company" />
-          {tasks.map((task, index) => (
-            <div className="flex flex-row gap-2" key={index}>
-              <Input placeholder="Task" />
-              <Button
-                className="w-10 text-xs "
-                onClick={() => {
-                  handleRemoveTask(index);
-                }}
-              >
-                <FiTrash />
-              </Button>
-            </div>
-          ))}
-          <div className="flex flex-row justify-between">
-            <Button onClick={handleAddTask}>Add Task</Button>
-          </div>
-          <div className="flex flex-row">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={addTag}
-              placeholder="Press Enter to add Stack"
-            />
-          </div>
-          <div className="flex flex-row flex-wrap">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                onClick={() => removeTag(index)}
-                style={{ marginRight: 8, cursor: "pointer" }}
-              >
-                {tag} ✖
-              </span>
-            ))}
-          </div>
-          {/* Image */}
-          <div className="flex justify-center flex-col items-center gap-1.5">
-            <Input id="picture" type="file" onChange={HandleImagePreview} />
-            {preview && <ImagePreviewComponent preview={preview} />}
-          </div>
-          <div className="flex flex-row justify-between">
-          <CalenderComponent />
-          <CalenderComponent />
-        </div>
-        </div>
-        
-      </CardContent>
-      <CardFooter>
-        <div className="w-full flex   justify-end">
-          <Button>Add Work Experience</Button>
-        </div>
-      </CardFooter>
+    <Card className="w-[550px] min-h-[450px] p-5">
+      {/* Add Work Experience */}
+      <div>
+        <Dialog>
+          <DialogTrigger>
+            <Button>
+              <IoMdAdd />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <AddWorkExperienceComponent />
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      <Table>
+        <TableCaption>A list of Work Experience.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Role</TableHead>
+            <TableHead>Company</TableHead>
+            <TableHead className="text-right">Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="font-medium">Mentor</TableCell>
+            <TableCell>PT Ngawi Sejahtera</TableCell>
+            <TableCell className="text-right flex gap-2 justify-end">
+              {/* Edit Work Experience */}
+              <div>
+                <Dialog>
+                  <DialogTrigger>
+                    <Button>
+                      <CiEdit />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <EditWorkExperienceComponent />
+                  </DialogContent>
+                </Dialog>
+              </div>
+              {/* Delete Work Experience */}
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button>
+                    <MdOutlineDeleteOutline />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDeleteComponent />
+              </AlertDialog>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </Card>
   );
 }
