@@ -1,6 +1,7 @@
-"use client";
+
 
 export default function DashboardPage() {
+
   return (
     <div className="h-full">
       <div className="w-full h-full flex justify-center items-center">

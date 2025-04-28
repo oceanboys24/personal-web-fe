@@ -1,3 +1,5 @@
+
+"use client"
 import {
   Sidebar,
   SidebarContent,
@@ -5,7 +7,6 @@ import {
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
@@ -14,10 +15,16 @@ import { CgProfile } from "react-icons/cg";
 import { GoStack } from "react-icons/go";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
-import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
+
 
 export function AppSidebar() {
+
+  const HandleSignOut = async () => {
+    await signOut();
+  };
+
   return (
     <Sidebar>
       <SidebarHeader className="text-center text-lg font-bold">
@@ -62,9 +69,11 @@ export function AppSidebar() {
         <SidebarGroup />
       </SidebarContent>
       <SidebarFooter>
-        <a href="#" className="text-center mb-5">
-          <Button variant="default">Logout</Button>
-        </a>
+        <form className="text-center mb-5">
+          <Button onClick={HandleSignOut} variant="default">
+            Logout
+          </Button>
+        </form>
       </SidebarFooter>
     </Sidebar>
   );

@@ -14,7 +14,6 @@ import { useForm } from "react-hook-form";
 import { AdminUserZod, LoginSchemaAdmin } from "./types/Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { DEFAULT_LOGIN_REDIRECT } from "@/constants/router";
 
 import { useSession } from "next-auth/react";
 
@@ -37,6 +36,7 @@ export default function LoginComponent() {
     await signIn("credentials", {
       email: data.email,
       password: data.password,
+      redirectTo: "/dashboard",
     });
   };
 
@@ -67,7 +67,7 @@ export default function LoginComponent() {
                 id="password"
                 type="password"
                 {...register("password")}
-                placeholder="***********"
+                placeholder="**********"
               />
               {errors.password && (
                 <p className="text-red-500 text-sm">

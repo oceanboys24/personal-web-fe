@@ -1,6 +1,7 @@
+"use client";
 import { AppSidebar } from "@/components/sidebar/sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Poppins } from "next/font/google";
+
 
 export default function DashboardLayout({
   children,
