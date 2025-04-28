@@ -21,8 +21,10 @@ export default function EditHero() {
       <CardContent>
         <div className="flex flex-col gap-3">
           <Input type="text" placeholder="Surname" />
+          <Input type="text" placeholder="Email" />
+          <Input type="text" placeholder="CV Link" />
           <Input type="text" placeholder="Profession" />
-          <Textarea  className="max-h-30" placeholder="Description" />
+          <Textarea className="max-h-30" placeholder="Description" />
           <Input type="text" placeholder="Location" />
           <div className="flex items-center space-x-2">
             <Switch id="available" />

@@ -8,19 +8,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { FiTrash } from "react-icons/fi";
-import useHandleTask from "./hooks/useHandleTask";
-import useHandleTags from "./hooks/useHandleTags";
-import ImagePreviewComponent from "./component/imagePreview";
-import useHandleImage from "./hooks/useHandleImage";
-import { CalenderComponent } from "./component/calender";
-import { Textarea } from "../ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
+import useHandleImage from "../../hooks/useHandleImage";
+import useHandleTags from "../../hooks/useHandleTags";
+import ImagePreviewComponent from "../imagePreview";
 
-export default function ProjectComponent() {
+export default function EditProjectComponent() {
   const { input, setInput, addTag, removeTag, tags } = useHandleTags();
   const { preview, HandleImagePreview } = useHandleImage();
   return (
-    <Card className="w-[450px] min-h-[450px] ">
+    <div className="flex flex-col gap-3">
       <CardHeader>
         <CardTitle className="text-center">Project Management</CardTitle>
       </CardHeader>
@@ -28,7 +25,7 @@ export default function ProjectComponent() {
         <div className="flex flex-col gap-3">
           <Input type="text" placeholder="Name" />
           <Textarea className="max-h-30" placeholder="Description" />
-          
+
           <div className="flex flex-row">
             <Input
               value={input}
@@ -62,6 +59,6 @@ export default function ProjectComponent() {
           <Button>Add Project</Button>
         </div>
       </CardFooter>
-    </Card>
+    </div>
   );
 }

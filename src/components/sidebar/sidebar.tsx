@@ -14,12 +14,6 @@ import { CgProfile } from "react-icons/cg";
 import { GoStack } from "react-icons/go";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 
@@ -58,7 +52,7 @@ export function AppSidebar() {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <a href="#">
+              <a href="/dashboard/project">
                 <GoProjectRoadmap />
                 <span>Project</span>
               </a>
