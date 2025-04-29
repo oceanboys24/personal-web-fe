@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import { Poppins } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 
-import { auth } from "@/auth";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -24,8 +23,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-
   return (
     <html
       lang="en"
@@ -33,11 +30,9 @@ export default async function RootLayout({
       className={`${poppins.variable} scroll-smooth`}
     >
       <body>
-        <SessionProvider session={session}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-          </ThemeProvider>
-        </SessionProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

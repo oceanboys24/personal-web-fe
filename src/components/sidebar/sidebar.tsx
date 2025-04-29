@@ -18,9 +18,12 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
 export function AppSidebar() {
-  const HandleSignOut = async () => {
-    await signOut({
-      redirectTo: "/login",
+  const { data: session } = useSession();
+
+  const HandleSignOut = () => {
+    signOut({
+      callbackUrl: "/login",
+      redirect: true,
     });
   };
 
