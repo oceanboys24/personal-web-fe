@@ -5,29 +5,17 @@ import { Button } from "../ui/button";
 import { Moon, Sun } from "lucide-react";
 import { RiFileDownloadLine } from "react-icons/ri";
 import { FaWhatsapp } from "react-icons/fa";
-import Link from "next/link";
 import { IoMdMenu } from "react-icons/io";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
-
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import ToggleTheme from "./Components/Toggle";
 
 export default function NavbarComponent() {
-  const { theme, setTheme } = useTheme();
   const scrollToId = (id: string) => {
     const e = document.getElementById(id);
     if (e) {
@@ -56,13 +44,13 @@ export default function NavbarComponent() {
             Tech Stack
           </button>
           <button
-             onClick={() => scrollToId("work-experience")}
+            onClick={() => scrollToId("work-experience")}
             className="text-gray-400 hover:text-black text-sm dark:text-gray-400 dark:hover:text-white"
           >
             Experience
           </button>
           <button
-             onClick={() => scrollToId("projects")}
+            onClick={() => scrollToId("projects")}
             className="text-gray-400 hover:text-black text-sm dark:text-gray-400 dark:hover:text-white"
           >
             Projects
@@ -83,23 +71,8 @@ export default function NavbarComponent() {
               <RiFileDownloadLine /> Download CV
             </Button>
           </div>
-          {theme === "light" ? (
-            <Button
-              variant="ghost"
-              className="cursor-pointer"
-              onClick={() => setTheme("dark")}
-            >
-              <Moon  />
-            </Button>
-          ) : (
-            <Button
-              variant="ghost"
-              className="cursor-pointer"
-              onClick={() => setTheme("light")}
-            >
-              <Sun />
-            </Button>
-          )}
+          <ToggleTheme />
+          
           <Drawer direction="bottom">
             <DrawerTrigger>
               <IoMdMenu className=" md:hidden" />

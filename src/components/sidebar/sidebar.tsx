@@ -15,18 +15,8 @@ import { GoStack } from "react-icons/go";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
 
 export function AppSidebar() {
-  const { data: session } = useSession();
-
-  const HandleSignOut = () => {
-    signOut({
-      callbackUrl: "/login",
-      redirect: true,
-    });
-  };
-
   return (
     <Sidebar>
       <SidebarHeader className="text-center text-lg font-bold">
@@ -72,9 +62,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <form className="text-center mb-5">
-          <Button onClick={HandleSignOut} variant="default">
-            Logout
-          </Button>
+          <Button variant="default">Logout</Button>
         </form>
       </SidebarFooter>
     </Sidebar>

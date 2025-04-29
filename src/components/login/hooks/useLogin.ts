@@ -1,0 +1,51 @@
+import { useForm } from "react-hook-form";
+import { AdminUserZod, LoginSchemaAdmin } from "../types/Schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { toast } from "sonner";
+import Cookies from "js-cookie";
+import { redirect, useRouter } from "next/navigation";
+
+export default function useLogin() {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AdminUserZod>({
+    resolver: zodResolver(LoginSchemaAdmin),
+    mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ["LoginAuth"],
+    mutationFn: async (data: AdminUserZod) => {
+      const response = await axios.post("http://localhost:3000/v1/login", data);
+      Cookies.set("token", response.data.token);
+      return response.data.token;
+    },
+    onError: (error: any) => {
+      const messageError = error.response.data.error;
+      toast.error("", {
+        description: messageError,
+      });
+    },
+    onSuccess: () => {
+      toast.success("", {
+        description: "Success Login",
+      });
+      router.push("/dashboard");
+    },
+  });
+
+  const onSubmit = async (data: AdminUserZod) => {
+    mutateAsync(data);
+  };
+
+  return { onSubmit, handleSubmit, register, errors, isPending };
+}

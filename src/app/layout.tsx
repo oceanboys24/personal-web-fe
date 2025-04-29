@@ -1,8 +1,8 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
 import { Poppins } from "next/font/google";
-import { SessionProvider } from "next-auth/react";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,22 +18,25 @@ export const metadata = {
   },
 };
 
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${poppins.variable} scroll-smooth`}
-    >
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+   
+      <html
+        lang="en"
+        suppressHydrationWarning
+        className={`${poppins.variable} scroll-smooth`}
+      >
+        <body>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+   
   );
 }

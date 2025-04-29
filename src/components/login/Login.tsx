@@ -10,35 +10,12 @@ import {
 } from "../ui/card";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { useForm } from "react-hook-form";
-import { AdminUserZod, LoginSchemaAdmin } from "./types/Schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
 
-import { useSession } from "next-auth/react";
+import SpinnerButton from "./components/Spinner";
+import useLogin from "./hooks/useLogin";
 
 export default function LoginComponent() {
-  const { data, status } = useSession();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AdminUserZod>({
-    resolver: zodResolver(LoginSchemaAdmin),
-    mode: "onChange",
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
-  const onSubmit = async (data: AdminUserZod) => {
-    await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirectTo: "/dashboard",
-    });
-  };
+  const { onSubmit, handleSubmit, register, errors, isPending } = useLogin();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -82,8 +59,9 @@ export default function LoginComponent() {
           <Button
             className="w-full dark:bg-white dark:text-black"
             type="submit"
+            disabled={isPending}
           >
-            Login
+            {isPending ? <SpinnerButton /> : "Login"}
           </Button>
         </CardFooter>
       </Card>

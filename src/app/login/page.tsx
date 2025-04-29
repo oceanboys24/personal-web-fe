@@ -1,10 +1,16 @@
 "use client";
 import LayoutLogin from "@/components/layout/LayoutLogin";
-export default function LoginPage() { 
-  
+import { Toaster } from "@/components/ui/sonner";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+export default function LoginPage() {
+  const queryClient = new QueryClient();
+
   return (
-    <div>
-      <LayoutLogin />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div>
+        <Toaster />
+        <LayoutLogin />
+      </div>
+    </QueryClientProvider>
   );
 }
