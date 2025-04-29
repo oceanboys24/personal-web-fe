@@ -2,11 +2,9 @@
 
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { Moon, Sun } from "lucide-react";
 import { RiFileDownloadLine } from "react-icons/ri";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
-import { useTheme } from "next-themes";
 import {
   Drawer,
   DrawerClose,
