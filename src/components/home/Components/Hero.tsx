@@ -1,4 +1,6 @@
+
 import { Button } from "@/components/ui/button";
+
 import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
 import { FaWhatsapp } from "react-icons/fa";
@@ -6,6 +8,8 @@ import { GoDotFill } from "react-icons/go";
 import { RiFileDownloadLine } from "react-icons/ri";
 
 export default function HeroComponent() {
+
+
   return (
     <div className="lg:flex lg:gap-10 xl:p-10 xl:gap-20 mb-30 items-center lg:flex-row  lg:justify-between lg:items-center xl:">
       {/* Image */}
