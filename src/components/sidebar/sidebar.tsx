@@ -1,5 +1,4 @@
-
-"use client"
+"use client";
 import {
   Sidebar,
   SidebarContent,
@@ -18,11 +17,11 @@ import { GoProjectRoadmap } from "react-icons/go";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
-
 export function AppSidebar() {
-
   const HandleSignOut = async () => {
-    await signOut();
+    await signOut({
+      redirectTo: "/login",
+    });
   };
 
   return (

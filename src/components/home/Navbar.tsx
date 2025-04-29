@@ -89,7 +89,7 @@ export default function NavbarComponent() {
               className="cursor-pointer"
               onClick={() => setTheme("dark")}
             >
-              <Moon color="#111827" />
+              <Moon  />
             </Button>
           ) : (
             <Button

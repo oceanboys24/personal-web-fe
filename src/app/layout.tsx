@@ -11,6 +11,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
+
 export const metadata = {
   title: "Personal Web",
   icons: {
@@ -31,7 +32,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${poppins.variable} scroll-smooth`}
     >
-      <body className="transition-colors duration-900 ease-in-out">
+      <body>
         <SessionProvider session={session}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
