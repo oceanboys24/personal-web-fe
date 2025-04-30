@@ -18,11 +18,19 @@ import ImagePreviewComponent from "./component/imagePreview";
 import SpinnerButton from "../login/components/Spinner";
 
 import { useEffect } from "react";
-import useHeroEditGet from "./hooks/useHeroEditGet";
+import useHandleEditHero from "./hooks/useHandleEditHero";
 
 export default function EditHero() {
   const { preview, HandleImagePreview } = useHandleImage();
-  const { DataHero, isLoading, register, reset } = useHeroEditGet();
+  const {
+    onSubmitEdit,
+    HandleSubmitEdit,
+    registerEdit,
+    DataHero,
+    isLoading,
+    reset,
+    isPendingEdit,
+  } = useHandleEditHero();
 
   useEffect(() => {
     if (DataHero) {
@@ -36,45 +44,67 @@ export default function EditHero() {
 
   return (
     <Card className="w-[450px] min-h-[450px] ">
-      <CardHeader>
-        <CardTitle className="text-center">Edit Hero</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-3">
-          <Input type="text" placeholder="Surname" {...register("surname")} />
-          <Input type="text" placeholder="Email" {...register("email")} />
-          <Input type="text" placeholder="CV Link" {...register("cv")} />
-          <Input
-            type="text"
-            placeholder="Profession"
-            {...register("profession")}
-          />
-          <Textarea
-            className="max-h-30"
-            placeholder="Description"
-            {...register("description")}
-          />
-          <Input type="text" placeholder="Location" {...register("location")} />
-          <div className="flex justify-end items-center space-x-2">
-            <Label htmlFor="available">Is Available</Label>
-            <Switch id="available" {...register("is_available")} />
-          </div>
-          <div className="flex justify-center flex-col items-center gap-1.5">
-            <Input id="picture" type="file" onChange={HandleImagePreview} />
-            {(preview || DataHero?.image_url) && (
-              <ImagePreviewComponent
-                preview={preview}
-                imageUrl={DataHero?.image_url}
+      <form onSubmit={HandleSubmitEdit(onSubmitEdit)}>
+        <CardHeader>
+          <CardTitle className="text-center">Edit Hero</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col gap-3">
+            <Input
+              type="text"
+              placeholder="Surname"
+              {...registerEdit("surname")}
+            />
+            <Input type="text" placeholder="Email" {...registerEdit("email")} />
+            <Input
+              type="text"
+              placeholder="Handphone"
+              {...registerEdit("handphone")}
+            />
+            <Input type="text" placeholder="CV Link" {...registerEdit("cv")} />
+            <Input
+              type="text"
+              placeholder="Profession"
+              {...registerEdit("profession")}
+            />
+            <Textarea
+              className="max-h-30"
+              placeholder="Description"
+              {...registerEdit("description")}
+            />
+            <Input
+              type="text"
+              placeholder="Location"
+              {...registerEdit("location")}
+            />
+            {/* <div className="flex justify-end items-center space-x-2">
+              <Label htmlFor="available">Is Available</Label>
+              <Switch id="available" {...registerEdit("is_available")} />
+            </div> */}
+            <div className="flex justify-center flex-col items-center gap-1.5">
+              <Input
+                id="picture"
+                type="file"
+                // {...register("image")}
+                onChange={HandleImagePreview}
               />
-            )}
+              {/* {(preview || DataHero?.image_url) && (
+                <ImagePreviewComponent
+                  preview={preview}
+                  imageUrl={DataHero?.image_url}
+                />
+              )} */}
+            </div>
           </div>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <div className="w-full flex   justify-end">
-          <Button>Save Changes</Button>
-        </div>
-      </CardFooter>
+        </CardContent>
+        <CardFooter>
+          <div className="w-full flex   justify-end">
+            <Button disabled={isPendingEdit}>
+              {isPendingEdit ? <SpinnerButton /> : "Save Changes"}
+            </Button>
+          </div>
+        </CardFooter>
+      </form>
     </Card>
   );
 }
