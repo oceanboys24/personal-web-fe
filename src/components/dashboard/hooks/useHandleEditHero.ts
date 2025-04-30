@@ -17,6 +17,7 @@ export default function useHandleEditHero() {
     handleSubmit: HandleSubmitEdit,
     register: registerEdit,
     reset,
+    control,
   } = useForm<Hero>();
   const { mutateAsync, isPending: isPendingEdit } = useMutation({
     mutationKey: ["Edit-Hero"],
@@ -59,6 +60,7 @@ export default function useHandleEditHero() {
     isLoading,
     DataHero,
     reset,
+    control,
     isPendingEdit,
   };
 }

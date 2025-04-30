@@ -6,6 +6,6 @@ export interface Hero {
   profession: string;
   description: string;
   location: string;
-  is_available: string;
+  is_available: boolean;
   image_url: string;
 }

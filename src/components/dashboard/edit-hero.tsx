@@ -19,6 +19,7 @@ import SpinnerButton from "../login/components/Spinner";
 
 import { useEffect } from "react";
 import useHandleEditHero from "./hooks/useHandleEditHero";
+import { Controller, useForm } from "react-hook-form";
 
 export default function EditHero() {
   const { preview, HandleImagePreview } = useHandleImage();
@@ -28,6 +29,7 @@ export default function EditHero() {
     registerEdit,
     DataHero,
     isLoading,
+    control,
     reset,
     isPendingEdit,
   } = useHandleEditHero();
@@ -77,10 +79,23 @@ export default function EditHero() {
               placeholder="Location"
               {...registerEdit("location")}
             />
-            {/* <div className="flex justify-end items-center space-x-2">
-              <Label htmlFor="available">Is Available</Label>
-              <Switch id="available" {...registerEdit("is_available")} />
-            </div> */}
+            <div className="flex justify-end items-center space-x-2">
+              <Controller
+                name="is_available"
+                control={control}
+                defaultValue={DataHero?.is_available}
+                render={({ field }) => (
+                  <div className="flex items-center space-x-2">
+                    <Label htmlFor="is_available">Is Available</Label>
+                    <Switch
+                      id="is_available"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </div>
+                )}
+              />
+            </div>
             <div className="flex justify-center flex-col items-center gap-1.5">
               <Input
                 id="picture"
