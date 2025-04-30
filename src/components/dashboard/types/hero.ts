@@ -6,5 +6,5 @@ export interface Hero {
   description: string;
   location: string;
   is_available: boolean;
-  image: string;
+  image_url: string;
 }

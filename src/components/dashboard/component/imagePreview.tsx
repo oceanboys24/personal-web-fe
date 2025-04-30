@@ -1,7 +1,13 @@
 export default function ImagePreviewComponent({
   preview,
+  imageUrl,
 }: {
-  preview: string;
+  preview?: string | null;
+  imageUrl?: string;
 }) {
-  return <img src={preview} alt="Preview" className="w-32 h-32 " />;
+  const src = preview || imageUrl;
+  if (!src) {
+    return null;
+  }
+  return <img src={src} alt="Preview" className="w-32 h-32 object-cover" />;
 }

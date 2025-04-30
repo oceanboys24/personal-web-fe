@@ -61,7 +61,12 @@ export default function EditHero() {
           </div>
           <div className="flex justify-center flex-col items-center gap-1.5">
             <Input id="picture" type="file" onChange={HandleImagePreview} />
-            {preview && <ImagePreviewComponent preview={preview} />}
+            {(preview || DataHero?.image_url) && (
+              <ImagePreviewComponent
+                preview={preview}
+                imageUrl={DataHero?.image_url}
+              />
+            )}
           </div>
         </div>
       </CardContent>
