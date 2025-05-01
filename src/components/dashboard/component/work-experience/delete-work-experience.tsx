@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,8 +10,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import useHandleDeleteWork from "../../hooks/work-experience/useHandleDeleteWork";
+import { Delete } from "lucide-react";
+import SpinnerButton from "@/components/login/components/Spinner";
 
-export function AlertDeleteComponent() {
+export function AlertDeleteComponent({ id }: { id: string }) {
+  const { DeleteWork, isPendingDeleteWork } = useHandleDeleteWork();
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -23,7 +27,14 @@ export function AlertDeleteComponent() {
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>Continue</AlertDialogAction>
+        <AlertDialogAction
+          onClick={() => {
+            DeleteWork(id);
+          }}
+          disabled={isPendingDeleteWork}
+        >
+          {isPendingDeleteWork ? <SpinnerButton /> : "Continue"}
+        </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   );

@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -22,8 +23,19 @@ import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import AddWorkExperienceComponent from "./component/work-experience/add-work-experience";
 import EditWorkExperienceComponent from "./component/work-experience/edit-work-experience";
 import { AlertDeleteComponent } from "./component/work-experience/delete-work-experience";
+import { useQuery } from "@tanstack/react-query";
+import { axiosInstance } from "@/config/axios";
+import useHandleGetStack from "./hooks/stack/useHandleGetStack";
+import useHandleGetWorkExperience from "./hooks/work-experience/useHandleGetWork";
+import SpinnerButton from "../login/components/Spinner";
 
 export default function WorkExperience() {
+  const { isLoadingWork, DataWork } = useHandleGetWorkExperience();
+
+  if (isLoadingWork) {
+    return <SpinnerButton />;
+  }
+
   return (
     <Card className="w-[550px] min-h-[450px] p-5">
       {/* Add Work Experience */}
@@ -45,6 +57,7 @@ export default function WorkExperience() {
         </Dialog>
       </div>
 
+      {/* Get Work Experience */}
       <Table>
         <TableCaption>A list of Work Experience.</TableCaption>
         <TableHeader>
@@ -55,37 +68,39 @@ export default function WorkExperience() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">Mentor</TableCell>
-            <TableCell>PT Ngawi Sejahtera</TableCell>
-            <TableCell className="text-right flex gap-2 justify-end">
-              {/* Edit Work Experience */}
-              <div>
-                <Dialog>
-                  <DialogTrigger asChild>
+          {DataWork?.map((work) => (
+            <TableRow key={work.id}>
+              <TableCell className="font-medium">{work.role}</TableCell>
+              <TableCell>{work.company}</TableCell>
+              <TableCell className="text-right flex gap-2 justify-end">
+                {/* Edit Work Experience */}
+                <div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button>
+                        <CiEdit />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogTitle className="text-center">
+                        Edit Work Experience
+                      </DialogTitle>
+                      <EditWorkExperienceComponent />
+                    </DialogContent>
+                  </Dialog>
+                </div>
+                {/* Delete Work Experience */}
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
                     <Button>
-                      <CiEdit />
+                      <MdOutlineDeleteOutline />
                     </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogTitle className="text-center">
-                      Edit Work Experience
-                    </DialogTitle>
-                    <EditWorkExperienceComponent />
-                  </DialogContent>
-                </Dialog>
-              </div>
-              {/* Delete Work Experience */}
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button>
-                    <MdOutlineDeleteOutline />
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDeleteComponent />
-              </AlertDialog>
-            </TableCell>
-          </TableRow>
+                  </AlertDialogTrigger>
+                  <AlertDeleteComponent id={work.id} />
+                </AlertDialog>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Card>
