@@ -49,7 +49,12 @@ export default function useHandleEditHero() {
     },
   });
 
+  const dataImage = queryClient.getQueryData(["data-image"]);
+
   const onSubmitEdit = async (data: Hero) => {
+    if (dataImage) {
+      data.image_url = (dataImage as any).link;
+    }
     await mutateAsync(data);
   };
 

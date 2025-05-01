@@ -19,7 +19,8 @@ import SpinnerButton from "../login/components/Spinner";
 
 import { useEffect } from "react";
 import useHandleEditHero from "./hooks/useHandleEditHero";
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
+import { useUploadImage } from "./hooks/useUploadImage";
 
 export default function EditHero() {
   const { preview, HandleImagePreview } = useHandleImage();
@@ -33,6 +34,7 @@ export default function EditHero() {
     reset,
     isPendingEdit,
   } = useHandleEditHero();
+  const { register, handleFileChange } = useUploadImage();
 
   useEffect(() => {
     if (DataHero) {
@@ -100,15 +102,18 @@ export default function EditHero() {
               <Input
                 id="picture"
                 type="file"
-                // {...register("image")}
-                onChange={HandleImagePreview}
+                {...register("image")}
+                onChange={(e) => {
+                  handleFileChange(e);
+                  HandleImagePreview(e);
+                }}
               />
-              {/* {(preview || DataHero?.image_url) && (
+              {(preview || DataHero?.image_url) && (
                 <ImagePreviewComponent
                   preview={preview}
                   imageUrl={DataHero?.image_url}
                 />
-              )} */}
+              )}
             </div>
           </div>
         </CardContent>
