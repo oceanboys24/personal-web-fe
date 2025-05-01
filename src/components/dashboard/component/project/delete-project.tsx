@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,8 +10,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import useHandleDeleteProject from "../../hooks/project/useHandleDeleteProject";
+import SpinnerButton from "@/components/login/components/Spinner";
 
-export function AlertDeleteProjectComponent() {
+export function AlertDeleteProjectComponent({ id }: { id: string }) {
+  const { DeleteProject, isPendingDeleteProject } = useHandleDeleteProject();
+
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -23,7 +27,14 @@ export function AlertDeleteProjectComponent() {
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>Continue</AlertDialogAction>
+        <AlertDialogAction
+          onClick={() => {
+            DeleteProject(id);
+          }}
+          disabled={isPendingDeleteProject}
+        >
+          {isPendingDeleteProject ? <SpinnerButton /> : "Continue"}
+        </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   );
