@@ -9,28 +9,59 @@ import {
 import { Input } from "@/components/ui/input";
 import useHandleImage from "../../hooks/useHandleImage";
 import ImagePreviewComponent from "../imagePreview";
+import useHandleAddStack from "../../hooks/stack/useHandleAddStack";
+import { useUploadImage } from "../../hooks/useUploadImage";
+import SpinnerButton from "@/components/login/components/Spinner";
 
 export default function AddStackComponent() {
   const { preview, HandleImagePreview } = useHandleImage();
+  const {
+    onSubmitAddStack,
+    handleSubmit,
+    errors,
+    RegisterAddStack,
+    isPendingAddStack,
+  } = useHandleAddStack();
+  const { register, handleFileChange } = useUploadImage();
+
   return (
-    <div className="flex flex-col gap-4">
-      <CardContent>
-        <div className="flex flex-col gap-4">
-          {/* Input Stack Name */}
-          <Input type="text" placeholder="Name Stack" />
+    <form onSubmit={handleSubmit(onSubmitAddStack)}>
+      <div className="flex flex-col gap-4">
+        <CardContent>
+          <div className="flex flex-col gap-4">
+            {/* Input Stack Name */}
+            <Input
+              type="text"
+              placeholder="Name Stack"
+              {...RegisterAddStack("name")}
+            />
 
-          {/* Upload Image */}
-          <div className="flex flex-col items-center gap-2">
-            <Input id="picture" type="file" onChange={HandleImagePreview} />
-            {preview && <ImagePreviewComponent preview={preview} />}
+            {/* Upload Image */}
+            <div className="flex flex-col items-center gap-2">
+              <Input
+                id="picture"
+                type="file"
+                {...register("image")}
+                onChange={(e) => {
+                  handleFileChange(e);
+                  HandleImagePreview(e);
+                }}
+              />
+              {preview && <ImagePreviewComponent preview={preview} />}
+            </div>
           </div>
-        </div>
-      </CardContent>
+        </CardContent>
 
-      <CardFooter className="flex justify-end">
-        {/* Add Stack */}
-        <Button variant="default">Add Stack</Button>
-      </CardFooter>
-    </div>
+        <CardFooter className="flex justify-end">
+          {/* Add Stack */}
+          <Button
+            variant="default"
+          >
+            Add Stack
+            {/* {isPendingAddStack ? <SpinnerButton /> : "Add Stack"} */}
+          </Button>
+        </CardFooter>
+      </div>
+    </form>
   );
 }

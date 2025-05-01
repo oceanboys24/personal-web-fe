@@ -1,5 +1,4 @@
 import {
-  AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
@@ -7,11 +6,13 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+import useHandleDeleteStack from "../../hooks/stack/useHandleDeleteStack";
+import { Stack } from "../../types/stack";
+import SpinnerButton from "@/components/login/components/Spinner";
 
-export function DeleteStackComponent() {
+export function DeleteStackComponent({ id }: { id: string }) {
+  const { isPendingDeleteStack, DeleteStack } = useHandleDeleteStack();
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -23,7 +24,14 @@ export function DeleteStackComponent() {
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>Continue</AlertDialogAction>
+        <AlertDialogAction
+          onClick={() => {
+            DeleteStack(id);
+          }}
+          disabled={isPendingDeleteStack}
+        >
+          {isPendingDeleteStack ? <SpinnerButton /> : "Continue"}
+        </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   );
