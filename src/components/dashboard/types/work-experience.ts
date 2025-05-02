@@ -4,7 +4,7 @@ export interface WorkExperience {
   company: string[];
   task: string[];
   stack: string[];
-  image: string;
+  image_url: string;
   start_date: string;
   end_date: string;
 }

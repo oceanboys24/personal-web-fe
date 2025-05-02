@@ -25,10 +25,14 @@ import EditWorkExperienceComponent from "./component/work-experience/edit-work-e
 import { AlertDeleteComponent } from "./component/work-experience/delete-work-experience";
 import useHandleGetWorkExperience from "./hooks/work-experience/useHandleGetWork";
 import SpinnerButton from "../login/components/Spinner";
+import { useState } from "react";
 
 export default function WorkExperience() {
   const { isLoadingWork, DataWork } = useHandleGetWorkExperience();
+  // Open Close Dialog
+  const [open, setOpen] = useState(false);
 
+  // Loading Fetching Data
   if (isLoadingWork) {
     return <SpinnerButton />;
   }
@@ -37,9 +41,9 @@ export default function WorkExperience() {
     <Card className="w-[550px] min-h-[450px] p-5">
       {/* Add Work Experience */}
       <div>
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="w-12">
+            <Button className="w-12" onClick={() => setOpen(true)}>
               <span>
                 <IoMdAdd />
               </span>
@@ -49,14 +53,17 @@ export default function WorkExperience() {
             <DialogTitle className="text-center">
               Add Work Experience
             </DialogTitle>
-            <AddWorkExperienceComponent />
+            <AddWorkExperienceComponent
+              onClose={() => {
+                setOpen(false);
+              }}
+            />
           </DialogContent>
         </Dialog>
       </div>
 
       {/* Get Work Experience */}
       <Table>
-        <TableCaption>A list of Work Experience.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Role</TableHead>
@@ -65,39 +72,47 @@ export default function WorkExperience() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {DataWork?.map((work) => (
-            <TableRow key={work.id}>
-              <TableCell className="font-medium">{work.role}</TableCell>
-              <TableCell>{work.company}</TableCell>
-              <TableCell className="text-right flex gap-2 justify-end">
-                {/* Edit Work Experience */}
-                <div>
-                  <Dialog>
-                    <DialogTrigger asChild>
+          {DataWork && DataWork.length > 0 ? (
+            DataWork.map((work) => (
+              <TableRow key={work.id}>
+                <TableCell className="font-medium">{work.role}</TableCell>
+                <TableCell>{work.company}</TableCell>
+                <TableCell className="text-right flex gap-2 justify-end">
+                  {/* Edit Work Experience */}
+                  <div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button>
+                          <CiEdit />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogTitle className="text-center">
+                          Edit Work Experience
+                        </DialogTitle>
+                        <EditWorkExperienceComponent />
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                  {/* Delete Work Experience */}
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
                       <Button>
-                        <CiEdit />
+                        <MdOutlineDeleteOutline />
                       </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogTitle className="text-center">
-                        Edit Work Experience
-                      </DialogTitle>
-                      <EditWorkExperienceComponent />
-                    </DialogContent>
-                  </Dialog>
-                </div>
-                {/* Delete Work Experience */}
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button>
-                      <MdOutlineDeleteOutline />
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDeleteComponent id={work.id} />
-                </AlertDialog>
+                    </AlertDialogTrigger>
+                    <AlertDeleteComponent id={work.id} />
+                  </AlertDialog>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={3} className="text-center">
+                No Work Experience List
               </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </Card>

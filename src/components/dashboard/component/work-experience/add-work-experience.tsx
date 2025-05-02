@@ -14,7 +14,11 @@ import { useUploadImage } from "../../hooks/useUploadImage";
 import { StartCalenderComponent } from "../start_calender";
 import { EndCalenderComponent } from "../end_calender";
 
-export default function AddWorkExperienceComponent() {
+export default function AddWorkExperienceComponent({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
   const { tasks, handleAddTask, handleRemoveTask } = useHandleTask();
   const { preview, HandleImagePreview } = useHandleImage();
   const {
@@ -30,9 +34,14 @@ export default function AddWorkExperienceComponent() {
   });
   const { register: registerImage, handleFileChange } = useUploadImage();
 
+  const onSubmit = async (data: any) => {
+    await onSubmitAddWork(data);
+    onClose();
+  };
+
   return (
     <div className="flex flex-col gap-5">
-      <form onSubmit={handleSubmit(onSubmitAddWork)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent>
           <div className="flex flex-col gap-3">
             <Input type="text" placeholder="Role" {...register("role")} />
@@ -40,15 +49,17 @@ export default function AddWorkExperienceComponent() {
             {tasks.map((task, index) => (
               <div className="flex flex-row gap-2" key={index}>
                 <Input placeholder="Task" {...register(`task.${index}`)} />
-                <Button
-                  className="w-10 text-xs "
-                  type="button"
-                  onClick={() => {
-                    handleRemoveTask(index);
-                  }}
-                >
-                  <FiTrash />
-                </Button>
+                {index !== 0 && (
+                  <Button
+                    className="w-10 text-xs "
+                    type="button"
+                    onClick={() => {
+                      handleRemoveTask(index);
+                    }}
+                  >
+                    <FiTrash />
+                  </Button>
+                )}
               </div>
             ))}
             <div className="flex flex-row justify-between">
@@ -124,7 +135,7 @@ export default function AddWorkExperienceComponent() {
           </div>
         </CardContent>
         <CardFooter>
-          <div className="w-full flex   justify-end">
+          <div className="w-full flex mt-5 justify-end">
             <Button disabled={isPendingAddWork}>
               {isPendingAddWork ? <SpinnerButton /> : "Add Work Experience"}
             </Button>

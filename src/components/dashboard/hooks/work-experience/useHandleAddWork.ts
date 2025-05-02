@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { WorkExperience } from "../../types/work-experience";
 import { axiosInstance } from "@/config/axios";
+import { toast } from "sonner";
 
 export default function useHandleAddWork() {
   const queryClient = useQueryClient();
@@ -16,7 +17,21 @@ export default function useHandleAddWork() {
 
       return response.data;
     },
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ["Work-Experience"],
+      });
+      toast.success("", {
+        description: "Success Create Work Experience",
+      });
+    },
+    onError: (error: any) => {
+      toast.error("", {
+        description: "Cannot Create Work Experience",
+      });
+    },
   });
+  
   const dataImage = queryClient.getQueryData(["data-image"]);
 
   const onSubmitAddWork = async (data: WorkExperience) => {

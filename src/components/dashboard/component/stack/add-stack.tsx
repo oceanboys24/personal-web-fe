@@ -18,9 +18,8 @@ export default function AddStackComponent() {
   const {
     onSubmitAddStack,
     handleSubmit,
-    errors,
+
     RegisterAddStack,
-    isPendingAddStack,
   } = useHandleAddStack();
   const { register, handleFileChange } = useUploadImage();
 
@@ -54,9 +53,7 @@ export default function AddStackComponent() {
 
         <CardFooter className="flex justify-end">
           {/* Add Stack */}
-          <Button
-            variant="default"
-          >
+          <Button variant="default">
             Add Stack
             {/* {isPendingAddStack ? <SpinnerButton /> : "Add Stack"} */}
           </Button>
