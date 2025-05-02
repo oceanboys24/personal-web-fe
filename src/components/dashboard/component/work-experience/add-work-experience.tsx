@@ -30,6 +30,7 @@ export default function AddWorkExperienceComponent() {
                 <Input placeholder="Task" {...register(`task.${index}`)} />
                 <Button
                   className="w-10 text-xs "
+                  type="button"
                   onClick={() => {
                     handleRemoveTask(index);
                   }}
@@ -39,11 +40,12 @@ export default function AddWorkExperienceComponent() {
               </div>
             ))}
             <div className="flex flex-row justify-between">
-              <Button onClick={handleAddTask}>Add Task</Button>
+              <Button onClick={handleAddTask} type="button">
+                Add Task
+              </Button>
             </div>
             <div className="flex flex-row">
               <Input
-                {...register("stack")}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={addTag}
