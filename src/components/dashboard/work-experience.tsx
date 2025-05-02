@@ -23,9 +23,6 @@ import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import AddWorkExperienceComponent from "./component/work-experience/add-work-experience";
 import EditWorkExperienceComponent from "./component/work-experience/edit-work-experience";
 import { AlertDeleteComponent } from "./component/work-experience/delete-work-experience";
-import { useQuery } from "@tanstack/react-query";
-import { axiosInstance } from "@/config/axios";
-import useHandleGetStack from "./hooks/stack/useHandleGetStack";
 import useHandleGetWorkExperience from "./hooks/work-experience/useHandleGetWork";
 import SpinnerButton from "../login/components/Spinner";
 

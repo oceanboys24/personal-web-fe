@@ -14,10 +14,16 @@ import {
 } from "@/components/ui/popover";
 import useHandleAddWork from "../hooks/work-experience/useHandleAddWork";
 
-export function EndCalenderComponent() {
-  const [date, setDate] = React.useState<string>();
-  const { setValue } = useHandleAddWork();
-  console.log("End", date)
+interface EndCalenderComponentProps {
+  value?: string;
+  onChange?: (value: string) => void;
+  name: string;
+}
+
+export function EndCalenderComponent({
+  value,
+  onChange,
+}: EndCalenderComponentProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -25,22 +31,21 @@ export function EndCalenderComponent() {
           variant={"outline"}
           className={cn(
             "w-[190px] justify-start text-left font-normal",
-            !date && "text-muted-foreground"
+            !value && "text-muted-foreground"
           )}
         >
           <CalendarIcon />
-          {date ? format(date, "PPP") : <span>Date</span>}
+          {value ? format(value, "PPP") : <span>Date</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-          selected={date ? new Date(date) : undefined}
+          selected={value ? new Date(value) : undefined}
           onSelect={(selectedDate) => {
             if (selectedDate) {
               const formatted = format(selectedDate, "yyyy-MM-dd");
-              setValue("end_date", formatted);
-              setDate(formatted);
+              onChange?.(formatted);
             }
           }}
           initialFocus

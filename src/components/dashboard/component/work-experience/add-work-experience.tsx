@@ -96,8 +96,30 @@ export default function AddWorkExperienceComponent() {
               {preview && <ImagePreviewComponent preview={preview} />}
             </div>
             <div className="flex flex-row justify-between">
-              <StartCalenderComponent />
-              <EndCalenderComponent />
+              {/* Start Date */}
+              <Controller
+                name="start_date"
+                control={control}
+                render={({ field }) => (
+                  <StartCalenderComponent
+                    value={field.value}
+                    onChange={field.onChange}
+                    name={field.name}
+                  />
+                )}
+              />
+              {/* End Date */}
+              <Controller
+                name="end_date"
+                control={control}
+                render={({ field }) => (
+                  <EndCalenderComponent
+                    value={field.value}
+                    onChange={field.onChange}
+                    name={field.name}
+                  />
+                )}
+              />
             </div>
           </div>
         </CardContent>
