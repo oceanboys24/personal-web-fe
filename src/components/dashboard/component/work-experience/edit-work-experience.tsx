@@ -14,7 +14,8 @@ import useHandleTags from "../../hooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
 import useHandleImage from "../../hooks/useHandleImage";
 import { Calendar } from "../../../ui/calendar";
-import { CalenderComponent } from "../calender";
+import { StartCalenderComponent } from "../start_calender";
+import { EndCalenderComponent } from "../end_calender";
 
 export default function EditWorkExperienceComponent() {
   const { tasks, handleAddTask, handleRemoveTask } = useHandleTask();
@@ -67,8 +68,8 @@ export default function EditWorkExperienceComponent() {
             {preview && <ImagePreviewComponent preview={preview} />}
           </div>
           <div className="flex flex-row justify-between">
-            <CalenderComponent />
-            <CalenderComponent />
+            <StartCalenderComponent />
+            <EndCalenderComponent />
           </div>
         </div>
       </CardContent>

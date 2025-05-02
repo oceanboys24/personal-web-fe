@@ -7,11 +7,12 @@ import useHandleTask from "../../hooks/useHandleTask";
 import useHandleTags from "../../hooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
 import useHandleImage from "../../hooks/useHandleImage";
-import { CalenderComponent } from "../calender";
 import useHandleAddWork from "../../hooks/work-experience/useHandleAddWork";
 import SpinnerButton from "@/components/login/components/Spinner";
 import { Controller } from "react-hook-form";
-import { useEffect } from "react";
+import { useUploadImage } from "../../hooks/useUploadImage";
+import { StartCalenderComponent } from "../start_calender";
+import { EndCalenderComponent } from "../end_calender";
 
 export default function AddWorkExperienceComponent() {
   const { tasks, handleAddTask, handleRemoveTask } = useHandleTask();
@@ -27,6 +28,7 @@ export default function AddWorkExperienceComponent() {
   const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
     setValue("stack", tags);
   });
+  const { register: registerImage, handleFileChange } = useUploadImage();
 
   return (
     <div className="flex flex-col gap-5">
@@ -82,12 +84,20 @@ export default function AddWorkExperienceComponent() {
 
             {/* Image */}
             <div className="flex justify-center flex-col items-center gap-1.5">
-              <Input id="picture" type="file" onChange={HandleImagePreview} />
+              <Input
+                id="picture"
+                {...registerImage("image")}
+                type="file"
+                onChange={(e) => {
+                  HandleImagePreview(e);
+                  handleFileChange(e);
+                }}
+              />
               {preview && <ImagePreviewComponent preview={preview} />}
             </div>
             <div className="flex flex-row justify-between">
-              <CalenderComponent />
-              <CalenderComponent />
+              <StartCalenderComponent />
+              <EndCalenderComponent />
             </div>
           </div>
         </CardContent>

@@ -5,6 +5,6 @@ export interface WorkExperience {
   task: string[];
   stack: string[];
   image: string;
-  start_date: Date;
-  end_date: Date;
+  start_date: string;
+  end_date: string;
 }
