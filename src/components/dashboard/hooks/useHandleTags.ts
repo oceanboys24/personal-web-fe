@@ -1,20 +1,23 @@
 import { useState } from "react";
 
-export default function useHandleTags() {
+export default function useHandleTags(setTagsToForm: (tags: string[]) => void) {
   const [tags, setTags] = useState<string[]>([]);
   const [input, setInput] = useState("");
-  console.log("Tags", tags);
 
   const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.trim() !== "") {
       e.preventDefault();
-      setTags([...tags, input.trim()]);
+      const newTags = [...tags, input.trim()];
+      setTags(newTags);
       setInput("");
+      setTagsToForm(newTags);
     }
   };
 
   const removeTag = (index: number) => {
-    setTags(tags.filter((_, i) => i !== index));
+    const newTags = tags.filter((_, i) => i !== index);
+    setTags(newTags);
+    setTagsToForm(newTags);
   };
   return { input, addTag, removeTag, setInput, tags };
 }

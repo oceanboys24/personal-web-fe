@@ -4,13 +4,8 @@ import { WorkExperience } from "../../types/work-experience";
 import { axiosInstance } from "@/config/axios";
 
 export default function useHandleAddWork() {
-  const { register, handleSubmit, setValue, watch } = useForm<WorkExperience>({
-    defaultValues: {
-      stack: [],
-    },
-  });
-
-  
+  const { register, handleSubmit, setValue, watch, control } =
+    useForm<WorkExperience>();
 
   const { mutateAsync: addWork, isPending: isPendingAddWork } = useMutation({
     mutationKey: ["Add-Work"],
@@ -32,5 +27,6 @@ export default function useHandleAddWork() {
     isPendingAddWork,
     setValue,
     watch,
+    control,
   };
 }

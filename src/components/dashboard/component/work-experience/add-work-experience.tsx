@@ -10,13 +10,23 @@ import useHandleImage from "../../hooks/useHandleImage";
 import { CalenderComponent } from "../calender";
 import useHandleAddWork from "../../hooks/work-experience/useHandleAddWork";
 import SpinnerButton from "@/components/login/components/Spinner";
+import { Controller } from "react-hook-form";
+import { useEffect } from "react";
 
 export default function AddWorkExperienceComponent() {
   const { tasks, handleAddTask, handleRemoveTask } = useHandleTask();
-  const { input, setInput, addTag, removeTag, tags } = useHandleTags();
   const { preview, HandleImagePreview } = useHandleImage();
-  const { onSubmitAddWork, handleSubmit, isPendingAddWork, register } =
-    useHandleAddWork();
+  const {
+    setValue,
+    onSubmitAddWork,
+    handleSubmit,
+    isPendingAddWork,
+    register,
+    control,
+  } = useHandleAddWork();
+  const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
+    setValue("stack", tags);
+  });
 
   return (
     <div className="flex flex-col gap-5">
@@ -63,6 +73,13 @@ export default function AddWorkExperienceComponent() {
                 </span>
               ))}
             </div>
+            <Controller
+              name="stack"
+              control={control}
+              defaultValue={tags}
+              render={({ field }) => <input {...field} type="hidden" />}
+            />
+
             {/* Image */}
             <div className="flex justify-center flex-col items-center gap-1.5">
               <Input id="picture" type="file" onChange={HandleImagePreview} />
