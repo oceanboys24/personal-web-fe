@@ -1,4 +1,4 @@
-import EditHero from "@/components/dashboard/edit-hero";
+import EditHero from "@/components/dashboard/hero";
 
 export default function EditHeroDashboardComponent() {
     return (
