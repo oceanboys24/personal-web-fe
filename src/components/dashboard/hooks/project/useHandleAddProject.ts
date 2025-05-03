@@ -9,7 +9,7 @@ export default function useHandleAddProject() {
 
   const { register, handleSubmit } = useForm<Project>();
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, isPending: isPendingAddProject } = useMutation({
     mutationKey: ["Add-Project"],
     mutationFn: async (data: Project) => {
       const response = await axiosInstance.post("/v1/project", data);
@@ -30,10 +30,17 @@ export default function useHandleAddProject() {
       });
     },
   });
-
+  const dataImage = queryClient.getQueryData(["data-image"]);
   const onSubmitAddProject = async (data: Project) => {
-    await mutateAsync(data);
+    try {
+      if (dataImage) {
+        data.image_url = (dataImage as any).link;
+      }
+      await mutateAsync(data);
+    } catch (error) {
+      console.log("Cannot SEND");
+    }
   };
 
-  return { register, handleSubmit, onSubmitAddProject };
+  return { register, handleSubmit, onSubmitAddProject, isPendingAddProject };
 }

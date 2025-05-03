@@ -13,11 +13,19 @@ import useHandleImage from "../../hooks/useHandleImage";
 import useHandleTags from "../../hooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
 import useHandleAddProject from "../../hooks/project/useHandleAddProject";
+import { useUploadImage } from "../../hooks/useUploadImage";
+import SpinnerButton from "@/components/login/components/Spinner";
 
 export default function AddProjectComponent() {
-  const { input, setInput, addTag, removeTag, tags } = useHandleTags();
+  // const { input, setInput, addTag, removeTag, tags } = useHandleTags();
   const { preview, HandleImagePreview } = useHandleImage();
-  const { handleSubmit, register, onSubmitAddProject } = useHandleAddProject();
+  const { handleSubmit, register, onSubmitAddProject, isPendingAddProject } =
+    useHandleAddProject();
+  const {
+    register: registerImage,
+    handleFileChange,
+    isUploading,
+  } = useUploadImage();
 
   return (
     <form onSubmit={handleSubmit(onSubmitAddProject)}>
@@ -34,7 +42,7 @@ export default function AddProjectComponent() {
               {...register("description")}
             />
 
-            <div className="flex flex-row">
+            {/* <div className="flex flex-row">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -52,19 +60,32 @@ export default function AddProjectComponent() {
                   {tag} ✖
                 </span>
               ))}
-            </div>
+            </div> */}
             <Input type="text" placeholder="Repo" {...register("repo")} />
             <Input type="text" placeholder="Demo" {...register("demo")} />
             {/* Image */}
-            {/* <div className="flex justify-center flex-col items-center gap-1.5">
-              <Input id="picture" type="file" onChange={HandleImagePreview} />
+            <div className="flex justify-center flex-col items-center gap-1.5">
+              <Input
+                id="picture"
+                {...registerImage("image")}
+                type="file"
+                onChange={(e) => {
+                  HandleImagePreview(e), handleFileChange(e);
+                }}
+              />
               {preview && <ImagePreviewComponent preview={preview} />}
-            </div> */}
+            </div>
           </div>
         </CardContent>
         <CardFooter>
-          <div className="w-full flex   justify-end">
-            <Button>Add Project</Button>
+          <div className="w-full flex  justify-end">
+            <Button disabled={isUploading || isPendingAddProject}>
+              {isUploading || isPendingAddProject ? (
+                <SpinnerButton />
+              ) : (
+                "Add Project"
+              )}
+            </Button>
           </div>
         </CardFooter>
       </div>

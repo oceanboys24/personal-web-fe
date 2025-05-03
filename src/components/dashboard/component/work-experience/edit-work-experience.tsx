@@ -1,35 +1,23 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
   CardContent,
   CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { FiTrash } from "react-icons/fi";
-import useHandleTask from "../../hooks/useHandleTask";
-import useHandleTags from "../../hooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
 import useHandleImage from "../../hooks/useHandleImage";
-import { Calendar } from "../../../ui/calendar";
-import { StartCalenderComponent } from "../start_calender";
-import { EndCalenderComponent } from "../end_calender";
 import useHandleEditWork from "../../hooks/work-experience/useHandleEditWork";
 import { useEffect } from "react";
-import { Edit } from "lucide-react";
 
 export default function EditWorkExperienceComponent({ id }: { id: string }) {
-  // Handle Task Form
-  const { tasks, handleAddTask, handleRemoveTask } = useHandleTask();
   // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
   // const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
   //   setValue("stack", tags);
   // });
 
-  // Tasks Handle
   const { DataWork, watch, register, setValue, handleSubmit, onSubmitEdit } =
     useHandleEditWork(id);
 

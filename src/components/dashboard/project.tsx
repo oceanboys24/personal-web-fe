@@ -66,7 +66,7 @@ export default function ProjectComponent() {
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
-                      <EditProjectComponent />
+                      <EditProjectComponent id={project.id} />
                     </DialogContent>
                   </Dialog>
                 </div>
