@@ -13,18 +13,27 @@ import useHandleAddStack from "../../hooks/stack/useHandleAddStack";
 import { useUploadImage } from "../../hooks/useUploadImage";
 import SpinnerButton from "@/components/login/components/Spinner";
 
-export default function AddStackComponent() {
+export default function AddStackComponent({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
   const { preview, HandleImagePreview } = useHandleImage();
   const {
     onSubmitAddStack,
     handleSubmit,
-
     RegisterAddStack,
+    isPendingAddStack,
   } = useHandleAddStack();
-  const { register, handleFileChange } = useUploadImage();
+  const { register, handleFileChange, isUploading } = useUploadImage();
 
+  const handleSubmitAndClose = async (data: any) => {
+    await onSubmitAddStack(data);
+    onClose();
+  };
+  
   return (
-    <form onSubmit={handleSubmit(onSubmitAddStack)}>
+    <form onSubmit={handleSubmit(handleSubmitAndClose)}>
       <div className="flex flex-col gap-4">
         <CardContent>
           <div className="flex flex-col gap-4">
@@ -53,9 +62,8 @@ export default function AddStackComponent() {
 
         <CardFooter className="flex justify-end">
           {/* Add Stack */}
-          <Button variant="default">
-            Add Stack
-            {/* {isPendingAddStack ? <SpinnerButton /> : "Add Stack"} */}
+          <Button variant="default" disabled={isPendingAddStack || isUploading}>
+            {isPendingAddStack || isUploading ? <SpinnerButton /> : "Add Stack"}
           </Button>
         </CardFooter>
       </div>

@@ -24,10 +24,14 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { DeleteStackComponent } from "./component/stack/delete-stack";
 import useHandleGetStack from "./hooks/stack/useHandleGetStack";
 import SpinnerButton from "../login/components/Spinner";
-import useHandleAddStack from "./hooks/stack/useHandleAddStack";
+import { useState } from "react";
 
 export default function StackComponent() {
   const { isLoadingStack, DataStack } = useHandleGetStack();
+  // Auto Close After Submit
+  const [open, setOpen] = useState(false);
+
+  //Fetching Data
   if (isLoadingStack) {
     return <SpinnerButton />;
   }
@@ -35,15 +39,19 @@ export default function StackComponent() {
     <Card className="w-[550px] min-h-[450px] p-5">
       {/* Add Work Experience */}
       <div>
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="w-12">
+            <Button className="w-12" onClick={() => setOpen(true)}>
               <IoMdAdd />
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogTitle className="text-center">Add Stack</DialogTitle>
-            <AddStackComponent />
+            <AddStackComponent
+              onClose={() => {
+                setOpen(false);
+              }}
+            />
           </DialogContent>
         </Dialog>
       </div>

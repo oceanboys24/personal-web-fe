@@ -3,9 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { WorkExperience } from "../../types/work-experience";
 
 export default function useHandleGetWorkExperience() {
-  const { isLoading: isLoadingWork, data: DataWork } = useQuery<
-    WorkExperience[]
-  >({
+  const {
+    isLoading: isLoadingWork,
+    data: DataWork,
+    refetch,
+  } = useQuery<WorkExperience[]>({
     queryKey: ["Work-Experience"],
     queryFn: async () => {
       const response = await axiosInstance.get("/v1/work-experience");
@@ -13,5 +15,5 @@ export default function useHandleGetWorkExperience() {
     },
   });
 
-  return { isLoadingWork, DataWork };
+  return { isLoadingWork, DataWork, refetch };
 }

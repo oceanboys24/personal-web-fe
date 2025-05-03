@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Stack, StackSchema, StackSchemaValid } from "../../types/stack";
+import { StackSchema, StackSchemaValid } from "../../types/stack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
@@ -19,9 +19,7 @@ export default function useHandleAddStack() {
   const { mutateAsync, isPending: isPendingAddStack } = useMutation({
     mutationKey: ["Add-Stack"],
     mutationFn: async (data: StackSchemaValid) => {
-      console.log("Send Data");
       const response = await axiosInstance.post("/v1/stack", data);
-
       return response.data;
     },
     onSuccess: () => {
@@ -43,13 +41,13 @@ export default function useHandleAddStack() {
   const onSubmitAddStack = async (data: StackSchemaValid) => {
     try {
       if (dataImage) {
-        data.image_url = (dataImage as any).link;
+        (data as any).image_url = (dataImage as any).link;
       }
       await mutateAsync(data);
     } catch (error) {
       console.log("Cannot SEND");
     }
-  };
+    };
 
   return {
     onSubmitAddStack,
