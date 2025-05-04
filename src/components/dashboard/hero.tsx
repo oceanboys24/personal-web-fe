@@ -17,7 +17,7 @@ import ImagePreviewComponent from "./component/imagePreview";
 
 import SpinnerButton from "../login/components/Spinner";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import useHandleEditHero from "./hooks/useHandleEditHero";
 import { Controller } from "react-hook-form";
 import { useUploadImage } from "./hooks/useUploadImage";
@@ -31,6 +31,7 @@ export default function HeroComponent() {
     DataHero,
     isLoading,
     control,
+    errors,
     reset,
     isPendingEdit,
   } = useHandleEditHero();
@@ -61,26 +62,47 @@ export default function HeroComponent() {
                   placeholder="Surname"
                   {...registerEdit("surname")}
                 />
+                {errors.surname && (
+                  <span className="text-red-500">{errors.surname.message}</span>
+                )}
                 <Input
-                  type="text"
+                  type="email"
                   placeholder="Email"
                   {...registerEdit("email")}
                 />
+                {errors.email && (
+                  <span className="text-red-500 text-sm">
+                    {errors.email.message}
+                  </span>
+                )}
                 <Input
                   type="text"
                   placeholder="Handphone"
                   {...registerEdit("handphone")}
                 />
+                {errors.handphone && (
+                  <span className="text-red-500 text-sm">
+                    {errors.handphone.message}
+                  </span>
+                )}
                 <Input
                   type="text"
                   placeholder="CV Link"
                   {...registerEdit("cv")}
                 />
+                {errors.cv && (
+                  <span className="text-red-500 text-sm">{errors.cv.message}</span>
+                )}
                 <Input
                   type="text"
                   placeholder="Profession"
                   {...registerEdit("profession")}
                 />
+                {errors.profession && (
+                  <span className="text-red-500 text-sm">
+                    {errors.profession.message}
+                  </span>
+                )}
                 <div className="flex justify-center  items-center flex-col  gap-3">
                   <Input
                     id="picture"
@@ -107,11 +129,21 @@ export default function HeroComponent() {
                     placeholder="Description"
                     {...registerEdit("description")}
                   />
+                  {errors.description && (
+                    <span className="text-red-500 text-sm">
+                      {errors.description.message}
+                    </span>
+                  )}
                   <Input
                     type="text"
                     placeholder="Location"
                     {...registerEdit("location")}
                   />
+                  {errors.location && (
+                    <span className="text-red-500 text-sm">
+                      {errors.location.message}
+                    </span>
+                  )}
                   <div className="flex justify-end items-center space-x-2">
                     <Controller
                       name="is_available"

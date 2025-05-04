@@ -51,5 +51,6 @@ export function useUploadImage() {
     reset,
     uploadedImage,
     isUploading,
+
   };
 }

@@ -4,21 +4,26 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { Hero } from "../types/hero";
+import { Hero, HeroSchema, HeroSchemaType } from "../types/hero";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function useHandleEditHero() {
   const queryClient = useQueryClient();
-
   const {
     handleSubmit: HandleSubmitEdit,
     register: registerEdit,
     reset,
     control,
-  } = useForm<Hero>();
+    formState: { errors },
+  } = useForm<HeroSchemaType>({
+    resolver: zodResolver(HeroSchema),
+    mode: "onChange",
+  });
+
   const { mutateAsync, isPending: isPendingEdit } = useMutation({
     mutationKey: ["Edit-Hero"],
     mutationFn: async (data: Hero) => {
@@ -47,6 +52,7 @@ export default function useHandleEditHero() {
       const response = await axios.get("http://localhost:3000/v1/hero");
       return response.data.data;
     },
+
   });
 
   const dataImage = queryClient.getQueryData(["data-image"]);
@@ -67,5 +73,6 @@ export default function useHandleEditHero() {
     reset,
     control,
     isPendingEdit,
+    errors,
   };
 }
