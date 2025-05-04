@@ -3,15 +3,27 @@ import { Project } from "../../types/project";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ProjectSchema,
+  ProjectValid,
+} from "@/components/dashboard/types/project";
 
 export default function useHandleAddProject() {
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit } = useForm<Project>();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<ProjectValid>({
+    resolver: zodResolver(ProjectSchema),
+  });
 
   const { mutateAsync, isPending: isPendingAddProject } = useMutation({
     mutationKey: ["Add-Project"],
-    mutationFn: async (data: Project) => {
+    mutationFn: async (data: ProjectValid) => {
       const response = await axiosInstance.post("/v1/project", data);
 
       return response.data;
@@ -31,7 +43,7 @@ export default function useHandleAddProject() {
     },
   });
   const dataImage = queryClient.getQueryData(["data-image"]);
-  const onSubmitAddProject = async (data: Project) => {
+  const onSubmitAddProject = async (data: ProjectValid) => {
     try {
       if (dataImage) {
         data.image_url = (dataImage as any).link;
@@ -42,5 +54,12 @@ export default function useHandleAddProject() {
     }
   };
 
-  return { register, handleSubmit, onSubmitAddProject, isPendingAddProject };
+  return {
+    register,
+    handleSubmit,
+    onSubmitAddProject,
+    isPendingAddProject,
+    errors,
+    setValue,
+  };
 }

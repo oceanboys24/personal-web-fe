@@ -20,9 +20,11 @@ import EditProjectComponent from "./component/project/edit-project";
 import { AlertDeleteProjectComponent } from "./component/project/delete-project";
 import SpinnerButton from "../login/components/Spinner";
 import useHandleGetProject from "./hooks/project/useHandleGetProject";
+import { useState } from "react";
 
 export default function ProjectComponent() {
   const { DataProject, isLoadingProject } = useHandleGetProject();
+  const [open, setOpen] = useState(false);
 
   if (isLoadingProject) {
     return <SpinnerButton />;
@@ -32,14 +34,18 @@ export default function ProjectComponent() {
     <Card className="w-[550px] min-h-[450px] p-5">
       {/* Add Work Experience */}
       <div>
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="w-12">
+            <Button className="w-12" onClick={() => setOpen(true)}>
               <IoMdAdd />
             </Button>
           </DialogTrigger>
           <DialogContent>
-            <AddProjectComponent />
+            <AddProjectComponent
+              onClose={() => {
+                setOpen(false);
+              }}
+            />
           </DialogContent>
         </Dialog>
       </div>
@@ -53,8 +59,8 @@ export default function ProjectComponent() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {DataProject?.map((project) => (
-            <TableRow>
+          {DataProject?.map((project, index) => (
+            <TableRow key={index}>
               <TableCell className="font-medium">{project.name}</TableCell>
               <TableCell className="text-right flex gap-2 justify-end">
                 {/* Edit Work Experience */}
