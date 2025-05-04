@@ -55,7 +55,7 @@ export default function useHandleAddWork() {
       }
       await addWork(data);
     } catch (error) {
-      console.log("Cannot SEND");
+      console.log("Cannot Send", error);
     }
   };
 

@@ -83,7 +83,7 @@ export function AppSidebar() {
         <form className="text-center mb-5">
           <Button
             variant="default"
-            className="cursor-default"
+            className="cursor-pointer"
             onClick={OnLogout}
           >
             Logout

@@ -104,7 +104,10 @@ export default function AddWorkExperienceComponent({
             </div>
             <div className="flex flex-row flex-wrap">
               {tags.map((tag, index) => (
-                <div className="flex items-center bg-gray-100 rounded-2xl p-1 justify-center mr-2  ">
+                <div
+                  className="flex items-center bg-gray-100 rounded-2xl p-1 justify-center mr-2  "
+                  key={index}
+                >
                   <span
                     key={index}
                     onClick={() => removeTag(index)}
@@ -165,7 +168,11 @@ export default function AddWorkExperienceComponent({
         </CardContent>
         <CardFooter>
           <div className="w-full flex mt-5 justify-end">
-            <Button disabled={isPendingAddWork}>
+            <Button
+              disabled={isPendingAddWork}
+              className="cursor-pointer"
+              type="submit"
+            >
               {isPendingAddWork ? <SpinnerButton /> : "Add Work Experience"}
             </Button>
           </div>

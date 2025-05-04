@@ -34,7 +34,7 @@ export function StartCalenderComponent({
           )}
         >
           <CalendarIcon />
-          {value ? format(value, "PPP") : <span>Date</span>}
+          {value ? format(value, "PPP") : <span>Start Date</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">

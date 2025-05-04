@@ -16,9 +16,9 @@ export const WorkExperienceSchema = z.object({
   task: z
     .array(z.string().min(1, { message: "Task must not be empty" }))
     .min(1, { message: "At least 1 task is required" }),
-  stack: z.array(z.string()),
-  start_date: z.string(),
-  end_date: z.string(),
+  stack: z.array(z.string()).optional(),
+  start_date: z.string().optional(),
+  end_date: z.string().optional(),
 });
 
 export type WorkExperienceSchemaValid = z.infer<typeof WorkExperienceSchema>;

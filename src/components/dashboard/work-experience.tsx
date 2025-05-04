@@ -43,7 +43,10 @@ export default function WorkExperience() {
       <div>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="w-12" onClick={() => setOpen(true)}>
+            <Button
+              className="w-12 cursor-pointer"
+              onClick={() => setOpen(true)}
+            >
               <span>
                 <IoMdAdd />
               </span>
@@ -73,7 +76,7 @@ export default function WorkExperience() {
         </TableHeader>
         <TableBody>
           {DataWork && DataWork.length > 0 ? (
-            DataWork.map((work,index) => (
+            DataWork.map((work, index) => (
               <TableRow key={work.id}>
                 <TableCell className="font-medium">{work.role}</TableCell>
                 <TableCell>{work.company}</TableCell>
@@ -82,7 +85,7 @@ export default function WorkExperience() {
                   <div>
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button>
+                        <Button className="cursor-pointer">
                           <CiEdit />
                         </Button>
                       </DialogTrigger>
@@ -90,14 +93,17 @@ export default function WorkExperience() {
                         <DialogTitle className="text-center">
                           Edit Work Experience
                         </DialogTitle>
-                        <EditWorkExperienceComponent id={work.id} index={index} />
+                        <EditWorkExperienceComponent
+                          id={work.id}
+                          index={index}
+                        />
                       </DialogContent>
                     </Dialog>
                   </div>
                   {/* Delete Work Experience */}
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
-                      <Button>
+                      <Button className="cursor-pointer">
                         <MdOutlineDeleteOutline />
                       </Button>
                     </AlertDialogTrigger>

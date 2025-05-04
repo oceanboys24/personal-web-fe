@@ -26,12 +26,13 @@ export function AlertDeleteComponent({ id }: { id: string }) {
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogCancel className="cursor-pointer">Cancel</AlertDialogCancel>
         <AlertDialogAction
           onClick={() => {
             DeleteWork(id);
           }}
           disabled={isPendingDeleteWork}
+          className="cursor-pointer"
         >
           {isPendingDeleteWork ? <SpinnerButton /> : "Continue"}
         </AlertDialogAction>
