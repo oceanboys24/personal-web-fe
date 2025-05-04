@@ -19,5 +19,5 @@ export default function useHandleTags(setTagsToForm: (tags: string[]) => void) {
     setTags(newTags);
     setTagsToForm(newTags);
   };
-  return { input, addTag, removeTag, setInput, tags };
+  return { input, addTag, removeTag, setInput, tags, setTags };
 }

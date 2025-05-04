@@ -2,12 +2,15 @@ import { useForm } from "react-hook-form";
 import { Project } from "../../types/project";
 import { WorkExperience } from "../../types/work-experience";
 import useHandleGetProject from "./useHandleGetProject";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
+import { toast } from "sonner";
+import { useEffect } from "react";
 
 export default function useHandleEditProject(id: string) {
-  const { DataProject, isLoadingProject, refetch } = useHandleGetProject();
+  const { DataProject, isLoadingProject } = useHandleGetProject();
   const { register, handleSubmit, reset, setValue, watch } = useForm<Project>();
+  const queryClient = useQueryClient();
 
   const { mutateAsync: EditProject } = useMutation({
     mutationKey: ["Edit-Project"],
@@ -16,7 +19,12 @@ export default function useHandleEditProject(id: string) {
       return response.data;
     },
     onSuccess: () => {
-      refetch();
+      queryClient.invalidateQueries({
+        queryKey: ["Project"],
+      });
+      toast.success("", {
+        description: "Success Edit Project",
+      });
     },
   });
 
