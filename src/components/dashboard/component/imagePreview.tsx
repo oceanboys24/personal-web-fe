@@ -9,5 +9,11 @@ export default function ImagePreviewComponent({
   if (!src) {
     return null;
   }
-  return <img src={src} alt="Preview" className="w-40 h-40 object-cover rounded-xl" />;
+  return (
+    <img
+      src={src}
+      alt="Preview"
+      className="w-40 h-40 object-contain rounded-xl"
+    />
+  );
 }

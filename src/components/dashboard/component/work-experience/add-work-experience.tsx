@@ -32,7 +32,9 @@ export default function AddWorkExperienceComponent({
   const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
     setValue("stack", tags);
   });
-  const { register: registerImage, handleFileChange } = useUploadImage();
+
+
+  const { register: registerImage, handleFileChange } = useUploadImage({});
 
   const onSubmit = async (data: any) => {
     await onSubmitAddWork(data);

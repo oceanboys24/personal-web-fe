@@ -1,11 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import useHandleImage from "../../hooks/useHandleImage";
 import ImagePreviewComponent from "../imagePreview";
@@ -24,25 +18,34 @@ export default function AddStackComponent({
     handleSubmit,
     RegisterAddStack,
     isPendingAddStack,
+    errors,
   } = useHandleAddStack();
-  const { register, handleFileChange, isUploading } = useUploadImage();
+  const { register, handleFileChange, isUploading, uploadedImage } =
+    useUploadImage({});
 
   const handleSubmitAndClose = async (data: any) => {
     await onSubmitAddStack(data);
     onClose();
   };
-  
+
   return (
     <form onSubmit={handleSubmit(handleSubmitAndClose)}>
       <div className="flex flex-col gap-4">
         <CardContent>
           <div className="flex flex-col gap-4">
             {/* Input Stack Name */}
-            <Input
-              type="text"
-              placeholder="Name Stack"
-              {...RegisterAddStack("name")}
-            />
+            <div>
+              <Input
+                type="text"
+                placeholder="Name Stack"
+                {...RegisterAddStack("name")}
+              />
+              {errors.name && (
+                <span className="text-red-500 text-sm">
+                  {errors.name.message}
+                </span>
+              )}
+            </div>
 
             {/* Upload Image */}
             <div className="flex flex-col items-center gap-2">
@@ -62,7 +65,10 @@ export default function AddStackComponent({
 
         <CardFooter className="flex justify-end">
           {/* Add Stack */}
-          <Button variant="default" disabled={isPendingAddStack || isUploading}>
+          <Button
+            variant="default"
+            disabled={isPendingAddStack || isUploading || !uploadedImage}
+          >
             {isPendingAddStack || isUploading ? <SpinnerButton /> : "Add Stack"}
           </Button>
         </CardFooter>
