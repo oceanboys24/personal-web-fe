@@ -6,6 +6,8 @@ import { FiTrash } from "react-icons/fi";
 import ImagePreviewComponent from "../imagePreview";
 import useHandleImage from "../../hooks/useHandleImage";
 import useHandleEditWork from "../../hooks/work-experience/useHandleEditWork";
+import useHandleTags from "../../hooks/useHandleTags";
+import { useEffect, useState } from "react";
 
 export default function EditWorkExperienceComponent({
   id,
@@ -20,8 +22,15 @@ export default function EditWorkExperienceComponent({
   //   setValue("stack", tags);
   // });
 
-  const { DataWork, watch, register, setValue, handleSubmit, onSubmitEdit } =
-    useHandleEditWork(id, index);
+  const {
+    DataWork,
+    watch,
+    register,
+    setValue,
+    handleSubmit,
+    onSubmitEdit,
+    reset,
+  } = useHandleEditWork(id, index);
 
   const tasksList = watch("task") || [];
 
@@ -65,23 +74,32 @@ export default function EditWorkExperienceComponent({
               </Button>
             </div>
             {/* <div className="flex flex-row">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={addTag}
-              placeholder="Press Enter to add Stack"
-            />
-          </div>
-          <div className="flex flex-row flex-wrap">
-            {tags.map((tag, index) => (
-              <span
-              key={index}
-              onClick={() => removeTag(index)}
-              style={{ marginRight: 8, cursor: "pointer" }}
-              >
-              {tag} ✖
-              </span>
-            ))}
+              <Input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={addTag}
+                placeholder="Press Enter to add Stack"
+              />
+            </div> */}
+            {/* <div className="flex flex-row flex-wrap">
+              {workStacks?.map((work, index) => (
+                <span
+                  key={index}
+                  onClick={() => removeWorkStack(index)}
+                  style={{ marginRight: 8, cursor: "pointer" }}
+                >
+                  {work} ✖
+                </span>
+              ))}
+              {tags.map((tag, index) => (
+                <span
+                  key={index}
+                  onClick={() => removeTag(index)}
+                  style={{ marginRight: 8, cursor: "pointer" }}
+                >
+                  {tag} ✖
+                </span>
+              ))}
             </div> */}
             {/* Image */}
             <div className="flex justify-center flex-col items-center gap-1.5">

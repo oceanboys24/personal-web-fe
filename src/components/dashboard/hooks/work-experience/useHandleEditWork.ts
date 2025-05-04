@@ -1,24 +1,15 @@
 import { useForm } from "react-hook-form";
 import { WorkExperience } from "../../types/work-experience";
 import useHandleGetWorkExperience from "./useHandleGetWork";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
+import { toast } from "sonner";
 
 export default function useHandleEditWork(id: string, index?: number) {
-  const { DataWork, refetch } = useHandleGetWorkExperience();
+  const queryClient = useQueryClient();
+  const { DataWork } = useHandleGetWorkExperience();
   const { register, handleSubmit, reset, setValue, watch } =
-    useForm<WorkExperience>({
-      defaultValues: DataWork?.[index!] ?? {
-        id: "",
-        role: "",
-        company: "",
-        task: [""],
-        stack: [],
-        image_url: "",
-        start_date: "",
-        end_date: "",
-      },
-    });
+    useForm<WorkExperience>();
 
   const { mutateAsync: EditWork } = useMutation({
     mutationKey: ["Edit-Work"],
@@ -29,8 +20,13 @@ export default function useHandleEditWork(id: string, index?: number) {
       );
       return response.data;
     },
-    onSuccess: () => {
-      refetch();
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ["Work-Experience"],
+      });
+      toast.success("", {
+        description: "Success Edit Work Experience",
+      });
     },
   });
 
