@@ -18,7 +18,8 @@ export default function useHandleEditHero() {
     register: registerEdit,
     reset,
     control,
-    formState: { errors },
+    watch,
+    formState: { errors, isDirty },
   } = useForm<HeroSchemaType>({
     resolver: zodResolver(HeroSchema),
     mode: "onChange",
@@ -52,7 +53,6 @@ export default function useHandleEditHero() {
       const response = await axios.get("http://localhost:3000/v1/hero");
       return response.data.data;
     },
-
   });
 
   const dataImage = queryClient.getQueryData(["data-image"]);
@@ -65,6 +65,7 @@ export default function useHandleEditHero() {
   };
 
   return {
+    isDirty,
     onSubmitEdit,
     HandleSubmitEdit,
     registerEdit,
@@ -72,6 +73,7 @@ export default function useHandleEditHero() {
     DataHero,
     reset,
     control,
+    watch,
     isPendingEdit,
     errors,
   };

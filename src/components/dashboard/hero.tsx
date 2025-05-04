@@ -30,12 +30,16 @@ export default function HeroComponent() {
     registerEdit,
     DataHero,
     isLoading,
+    watch,
+    isDirty,
     control,
     errors,
     reset,
     isPendingEdit,
   } = useHandleEditHero();
-  const { register, handleFileChange } = useUploadImage();
+  const { register, isDirtyImage, handleFileChange } = useUploadImage();
+
+  const formValues = watch();
 
   useEffect(() => {
     if (DataHero) {
@@ -91,7 +95,9 @@ export default function HeroComponent() {
                   {...registerEdit("cv")}
                 />
                 {errors.cv && (
-                  <span className="text-red-500 text-sm">{errors.cv.message}</span>
+                  <span className="text-red-500 text-sm">
+                    {errors.cv.message}
+                  </span>
                 )}
                 <Input
                   type="text"
@@ -163,7 +169,9 @@ export default function HeroComponent() {
                   </div>
                 </div>
                 <div className="w-full flex  items-end  justify-end">
-                  <Button disabled={isPendingEdit}>
+                  <Button
+                    disabled={isPendingEdit || (!isDirty && !isDirtyImage)}
+                  >
                     {isPendingEdit ? <SpinnerButton /> : "Save Changes"}
                   </Button>
                 </div>

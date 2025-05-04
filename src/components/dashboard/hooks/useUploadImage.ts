@@ -2,12 +2,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { axiosInstance } from "@/config/axios";
+import { useState } from "react";
 
 interface FormDataType {
   image: FileList;
 }
 
 export function useUploadImage() {
+  const [isDirtyImage, setIsDirtyImage] = useState(false);
   const { register, handleSubmit, reset, resetField } = useForm<FormDataType>();
 
   const queryClient = useQueryClient();
@@ -27,12 +29,14 @@ export function useUploadImage() {
     onSuccess: (data: any) => {
       toast.success("Success Upload");
       queryClient.setQueryData(["data-image"], data);
+      setIsDirtyImage(true);
     },
     onError: (error: any) => {
       toast.error("Upload Failed", {
         description: "Must be an image file",
       });
       resetField("image");
+      setIsDirtyImage(false);
     },
   });
 
@@ -41,6 +45,7 @@ export function useUploadImage() {
     if (!files || files.length === 0) return;
     const formData = new FormData();
     formData.append("image", files[0]);
+
     await uploadImage(formData);
   };
 
@@ -49,8 +54,8 @@ export function useUploadImage() {
     register,
     handleSubmit,
     reset,
+    isDirtyImage,
     uploadedImage,
     isUploading,
-
   };
 }
