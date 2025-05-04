@@ -12,7 +12,6 @@ import { Textarea } from "@/components/ui/textarea";
 import useHandleImage from "../../hooks/useHandleImage";
 import useHandleTags from "../../hooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
-import useHandleGetProject from "../../hooks/project/useHandleGetProject";
 import useHandleEditProject from "../../hooks/project/useHandleEditProject";
 import { useEffect, useState } from "react";
 
@@ -29,18 +28,22 @@ export default function EditProjectComponent({
     }
   );
   const { preview, HandleImagePreview } = useHandleImage();
-  const { DataProject, setValue, register, reset, onSubmitEdit, handleSubmit } =
+  const { DataProject, setValue, register, onSubmitEdit, handleSubmit } =
     useHandleEditProject(id);
 
-
-
+  useEffect(() => {
+    if (DataProject) {
+      setValue("name", DataProject![idProject].name);
+      setValue("description", DataProject![idProject].description);
+      setValue("demo", DataProject![idProject].demo);
+      setValue("repo", DataProject![idProject].repo);
+      setTags(DataProject![idProject].stack);
+    }
+  }, [DataProject, setValue]);
 
   return (
     <form onSubmit={handleSubmit(onSubmitEdit)}>
       <div className="flex flex-col gap-3">
-        <CardHeader>
-          <CardTitle className="text-center">Edit Project </CardTitle>
-        </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-3">
             <Input type="text" placeholder="Name" {...register("name")} />
@@ -59,7 +62,7 @@ export default function EditProjectComponent({
               />
             </div>
             <div className="flex flex-row flex-wrap">
-              {tags.map((tag, index) => (
+              {tags?.map((tag, index) => (
                 <span
                   key={index}
                   onClick={() => removeTag(index)}
@@ -74,7 +77,12 @@ export default function EditProjectComponent({
             {/* Image */}
             <div className="flex justify-center flex-col items-center gap-1.5">
               <Input id="picture" type="file" onChange={HandleImagePreview} />
-              {preview && <ImagePreviewComponent preview={preview} />}
+              {preview ||
+                (DataProject![idProject].image_url && (
+                  <ImagePreviewComponent
+                    preview={preview || DataProject![idProject].image_url}
+                  />
+                ))}
             </div>
           </div>
         </CardContent>

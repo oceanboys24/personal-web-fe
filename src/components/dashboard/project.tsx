@@ -13,7 +13,12 @@ import { Button } from "../ui/button";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+} from "../ui/dialog";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import AddProjectComponent from "./component/project/add-project";
 import EditProjectComponent from "./component/project/edit-project";
@@ -41,6 +46,7 @@ export default function ProjectComponent() {
             </Button>
           </DialogTrigger>
           <DialogContent>
+            <DialogTitle className="text-center">Add Project</DialogTitle>
             <AddProjectComponent
               onClose={() => {
                 setOpen(false);
@@ -72,6 +78,9 @@ export default function ProjectComponent() {
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
+                      <DialogTitle className="text-center">
+                        Edit Project
+                      </DialogTitle>
                       <EditProjectComponent id={project.id} idProject={index} />
                     </DialogContent>
                   </Dialog>

@@ -1,11 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardContent, CardFooter, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useHandleImage from "../../hooks/useHandleImage";
@@ -46,9 +41,6 @@ export default function AddProjectComponent({
   return (
     <form onSubmit={handleSubmit(onSubmitAddMyProject)}>
       <div className="flex flex-col gap-3">
-        <CardHeader>
-          <CardTitle className="text-center">Project Management</CardTitle>
-        </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-3">
             <div>

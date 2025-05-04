@@ -1,5 +1,5 @@
+"use client";
 import { Button } from "@/components/ui/button";
-
 import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
 import { FaWhatsapp } from "react-icons/fa";
@@ -43,7 +43,7 @@ export default function HeroComponent() {
           {DataHeroLanding?.location}
         </p>
 
-        <p className="flex gap-2 dark:text-gray-400 text-gray-500 justify-center mb-5 lg:justify-start">
+        <div className="flex gap-2 dark:text-gray-400 text-gray-500 justify-center mb-5 lg:justify-start">
           {DataHeroLanding?.is_available ? (
             <div className="flex items-center gap-2">
               <GoDotFill color="green" />
@@ -55,7 +55,7 @@ export default function HeroComponent() {
               <span>Not Available</span>
             </div>
           )}
-        </p>
+        </div>
         <div className="flex flex-col gap-5 md:flex-row md:justify-center lg:justify-start ">
           <Button className="bg-green-500 dark:text-white  py-6 px-4 md:py-5 md:px-4 lg:font-semibold hover:bg-green-600 ">
             <a
