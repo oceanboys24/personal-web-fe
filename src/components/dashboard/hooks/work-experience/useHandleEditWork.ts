@@ -4,10 +4,21 @@ import useHandleGetWorkExperience from "./useHandleGetWork";
 import { useMutation } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 
-export default function useHandleEditWork(id: string) {
+export default function useHandleEditWork(id: string, index?: number) {
   const { DataWork, refetch } = useHandleGetWorkExperience();
   const { register, handleSubmit, reset, setValue, watch } =
-    useForm<WorkExperience>();
+    useForm<WorkExperience>({
+      defaultValues: DataWork?.[index!] ?? {
+        id: "",
+        role: "",
+        company: "",
+        task: [""],
+        stack: [],
+        image_url: "",
+        start_date: "",
+        end_date: "",
+      },
+    });
 
   const { mutateAsync: EditWork } = useMutation({
     mutationKey: ["Edit-Work"],

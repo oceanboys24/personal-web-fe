@@ -1,14 +1,28 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { WorkExperience } from "../../types/work-experience";
+import {
+  WorkExperience,
+  WorkExperienceSchema,
+  WorkExperienceSchemaValid,
+} from "../../types/work-experience";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function useHandleAddWork() {
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit, setValue, watch, control } =
-    useForm<WorkExperience>();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm<WorkExperienceSchemaValid>({
+    resolver: zodResolver(WorkExperienceSchema),
+    mode: "onChange",
+  });
 
   const { mutateAsync: addWork, isPending: isPendingAddWork } = useMutation({
     mutationKey: ["Add-Work"],
@@ -31,7 +45,7 @@ export default function useHandleAddWork() {
       });
     },
   });
-  
+
   const dataImage = queryClient.getQueryData(["data-image"]);
 
   const onSubmitAddWork = async (data: WorkExperience) => {
@@ -53,5 +67,6 @@ export default function useHandleAddWork() {
     setValue,
     watch,
     control,
+    errors,
   };
 }

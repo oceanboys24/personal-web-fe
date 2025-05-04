@@ -27,12 +27,12 @@ export default function AddWorkExperienceComponent({
     handleSubmit,
     isPendingAddWork,
     register,
+    errors,
     control,
   } = useHandleAddWork();
   const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
     setValue("stack", tags);
   });
-
 
   const { register: registerImage, handleFileChange } = useUploadImage({});
 
@@ -46,11 +46,36 @@ export default function AddWorkExperienceComponent({
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent>
           <div className="flex flex-col gap-3">
-            <Input type="text" placeholder="Role" {...register("role")} />
-            <Input type="text" placeholder="Company" {...register("company")} />
+            <div>
+              <Input type="text" placeholder="Role" {...register("role")} />
+              {errors.role && (
+                <span className="text-red-500 text-sm">
+                  {errors.role.message}
+                </span>
+              )}
+            </div>
+            <div>
+              <Input
+                type="text"
+                placeholder="Company"
+                {...register("company")}
+              />
+              {errors.company && (
+                <span className="text-red-500 text-sm">
+                  {errors.company.message}
+                </span>
+              )}
+            </div>
             {tasks.map((task, index) => (
               <div className="flex flex-row gap-2" key={index}>
-                <Input placeholder="Task" {...register(`task.${index}`)} />
+                <div className="w-full">
+                  <Input placeholder="Task" {...register(`task.${index}`)} />
+                  {index === 0 && errors.task?.[0]?.message && (
+                    <span className="text-red-500 text-sm">
+                      {errors.task[0]?.message}
+                    </span>
+                  )}
+                </div>
                 {index !== 0 && (
                   <Button
                     className="w-10 text-xs "
@@ -79,13 +104,15 @@ export default function AddWorkExperienceComponent({
             </div>
             <div className="flex flex-row flex-wrap">
               {tags.map((tag, index) => (
-                <span
-                  key={index}
-                  onClick={() => removeTag(index)}
-                  style={{ marginRight: 8, cursor: "pointer" }}
-                >
-                  {tag} ✖
-                </span>
+                <div className="flex items-center bg-gray-100 rounded-2xl p-1 justify-center mr-2  ">
+                  <span
+                    key={index}
+                    onClick={() => removeTag(index)}
+                    style={{ marginRight: 8, cursor: "pointer" }}
+                  >
+                    {tag} ✖
+                  </span>
+                </div>
               ))}
             </div>
             <Controller

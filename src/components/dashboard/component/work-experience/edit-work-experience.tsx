@@ -1,17 +1,19 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { FiTrash } from "react-icons/fi";
 import ImagePreviewComponent from "../imagePreview";
 import useHandleImage from "../../hooks/useHandleImage";
 import useHandleEditWork from "../../hooks/work-experience/useHandleEditWork";
-import { useEffect } from "react";
 
-export default function EditWorkExperienceComponent({ id }: { id: string }) {
+export default function EditWorkExperienceComponent({
+  id,
+  index,
+}: {
+  id: string;
+  index?: number;
+}) {
   // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
   // const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
@@ -19,7 +21,7 @@ export default function EditWorkExperienceComponent({ id }: { id: string }) {
   // });
 
   const { DataWork, watch, register, setValue, handleSubmit, onSubmitEdit } =
-    useHandleEditWork(id);
+    useHandleEditWork(id, index);
 
   const tasksList = watch("task") || [];
 
@@ -33,17 +35,6 @@ export default function EditWorkExperienceComponent({ id }: { id: string }) {
     const updatedTask = currentTask.filter((_, i) => i !== index);
     setValue("task", updatedTask);
   };
-
-  useEffect(() => {
-    if (DataWork) {
-      const work = DataWork.find((item) => item.id === id);
-      if (work) {
-        setValue("role", work.role);
-        setValue("company", work.company);
-        setValue("task", work.task);
-      }
-    }
-  }, [DataWork]);
 
   return (
     <form onSubmit={handleSubmit(onSubmitEdit)}>

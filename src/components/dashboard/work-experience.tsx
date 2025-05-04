@@ -73,7 +73,7 @@ export default function WorkExperience() {
         </TableHeader>
         <TableBody>
           {DataWork && DataWork.length > 0 ? (
-            DataWork.map((work) => (
+            DataWork.map((work,index) => (
               <TableRow key={work.id}>
                 <TableCell className="font-medium">{work.role}</TableCell>
                 <TableCell>{work.company}</TableCell>
@@ -90,7 +90,7 @@ export default function WorkExperience() {
                         <DialogTitle className="text-center">
                           Edit Work Experience
                         </DialogTitle>
-                        <EditWorkExperienceComponent id={work.id} />
+                        <EditWorkExperienceComponent id={work.id} index={index} />
                       </DialogContent>
                     </Dialog>
                   </div>
