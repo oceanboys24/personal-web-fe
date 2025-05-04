@@ -23,6 +23,8 @@ import { Controller } from "react-hook-form";
 import { useUploadImage } from "./hooks/useUploadImage";
 
 export default function HeroComponent() {
+  // Handle Dirty Image
+  const [isDirtyImage, setIsDirtyImage] = useState(false);
   const { preview, HandleImagePreview } = useHandleImage();
   const {
     onSubmitEdit,
@@ -36,8 +38,11 @@ export default function HeroComponent() {
     errors,
     reset,
     isPendingEdit,
-  } = useHandleEditHero();
-  const { register, isDirtyImage, handleFileChange } = useUploadImage();
+  } = useHandleEditHero({ setIsDirtyImage });
+  const { register, handleFileChange } = useUploadImage({
+    isDirtyImage,
+    setIsDirtyImage,
+  });
 
   const formValues = watch();
 

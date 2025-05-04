@@ -8,8 +8,13 @@ interface FormDataType {
   image: FileList;
 }
 
-export function useUploadImage() {
-  const [isDirtyImage, setIsDirtyImage] = useState(false);
+export function useUploadImage({
+  isDirtyImage,
+  setIsDirtyImage,
+}: {
+  isDirtyImage: boolean;
+  setIsDirtyImage: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const { register, handleSubmit, reset, resetField } = useForm<FormDataType>();
 
   const queryClient = useQueryClient();

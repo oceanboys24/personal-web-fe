@@ -11,7 +11,11 @@ import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function useHandleEditHero() {
+export default function useHandleEditHero({
+  setIsDirtyImage,
+}: {
+  setIsDirtyImage: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const queryClient = useQueryClient();
   const {
     handleSubmit: HandleSubmitEdit,
@@ -44,6 +48,7 @@ export default function useHandleEditHero() {
       toast.success("", {
         description: "Success Edit",
       });
+      setIsDirtyImage(false)
     },
   });
 
