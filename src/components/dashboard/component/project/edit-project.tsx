@@ -15,6 +15,7 @@ import ImagePreviewComponent from "../imagePreview";
 import useHandleEditProject from "../../hooks/project/useHandleEditProject";
 import { useEffect } from "react";
 import { useUploadImage } from "../../hooks/useUploadImage";
+import SpinnerButton from "@/components/login/components/Spinner";
 
 export default function EditProjectComponent({
   id,
@@ -23,7 +24,7 @@ export default function EditProjectComponent({
   id: string;
   idProject: number;
 }) {
-  const { handleFileChange } = useUploadImage({});
+  const { handleFileChange, isUploading } = useUploadImage({});
   const { preview, HandleImagePreview } = useHandleImage();
   const {
     DataProject,
@@ -32,6 +33,7 @@ export default function EditProjectComponent({
     register,
     onSubmitEdit,
     handleSubmit,
+    isPendingEdit,
   } = useHandleEditProject(id, idProject);
   const { input, setInput, addTag, removeTag, tags, setTags } = useHandleTags(
     (tags) => {
@@ -44,7 +46,7 @@ export default function EditProjectComponent({
       setValue("description", DataProject![idProject].description);
       setValue("demo", DataProject![idProject].demo);
       setValue("repo", DataProject![idProject].repo);
-      setTags(DataProject![idProject].stack);
+      setTags(DataProject![idProject].stack || []);
     }
   }, [DataProject, setValue]);
 
@@ -119,12 +121,12 @@ export default function EditProjectComponent({
                 <Input
                   id="picture"
                   type="file"
-                  {...register("image_url")}
                   onChange={(e) => {
                     handleFileChange(e);
                     HandleImagePreview(e);
                   }}
                 />
+                <Input type="text" {...register("image_url")} hidden />
                 {errors.image_url && (
                   <span className="text-red-500 text-sm">
                     {errors.image_url.message}
@@ -141,7 +143,13 @@ export default function EditProjectComponent({
         </CardContent>
         <CardFooter>
           <div className="w-full flex   justify-end">
-            <Button type="submit">Edit Project</Button>
+            <Button type="submit" disabled={isPendingEdit || isUploading}>
+              {isPendingEdit || isUploading ? (
+                <SpinnerButton />
+              ) : (
+                "Edit Project"
+              )}
+            </Button>
           </div>
         </CardFooter>
       </div>

@@ -25,7 +25,7 @@ export default function useHandleEditProject(id: string, idProject: number) {
   });
   const queryClient = useQueryClient();
 
-  const { mutateAsync: EditProject } = useMutation({
+  const { mutateAsync: EditProject, isPending: isPendingEdit } = useMutation({
     mutationKey: ["Edit-Project"],
     mutationFn: async (data: ProjectValidEdit) => {
       const response = await axiosInstance.patch(`/v1/project/${id}`, data);
@@ -62,5 +62,6 @@ export default function useHandleEditProject(id: string, idProject: number) {
     onSubmitEdit,
     setValue,
     watch,
+    isPendingEdit,
   };
 }
