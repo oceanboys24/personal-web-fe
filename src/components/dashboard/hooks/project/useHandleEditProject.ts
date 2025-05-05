@@ -27,8 +27,13 @@ export default function useHandleEditProject(id: string) {
       });
     },
   });
+  const imageUrl = queryClient.getQueryData(["data-image"]);
 
   const onSubmitEdit = async (data: Project) => {
+    if (imageUrl) {
+      data.image_url = (imageUrl as any).link;
+    }
+    console.log(data.image_url);
     await EditProject(data);
   };
 

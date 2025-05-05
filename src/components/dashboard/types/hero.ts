@@ -12,12 +12,13 @@ export interface Hero {
   image_url: string;
 }
 
-
 export const HeroSchema = z.object({
   surname: z.string().min(1, "Surname is Required "),
   email: z.string().email("Invalid email address"),
   handphone: z.string().min(1, "Handphone is Required "),
-  cv: z.string().min(1, "CV is Required "),
+  cv: z.string().url({
+    message: "Invalid Url",
+  }),
   profession: z.string().min(1, "Profession is Required "),
   description: z.string().min(1, "Description is Required "),
   location: z.string().min(1, "Location is Required"),

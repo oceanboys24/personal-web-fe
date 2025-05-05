@@ -83,8 +83,22 @@ export default function AddProjectComponent({
                 </span>
               ))}
             </div>
-            <Input type="text" placeholder="Repo" {...register("repo")} />
-            <Input type="text" placeholder="Demo" {...register("demo")} />
+            <div>
+              <Input type="text" placeholder="Repo" {...register("repo")} />
+              {errors.repo && (
+                <span className="text-red-500 text-sm">
+                  {errors.repo.message}
+                </span>
+              )}
+            </div>
+            <div>
+              <Input type="text" placeholder="Demo" {...register("demo")} />
+              {errors.demo && (
+                <span className="text-red-500 text-sm">
+                  {errors.demo.message}
+                </span>
+              )}
+            </div>
             {/* Image */}
             <div className="flex justify-center flex-col items-center gap-1.5">
               <Input

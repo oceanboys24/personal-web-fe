@@ -51,12 +51,12 @@ export function useUploadImage({
     formData.append("image", files[0]);
 
     await uploadImage(formData);
+  
   };
 
   return {
     handleFileChange,
     register,
-    handleSubmit,
     reset,
     isDirtyImage,
     uploadedImage,

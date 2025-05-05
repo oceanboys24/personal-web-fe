@@ -14,6 +14,7 @@ import useHandleTags from "../../hooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
 import useHandleEditProject from "../../hooks/project/useHandleEditProject";
 import { useEffect, useState } from "react";
+import { useUploadImage } from "../../hooks/useUploadImage";
 
 export default function EditProjectComponent({
   id,
@@ -27,6 +28,7 @@ export default function EditProjectComponent({
       setValue("stack", tags);
     }
   );
+  const { handleFileChange } = useUploadImage({});
   const { preview, HandleImagePreview } = useHandleImage();
   const { DataProject, setValue, register, onSubmitEdit, handleSubmit } =
     useHandleEditProject(id);
@@ -76,13 +78,20 @@ export default function EditProjectComponent({
             <Input type="text" placeholder="Demo" {...register("demo")} />
             {/* Image */}
             <div className="flex justify-center flex-col items-center gap-1.5">
-              <Input id="picture" type="file" onChange={HandleImagePreview} />
-              {preview ||
-                (DataProject![idProject].image_url && (
-                  <ImagePreviewComponent
-                    preview={preview || DataProject![idProject].image_url}
-                  />
-                ))}
+              <Input
+                id="picture"
+                type="file"
+                {...register("image_url")}
+                onChange={(e) => {
+                  handleFileChange(e);
+                  HandleImagePreview(e);
+                }}
+              />
+              {(preview || DataProject![idProject].image_url) && (
+                <ImagePreviewComponent
+                  preview={preview || DataProject![idProject].image_url}
+                />
+              )}
             </div>
           </div>
         </CardContent>

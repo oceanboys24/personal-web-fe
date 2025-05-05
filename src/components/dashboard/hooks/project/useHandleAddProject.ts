@@ -49,6 +49,10 @@ export default function useHandleAddProject() {
         data.image_url = (dataImage as any).link;
       }
       await mutateAsync(data);
+      data.image_url = "";
+      queryClient.removeQueries({
+        queryKey: ["data-image"],
+      });
     } catch (error) {
       console.log("Cannot SEND");
     }

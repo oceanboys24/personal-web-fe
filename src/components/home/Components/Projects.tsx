@@ -25,7 +25,10 @@ export default function ProjectsComponent() {
             <div className="shadow-sm dark:bg-gray-800 rounded-xl" key={index}>
               <div className="h-52 items-center   rounded-t-xl justify-center bg-gray-100">
                 <img
-                  src={project.image_url}
+                  src={
+                    project.image_url ||
+                    "https://api.dicebear.com/9.x/glass/svg"
+                  }
                   className="w-full h-full object-contain"
                   alt="Project Image"
                 />

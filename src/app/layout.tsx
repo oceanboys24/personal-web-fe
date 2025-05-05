@@ -28,7 +28,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${poppins.variable} scroll-smooth`}
     >
-      <body>
+      <body cz-shortcut-listen="true">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

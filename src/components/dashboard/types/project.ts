@@ -14,8 +14,9 @@ export const ProjectSchema = z.object({
   name: z.string().min(1, "Name is Required"),
   description: z.string().min(1, "Description is Required"),
   stack: z.array(z.string()).optional(),
-  repo: z.string().optional(),
-  demo: z.string().optional(),
+  repo: z.string().url().or(z.literal("")).optional(),
+  demo: z.string().url().or(z.literal("")).optional(),
+
   image_url: z.string().optional(),
 });
 
