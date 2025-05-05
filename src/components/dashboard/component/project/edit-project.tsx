@@ -23,15 +23,21 @@ export default function EditProjectComponent({
   id: string;
   idProject: number;
 }) {
+  const { handleFileChange } = useUploadImage({});
+  const { preview, HandleImagePreview } = useHandleImage();
+  const {
+    DataProject,
+    errors,
+    setValue,
+    register,
+    onSubmitEdit,
+    handleSubmit,
+  } = useHandleEditProject(id, idProject);
   const { input, setInput, addTag, removeTag, tags, setTags } = useHandleTags(
     (tags) => {
       setValue("stack", tags);
     }
   );
-  const { handleFileChange } = useUploadImage({});
-  const { preview, HandleImagePreview } = useHandleImage();
-  const { DataProject, setValue, register, onSubmitEdit, handleSubmit } =
-    useHandleEditProject(id);
 
   useEffect(() => {
     if (DataProject) {
@@ -47,57 +53,91 @@ export default function EditProjectComponent({
     <form onSubmit={handleSubmit(onSubmitEdit)}>
       <div className="flex flex-col gap-3">
         <CardContent>
-          <div className="flex flex-col gap-3">
-            <Input type="text" placeholder="Name" {...register("name")} />
-            <Textarea
-              className="max-h-30"
-              placeholder="Description"
-              {...register("description")}
-            />
-
-            <div className="flex flex-row">
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={addTag}
-                placeholder="Press Enter to add Stack"
-              />
-            </div>
-            <div className="flex flex-row flex-wrap">
-              {tags?.map((tag, index) => (
-                <span
-                  key={index}
-                  onClick={() => removeTag(index)}
-                  style={{ marginRight: 8, cursor: "pointer" }}
-                >
-                  {tag} ✖
+          <div className="flex flex-row gap-3 w-full">
+            <div className="w-full flex flex-col gap-3">
+              <Input type="text" placeholder="Name" {...register("name")} />
+              {errors.name && (
+                <span className="text-red-500 text-sm">
+                  {errors.name.message}
                 </span>
-              ))}
-            </div>
-            <Input type="text" placeholder="Repo" {...register("repo")} />
-            <Input type="text" placeholder="Demo" {...register("demo")} />
-            {/* Image */}
-            <div className="flex justify-center flex-col items-center gap-1.5">
-              <Input
-                id="picture"
-                type="file"
-                {...register("image_url")}
-                onChange={(e) => {
-                  handleFileChange(e);
-                  HandleImagePreview(e);
-                }}
-              />
-              {(preview || DataProject![idProject].image_url) && (
-                <ImagePreviewComponent
-                  preview={preview || DataProject![idProject].image_url}
-                />
               )}
+              <Textarea
+                className="max-h-30"
+                placeholder="Description"
+                {...register("description")}
+              />
+              {errors.description && (
+                <span className="text-red-500 text-sm">
+                  {errors.description.message}
+                </span>
+              )}
+
+              <div className="flex flex-col">
+                <Input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={addTag}
+                  placeholder="Press Enter to add Stack"
+                />
+                {errors.stack && (
+                  <span className="text-red-500 text-sm">
+                    {errors.stack.message}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-row flex-wrap p-3">
+                {tags?.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-gray-200 p-1 rounded-xl"
+                    onClick={() => removeTag(index)}
+                    style={{ marginRight: 8, cursor: "pointer" }}
+                  >
+                    {tag} ✖
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="w-full flex flex-col gap-3">
+              <div>
+                <Input type="text" placeholder="Repo" {...register("repo")} />
+                {errors.repo && (
+                  <span className="text-red-500 text-sm">
+                    {errors.repo.message}
+                  </span>
+                )}
+              </div>
+              <div>
+                <Input type="text" placeholder="Demo" {...register("demo")} />
+                {errors.demo && (
+                  <span className="text-red-500 text-sm">
+                    {errors.demo.message}
+                  </span>
+                )}
+              </div>
+              {/* Image */}
+              <div className="flex justify-center flex-col items-center gap-1.5">
+                <Input
+                  id="picture"
+                  type="file"
+                  {...register("image_url")}
+                  onChange={(e) => {
+                    handleFileChange(e);
+                    HandleImagePreview(e);
+                  }}
+                />
+                {(preview || DataProject![idProject].image_url) && (
+                  <ImagePreviewComponent
+                    preview={preview || DataProject![idProject].image_url}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </CardContent>
         <CardFooter>
           <div className="w-full flex   justify-end">
-            <Button>Edit Project</Button>
+            <Button type="submit">Edit Project</Button>
           </div>
         </CardFooter>
       </div>

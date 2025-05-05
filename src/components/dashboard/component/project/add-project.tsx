@@ -64,13 +64,18 @@ export default function AddProjectComponent({
               )}
             </div>
 
-            <div className="flex flex-row">
+            <div className="flex flex-col">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={addTag}
                 placeholder="Press Enter to add Stack"
               />
+              {errors.stack && (
+                <span className="text-red-500 text-sm">
+                  {errors.stack.message}
+                </span>
+              )}
             </div>
             <div className="flex flex-row flex-wrap">
               {tags.map((tag, index) => (

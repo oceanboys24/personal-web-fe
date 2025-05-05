@@ -14,7 +14,7 @@ export function useUploadImage({
   isDirtyImage?: boolean;
   setIsDirtyImage?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { register, handleSubmit, reset, resetField } = useForm<FormDataType>();
+  const { register, setValue, reset, resetField } = useForm<FormDataType>();
 
   const queryClient = useQueryClient();
 
@@ -51,7 +51,6 @@ export function useUploadImage({
     formData.append("image", files[0]);
 
     await uploadImage(formData);
-  
   };
 
   return {

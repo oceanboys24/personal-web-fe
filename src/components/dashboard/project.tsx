@@ -77,7 +77,7 @@ export default function ProjectComponent() {
                         <CiEdit />
                       </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="min-w-[65%]">
                       <DialogTitle className="text-center">
                         Edit Project
                       </DialogTitle>
