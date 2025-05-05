@@ -51,7 +51,7 @@ export default function WorkExperienceComponent() {
               </div>
               {/* Stack */}
               <div className="flex flex-wrap gap-2">
-                {work.stack.map((s, index) => (
+                {work?.stack?.map((s, index) => (
                   <span
                     key={index}
                     className="px-3 py-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-400 rounded-full text-xs font-medium text-gray-600 "

@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 
-export default function useHandleEditWork(id: string, index?: number) {
+export default function useHandleEditWork(id: string) {
   const queryClient = useQueryClient();
   const { DataWork } = useHandleGetWorkExperience();
   const { register, handleSubmit, reset, setValue, watch } =
@@ -29,8 +29,13 @@ export default function useHandleEditWork(id: string, index?: number) {
       });
     },
   });
+  const imageUrl = queryClient.getQueryData(["data-image"]);
 
   const onSubmitEdit = async (data: WorkExperience) => {
+    if (imageUrl) {
+      data.image_url = imageUrl.link;
+      console.log(data.image_url);
+    }
     await EditWork(data);
   };
 

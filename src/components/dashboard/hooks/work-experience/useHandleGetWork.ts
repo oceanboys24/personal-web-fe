@@ -17,3 +17,19 @@ export default function useHandleGetWorkExperience() {
 
   return { isLoadingWork, DataWork, refetch };
 }
+
+export function useHandleGetWorkExperienceById(id: string) {
+  const {
+    isLoading: isLoadingWorkSingle,
+    data: DataWorkSingle,
+    refetch,
+  } = useQuery<WorkExperience>({
+    queryKey: ["Work-Experience-Single"],
+    queryFn: async () => {
+      const response = await axiosInstance.get(`/v1/work-experience/${id}`);
+      return response.data.data[0];
+    },
+  });
+
+  return { isLoadingWorkSingle, DataWorkSingle, refetch };
+}

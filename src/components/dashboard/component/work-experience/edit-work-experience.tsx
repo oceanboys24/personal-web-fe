@@ -8,6 +8,11 @@ import useHandleImage from "../../hooks/useHandleImage";
 import useHandleEditWork from "../../hooks/work-experience/useHandleEditWork";
 import useHandleTags from "../../hooks/useHandleTags";
 import { useEffect, useState } from "react";
+import { useHandleGetWorkExperienceById } from "../../hooks/work-experience/useHandleGetWork";
+import { useUploadImage } from "../../hooks/useUploadImage";
+import SpinnerButton from "@/components/login/components/Spinner";
+import { EndCalenderComponent } from "../end_calender";
+import { StartCalenderComponent } from "../start_calender";
 
 export default function EditWorkExperienceComponent({
   id,
@@ -18,19 +23,17 @@ export default function EditWorkExperienceComponent({
 }) {
   // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
-  // const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
-  //   setValue("stack", tags);
-  // });
+  const { handleFileChange, isUploading } = useUploadImage({});
 
-  const {
-    DataWork,
-    watch,
-    register,
-    setValue,
-    handleSubmit,
-    onSubmitEdit,
-    reset,
-  } = useHandleEditWork(id, index);
+  const { watch, register, setValue, handleSubmit, onSubmitEdit } =
+    useHandleEditWork(id);
+  const { DataWorkSingle, isLoadingWorkSingle } =
+    useHandleGetWorkExperienceById(id);
+  const { input, setInput, addTag, removeTag, tags, setTags } = useHandleTags(
+    (tags) => {
+      setValue("stack", tags);
+    }
+  );
 
   const tasksList = watch("task") || [];
 
@@ -44,6 +47,25 @@ export default function EditWorkExperienceComponent({
     const updatedTask = currentTask.filter((_, i) => i !== index);
     setValue("task", updatedTask);
   };
+
+  const handleStartDateChange = (startDate: string) => {
+    setValue("start_date", startDate);
+  };
+
+  const handleEndDateChange = (endDate: string) => {
+    setValue("end_date", endDate);
+  };
+
+  useEffect(() => {
+    if (DataWorkSingle) {
+      setValue("role", DataWorkSingle.role || "");
+      setValue("company", DataWorkSingle.company || "");
+      setValue("task", DataWorkSingle.task || []);
+      setTags(DataWorkSingle.stack || []);
+      setValue("start_date", DataWorkSingle.start_date || "");
+      setValue("end_date", DataWorkSingle.end_date || "");
+    }
+  }, [DataWorkSingle, id, setValue]);
 
   return (
     <form onSubmit={handleSubmit(onSubmitEdit)}>
@@ -73,24 +95,15 @@ export default function EditWorkExperienceComponent({
                 Add Task
               </Button>
             </div>
-            {/* <div className="flex flex-row">
+            <div className="flex flex-row">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={addTag}
                 placeholder="Press Enter to add Stack"
               />
-            </div> */}
-            {/* <div className="flex flex-row flex-wrap">
-              {workStacks?.map((work, index) => (
-                <span
-                  key={index}
-                  onClick={() => removeWorkStack(index)}
-                  style={{ marginRight: 8, cursor: "pointer" }}
-                >
-                  {work} ✖
-                </span>
-              ))}
+            </div>
+            <div className="flex flex-row flex-wrap">
               {tags.map((tag, index) => (
                 <span
                   key={index}
@@ -100,21 +113,47 @@ export default function EditWorkExperienceComponent({
                   {tag} ✖
                 </span>
               ))}
-            </div> */}
+            </div>
             {/* Image */}
             <div className="flex justify-center flex-col items-center gap-1.5">
-              <Input id="picture" type="file" onChange={HandleImagePreview} />
-              {preview && <ImagePreviewComponent preview={preview} />}
+              <Input hidden {...register("image_url")} type="text" />
+              <Input
+                id="picture"
+                type="file"
+                onChange={(e) => {
+                  HandleImagePreview(e);
+                  handleFileChange(e);
+                }}
+              />
+              {(preview || DataWorkSingle?.image_url) && (
+                <ImagePreviewComponent
+                  preview={preview || DataWorkSingle?.image_url}
+                />
+              )}
             </div>
-            {/* <div className="flex flex-row justify-between">
-            <StartCalenderComponent />
-            <EndCalenderComponent />
-          </div> */}
+            <div className="flex flex-row justify-between">
+              <StartCalenderComponent
+                name="start_date"
+                value={watch("start_date")}
+                onChange={handleStartDateChange}
+              />
+              <EndCalenderComponent
+                name="end_date"
+                value={watch("end_date")}
+                onChange={handleEndDateChange}
+              />
+            </div>
           </div>
         </CardContent>
         <CardFooter>
           <div className="w-full flex   justify-end">
-            <Button type="submit">Save Changes</Button>
+            <Button type="submit" disabled={isUploading || isLoadingWorkSingle}>
+              {isLoadingWorkSingle || isUploading ? (
+                <SpinnerButton />
+              ) : (
+                "Save Changes"
+              )}
+            </Button>
           </div>
         </CardFooter>
       </div>

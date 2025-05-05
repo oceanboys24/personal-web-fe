@@ -43,7 +43,10 @@ export function StartCalenderComponent({
           selected={value ? new Date(value) : undefined}
           onSelect={(selectedDate) => {
             if (selectedDate) {
-              const formatted = format(selectedDate, "yyyy-MM-dd");
+              const formatted = `${format(
+                selectedDate,
+                "yyyy-MM-dd"
+              )}T00:00:00`;
               onChange?.(formatted);
             }
           }}
