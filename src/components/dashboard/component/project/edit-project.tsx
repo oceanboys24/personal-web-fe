@@ -13,7 +13,7 @@ import useHandleImage from "../../hooks/useHandleImage";
 import useHandleTags from "../../hooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
 import useHandleEditProject from "../../hooks/project/useHandleEditProject";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUploadImage } from "../../hooks/useUploadImage";
 
 export default function EditProjectComponent({
@@ -38,7 +38,6 @@ export default function EditProjectComponent({
       setValue("stack", tags);
     }
   );
-
   useEffect(() => {
     if (DataProject) {
       setValue("name", DataProject![idProject].name);
@@ -126,6 +125,11 @@ export default function EditProjectComponent({
                     HandleImagePreview(e);
                   }}
                 />
+                {errors.image_url && (
+                  <span className="text-red-500 text-sm">
+                    {errors.image_url.message}
+                  </span>
+                )}
                 {(preview || DataProject![idProject].image_url) && (
                   <ImagePreviewComponent
                     preview={preview || DataProject![idProject].image_url}

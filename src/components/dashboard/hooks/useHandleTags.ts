@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useHandleEditProject from "./project/useHandleEditProject";
 
 export default function useHandleTags(setTagsToForm: (tags: string[]) => void) {
   const [tags, setTags] = useState<string[]>([]);

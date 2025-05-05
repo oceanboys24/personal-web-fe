@@ -22,6 +22,7 @@ export const ProjectSchema = z.object({
   demo: z.string().url().or(z.literal("")).optional(),
   image_url: z.string().optional(),
 });
+export type ProjectValid = z.infer<typeof ProjectSchema>;
 
 export const ProjectSchemaEdit = z.object({
   name: z.string().min(1, "Name is Required").optional(),
@@ -29,7 +30,7 @@ export const ProjectSchemaEdit = z.object({
   stack: z.array(z.string()).min(1, "Minimal 1 stack!").optional(),
   repo: z.string().url().or(z.literal("")).optional(),
   demo: z.string().url().or(z.literal("")).optional(),
-  image_url: z.string().optional().default(""),
+  image_url: z.string(),
 });
 
 export type ProjectValidEdit = z.infer<typeof ProjectSchemaEdit>;
