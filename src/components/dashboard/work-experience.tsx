@@ -93,10 +93,7 @@ export default function WorkExperience() {
                         <DialogTitle className="text-center">
                           Edit Work Experience
                         </DialogTitle>
-                        <EditWorkExperienceComponent
-                          id={work.id}
-                          index={index}
-                        />
+                        <EditWorkExperienceComponent id={work.id} />
                       </DialogContent>
                     </Dialog>
                   </div>
