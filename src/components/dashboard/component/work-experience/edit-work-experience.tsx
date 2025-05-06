@@ -14,19 +14,20 @@ import SpinnerButton from "@/components/login/components/Spinner";
 import { EndCalenderComponent } from "../end_calender";
 import { StartCalenderComponent } from "../start_calender";
 
-export default function EditWorkExperienceComponent({
-  id,
-  index,
-}: {
-  id: string;
-  index?: number;
-}) {
+export default function EditWorkExperienceComponent({ id }: { id: string }) {
   // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
   const { handleFileChange, isUploading } = useUploadImage({});
 
-  const { watch, register, setValue, handleSubmit, onSubmitEdit } =
-    useHandleEditWork(id);
+  const {
+    watch,
+    register,
+    setValue,
+    handleSubmit,
+    isPendingEditWork,
+    errors,
+    onSubmitEdit,
+  } = useHandleEditWork(id);
   const { DataWorkSingle, isLoadingWorkSingle } =
     useHandleGetWorkExperienceById(id);
   const { input, setInput, addTag, removeTag, tags, setTags } = useHandleTags(
@@ -71,84 +72,120 @@ export default function EditWorkExperienceComponent({
     <form onSubmit={handleSubmit(onSubmitEdit)}>
       <div className="flex flex-col gap-5">
         <CardContent>
-          <div className="flex flex-col gap-3">
-            <Input type="text" placeholder="Role" {...register("role")} />
-            <Input type="text" placeholder="Company" {...register("company")} />
-            {tasksList.map((task, index) => (
-              <div className="flex flex-row gap-2" key={index}>
-                <Input placeholder="Task" {...register(`task.${index}`)} />
-                {index !== 0 && (
-                  <Button
-                    className="w-10 text-xs "
-                    type="button"
-                    onClick={() => {
-                      handleRemoveTaskEdit(index);
-                    }}
-                  >
-                    <FiTrash />
-                  </Button>
+          <div className="flex flex-row gap-3 ">
+            {/* Container 1 */}
+            <div className="w-full flex flex-col gap-5">
+              <div>
+                <Input type="text" placeholder="Role" {...register("role")} />
+                {errors.role && (
+                  <span className="text-red-500 text-sm">
+                    {errors.role.message}
+                  </span>
                 )}
               </div>
-            ))}
-            <div className="flex flex-row justify-between">
-              <Button onClick={handleTaskTaskEdit} type="button">
-                Add Task
-              </Button>
-            </div>
-            <div className="flex flex-row">
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={addTag}
-                placeholder="Press Enter to add Stack"
-              />
-            </div>
-            <div className="flex flex-row flex-wrap">
-              {tags.map((tag, index) => (
-                <span
-                  key={index}
-                  onClick={() => removeTag(index)}
-                  style={{ marginRight: 8, cursor: "pointer" }}
-                >
-                  {tag} ✖
-                </span>
-              ))}
-            </div>
-            {/* Image */}
-            <div className="flex justify-center flex-col items-center gap-1.5">
-              <Input hidden {...register("image_url")} type="text" />
-              <Input
-                id="picture"
-                type="file"
-                onChange={(e) => {
-                  HandleImagePreview(e);
-                  handleFileChange(e);
-                }}
-              />
-              {(preview || DataWorkSingle?.image_url) && (
-                <ImagePreviewComponent
-                  preview={preview || DataWorkSingle?.image_url}
+              <div>
+                <Input
+                  type="text"
+                  placeholder="Company"
+                  {...register("company")}
                 />
-              )}
+                {errors.company && (
+                  <span className="text-red-500 text-sm">
+                    {errors.company.message}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col gap-2">
+                {tasksList.map((task, index) => (
+                  <div className="flex flex-row gap-2" key={index}>
+                    <div className="w-full">
+                      <Input
+                        placeholder="Task"
+                        {...register(`task.${index}`)}
+                      />
+                      {errors.task?.[index] && (
+                        <span className="text-red-500 text-sm">
+                          {errors.task?.[index].message}
+                        </span>
+                      )}
+                    </div>
+                    {index !== 0 && (
+                      <Button
+                        className="w-10 text-xs "
+                        type="button"
+                        onClick={() => {
+                          handleRemoveTaskEdit(index);
+                        }}
+                      >
+                        <FiTrash />
+                      </Button>
+                    )}
+                  </div>
+                ))}
+                <div className="flex flex-row justify-between">
+                  <Button onClick={handleTaskTaskEdit} type="button">
+                    Add Task
+                  </Button>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-row justify-between">
-              <StartCalenderComponent
-                name="start_date"
-                value={watch("start_date")}
-                onChange={handleStartDateChange}
-              />
-              <EndCalenderComponent
-                name="end_date"
-                value={watch("end_date")}
-                onChange={handleEndDateChange}
-              />
+            {/* Container 2 */}
+            <div className="flex flex-col w-full gap-4">
+              <div className="flex flex-row">
+                <Input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={addTag}
+                  placeholder="Press Enter to add Stack"
+                />
+              </div>
+              <div className="flex flex-row flex-wrap pl-4">
+                {tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    onClick={() => removeTag(index)}
+                    style={{ marginRight: 8, cursor: "pointer" }}
+                  >
+                    {tag} ✖
+                  </span>
+                ))}
+              </div>
+              {/* Image */}
+              <div className="flex justify-center flex-col items-center gap-1.5">
+                <Input hidden {...register("image_url")} type="text" />
+                <Input
+                  id="picture"
+                  type="file"
+                  onChange={(e) => {
+                    HandleImagePreview(e);
+                    handleFileChange(e);
+                  }}
+                />
+                {(preview || DataWorkSingle?.image_url) && (
+                  <ImagePreviewComponent
+                    preview={preview || DataWorkSingle?.image_url}
+                  />
+                )}
+              </div>
+              <div className="flex flex-row justify-between">
+                <StartCalenderComponent
+                  name="start_date"
+                  value={watch("start_date")}
+                  onChange={handleStartDateChange}
+                />
+                <EndCalenderComponent
+                  name="end_date"
+                  value={watch("end_date")}
+                  onChange={handleEndDateChange}
+                />
+              </div>
             </div>
           </div>
         </CardContent>
         <CardFooter>
           <div className="w-full flex   justify-end">
-            <Button type="submit" disabled={isUploading || isLoadingWorkSingle}>
-              {isLoadingWorkSingle || isUploading ? (
+            <Button type="submit" disabled={isUploading || isPendingEditWork}>
+              {isPendingEditWork || isUploading ? (
                 <SpinnerButton />
               ) : (
                 "Save Changes"

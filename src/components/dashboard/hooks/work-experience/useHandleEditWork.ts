@@ -1,19 +1,37 @@
 import { useForm } from "react-hook-form";
-import { WorkExperience } from "../../types/work-experience";
+import {
+  WorkExperience,
+  WorkExperienceSchemaEdit,
+  WorkExperienceSchemaValidEdit,
+} from "../../types/work-experience";
 import useHandleGetWorkExperience from "./useHandleGetWork";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type ImageUrl = {
+  link: string;
+};
 
 export default function useHandleEditWork(id: string) {
   const queryClient = useQueryClient();
   const { DataWork } = useHandleGetWorkExperience();
-  const { register, handleSubmit, reset, setValue, watch } =
-    useForm<WorkExperience>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm<WorkExperienceSchemaValidEdit>({
+    resolver: zodResolver(WorkExperienceSchemaEdit),
+    mode: "onChange",
+  });
 
-  const { mutateAsync: EditWork } = useMutation({
+  const { mutateAsync: EditWork, isPending: isPendingEditWork } = useMutation({
     mutationKey: ["Edit-Work"],
-    mutationFn: async (data: WorkExperience) => {
+    mutationFn: async (data: WorkExperienceSchemaValidEdit) => {
       const response = await axiosInstance.patch(
         `/v1/work-experience/${id}`,
         data
@@ -29,9 +47,9 @@ export default function useHandleEditWork(id: string) {
       });
     },
   });
-  const imageUrl = queryClient.getQueryData(["data-image"]);
+  const imageUrl = queryClient.getQueryData<ImageUrl>(["data-image"]);
 
-  const onSubmitEdit = async (data: WorkExperience) => {
+  const onSubmitEdit = async (data: WorkExperienceSchemaValidEdit) => {
     if (imageUrl) {
       data.image_url = imageUrl.link;
       console.log(data.image_url);
@@ -46,6 +64,8 @@ export default function useHandleEditWork(id: string) {
     reset,
     onSubmitEdit,
     setValue,
+    isPendingEditWork,
     watch,
+    errors,
   };
 }

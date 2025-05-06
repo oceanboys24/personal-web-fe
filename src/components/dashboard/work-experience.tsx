@@ -89,7 +89,7 @@ export default function WorkExperience() {
                           <CiEdit />
                         </Button>
                       </DialogTrigger>
-                      <DialogContent>
+                      <DialogContent className="min-w-[65%]">
                         <DialogTitle className="text-center">
                           Edit Work Experience
                         </DialogTitle>
