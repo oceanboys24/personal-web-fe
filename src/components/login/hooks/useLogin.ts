@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
 import { redirect, useRouter } from "next/navigation";
+import { axiosInstance } from "@/config/axios";
 
 export default function useLogin() {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function useLogin() {
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ["LoginAuth"],
     mutationFn: async (data: AdminUserZod) => {
-      const response = await axios.post("http://localhost:3000/v1/login", data);
+      const response = await axiosInstance.post("/v1/login", data);
       Cookies.set("token", response.data.token);
       return response.data.token;
     },
@@ -44,6 +45,7 @@ export default function useLogin() {
   });
 
   const onSubmit = async (data: AdminUserZod) => {
+  
     mutateAsync(data);
   };
 
