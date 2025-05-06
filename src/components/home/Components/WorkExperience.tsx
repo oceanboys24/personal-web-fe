@@ -16,7 +16,10 @@ export default function WorkExperienceComponent() {
       <h2 className="text-2xl md:text-3xl font-bold mb-12">Work Experience</h2>
       <div className="flex flex-col gap-5">
         {DataWork?.map((work) => (
-          <div className="flex flex-col md:flex-row p-6  shadow-sm dark:bg-gray-800 rounded-xl">
+          <div
+            className="flex flex-col md:flex-row p-6  shadow-sm dark:bg-gray-800 rounded-xl"
+            key={work.id}
+          >
             {/* Image */}
             <div className="mb-2 ">
               <Image
