@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
-import ImagePreviewComponent from "../imagePreview";
+import ImagePreviewComponent from "../ImageComponent/imagePreview";
 import useHandleAddStack from "../../hooks/StackHooks/useHandleAddStack";
 import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
 import SpinnerButton from "@/components/login/components/Spinner";
@@ -12,7 +12,10 @@ export default function AddStackComponent({
 }: {
   onClose: () => void;
 }) {
+  // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
+
+  // Handle Add Stack
   const {
     onSubmitAddStack,
     handleSubmit,
@@ -20,9 +23,12 @@ export default function AddStackComponent({
     isPendingAddStack,
     errors,
   } = useHandleAddStack();
+
+  // Handle Upload Image
   const { register, handleFileChange, isUploading, uploadedImage } =
     useUploadImage({});
 
+  // Handle Submit Form Add Stack
   const handleSubmitAndClose = async (data: any) => {
     await onSubmitAddStack(data);
     onClose();

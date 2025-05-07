@@ -1,11 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { CardContent, CardFooter, CardTitle } from "@/components/ui/card";
+import { CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
 import useHandleTags from "../../hooks/SharedHooks/useHandleTags";
-import ImagePreviewComponent from "../imagePreview";
+import ImagePreviewComponent from "../ImageComponent/imagePreview";
 import useHandleAddProject from "../../hooks/ProjectHooks/useHandleAddProject";
 import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
 import SpinnerButton from "@/components/login/components/Spinner";
@@ -15,7 +15,9 @@ export default function AddProjectComponent({
 }: {
   onClose: () => void;
 }) {
+  // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
+  // Handle Add Project
   const {
     handleSubmit,
     register,
@@ -27,12 +29,14 @@ export default function AddProjectComponent({
   const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
     setValue("stack", tags);
   });
+  // Handle Upload Image
   const {
     register: registerImage,
     handleFileChange,
     isUploading,
   } = useUploadImage({});
 
+  // Submit Add Project
   const onSubmitAddMyProject = async (data: any) => {
     await onSubmitAddProject(data);
     onClose();

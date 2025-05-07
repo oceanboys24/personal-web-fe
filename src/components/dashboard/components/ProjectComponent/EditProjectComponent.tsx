@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
 import useHandleTags from "../../hooks/SharedHooks/useHandleTags";
-import ImagePreviewComponent from "../imagePreview";
+import ImagePreviewComponent from "../ImageComponent/imagePreview";
 import useHandleEditProject from "../../hooks/ProjectHooks/useHandleEditProject";
 import { useEffect } from "react";
 import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
@@ -24,8 +24,11 @@ export default function EditProjectComponent({
   id: string;
   idProject: number;
 }) {
+  // Handle Image Upload
   const { handleFileChange, isUploading } = useUploadImage({});
+  // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
+  // Handle Edit Project
   const {
     DataProject,
     errors,
@@ -35,11 +38,13 @@ export default function EditProjectComponent({
     handleSubmit,
     isPendingEdit,
   } = useHandleEditProject(id, idProject);
+  // Handle Tags Form or Input
   const { input, setInput, addTag, removeTag, tags, setTags } = useHandleTags(
     (tags) => {
       setValue("stack", tags);
     }
   );
+  // Rendering Data Edit Project
   useEffect(() => {
     if (DataProject) {
       setValue("name", DataProject![idProject].name);

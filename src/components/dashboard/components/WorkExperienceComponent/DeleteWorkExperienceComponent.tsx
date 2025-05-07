@@ -1,6 +1,5 @@
 "use client";
 import {
-  AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
@@ -8,14 +7,13 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import useHandleDeleteProject from "../../hooks/ProjectHooks/useHandleDeleteProject";
+import useHandleDeleteWork from "../../hooks/WorkExperienceHooks/useHandleDeleteWork";
 import SpinnerButton from "@/components/login/components/Spinner";
 
-export function AlertDeleteProjectComponent({ id }: { id: string }) {
-  const { DeleteProject, isPendingDeleteProject } = useHandleDeleteProject();
-
+export function AlertDeleteComponent({ id }: { id: string }) {
+  // Handle Delete Work Component
+  const { DeleteWork, isPendingDeleteWork } = useHandleDeleteWork();
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -26,14 +24,15 @@ export function AlertDeleteProjectComponent({ id }: { id: string }) {
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogCancel className="cursor-pointer">Cancel</AlertDialogCancel>
         <AlertDialogAction
           onClick={() => {
-            DeleteProject(id);
+            DeleteWork(id);
           }}
-          disabled={isPendingDeleteProject}
+          disabled={isPendingDeleteWork}
+          className="cursor-pointer"
         >
-          {isPendingDeleteProject ? <SpinnerButton /> : "Continue"}
+          {isPendingDeleteWork ? <SpinnerButton /> : "Continue"}
         </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>

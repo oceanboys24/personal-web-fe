@@ -10,12 +10,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import useHandleDeleteWork from "../../hooks/WorkExperienceHooks/useHandleDeleteWork";
-import { Delete } from "lucide-react";
+import useHandleDeleteProject from "../../hooks/ProjectHooks/useHandleDeleteProject";
 import SpinnerButton from "@/components/login/components/Spinner";
 
-export function AlertDeleteComponent({ id }: { id: string }) {
-  const { DeleteWork, isPendingDeleteWork } = useHandleDeleteWork();
+export function AlertDeleteProjectComponent({ id }: { id: string }) {
+  // Handle Delete Project
+  const { DeleteProject, isPendingDeleteProject } = useHandleDeleteProject();
+
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -26,15 +27,14 @@ export function AlertDeleteComponent({ id }: { id: string }) {
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
-        <AlertDialogCancel className="cursor-pointer">Cancel</AlertDialogCancel>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
         <AlertDialogAction
           onClick={() => {
-            DeleteWork(id);
+            DeleteProject(id);
           }}
-          disabled={isPendingDeleteWork}
-          className="cursor-pointer"
+          disabled={isPendingDeleteProject}
         >
-          {isPendingDeleteWork ? <SpinnerButton /> : "Continue"}
+          {isPendingDeleteProject ? <SpinnerButton /> : "Continue"}
         </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>

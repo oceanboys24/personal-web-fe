@@ -3,22 +3,25 @@ import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { FiTrash } from "react-icons/fi";
-import ImagePreviewComponent from "../imagePreview";
+import ImagePreviewComponent from "../ImageComponent/imagePreview";
 import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
 import useHandleEditWork from "../../hooks/WorkExperienceHooks/useHandleEditWork";
 import useHandleTags from "../../hooks/SharedHooks/useHandleTags";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHandleGetWorkExperienceById } from "../../hooks/WorkExperienceHooks/useHandleGetWork";
 import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
 import SpinnerButton from "@/components/login/components/Spinner";
 import { EndCalenderComponent } from "../end_calender";
-import { StartCalenderComponent } from "../start_calender";
+import { StartCalenderComponent } from "../CalenderComponent/StartCalenderComponent";
 
 export default function EditWorkExperienceComponent({ id }: { id: string }) {
   // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
+
+  // Handle Upload Image
   const { handleFileChange, isUploading } = useUploadImage({});
 
+  // Handle Edit Work Experience
   const {
     watch,
     register,
@@ -28,16 +31,21 @@ export default function EditWorkExperienceComponent({ id }: { id: string }) {
     errors,
     onSubmitEdit,
   } = useHandleEditWork(id);
+  // Get Work Experience By IDs
   const { DataWorkSingle, isLoadingWorkSingle } =
     useHandleGetWorkExperienceById(id);
+
+  //Handle Tags Form or Input
   const { input, setInput, addTag, removeTag, tags, setTags } = useHandleTags(
     (tags) => {
       setValue("stack", tags);
     }
   );
 
+  // Watch Form task
   const tasksList = watch("task") || [];
 
+  // Handle Task and Date
   const handleTaskTaskEdit = () => {
     const currentTask = watch("task") || [];
     setValue("task", [...currentTask, ""]);

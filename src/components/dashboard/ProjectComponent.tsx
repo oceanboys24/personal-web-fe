@@ -20,9 +20,9 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import AddProjectComponent from "./component/project/add-project";
-import EditProjectComponent from "./component/project/edit-project";
-import { AlertDeleteProjectComponent } from "./component/project/delete-project";
+import AddProjectComponent from "./components/ProjectComponent/AddProjectComponent";
+import EditProjectComponent from "./components/ProjectComponent/EditProjectComponent";
+import { AlertDeleteProjectComponent } from "./components/ProjectComponent/DeleteProjectComponent";
 import SpinnerButton from "../login/components/Spinner";
 import useHandleGetProject from "./hooks/ProjectHooks/useHandleGetProject";
 import { useState } from "react";

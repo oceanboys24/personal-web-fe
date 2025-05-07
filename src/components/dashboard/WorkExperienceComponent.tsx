@@ -20,9 +20,9 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import AddWorkExperienceComponent from "./component/work-experience/add-work-experience";
-import EditWorkExperienceComponent from "./component/work-experience/edit-work-experience";
-import { AlertDeleteComponent } from "./component/work-experience/delete-work-experience";
+import AddWorkExperienceComponent from "./components/WorkExperienceComponent/AddWorkExperienceComponent";
+import EditWorkExperienceComponent from "./components/WorkExperienceComponent/EditWorkExperienceComponent";
+import { AlertDeleteComponent } from "./components/WorkExperienceComponent/DeleteWorkExperienceComponent";
 import useHandleGetWorkExperience from "./hooks/WorkExperienceHooks/useHandleGetWork";
 import SpinnerButton from "../login/components/Spinner";
 import { useState } from "react";

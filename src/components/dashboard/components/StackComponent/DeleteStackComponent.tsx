@@ -8,10 +8,10 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import useHandleDeleteStack from "../../hooks/StackHooks/useHandleDeleteStack";
-import { Stack } from "../../types/StackTypes";
 import SpinnerButton from "@/components/login/components/Spinner";
 
 export function DeleteStackComponent({ id }: { id: string }) {
+  // Handle Delete Stack 
   const { isPendingDeleteStack, DeleteStack } = useHandleDeleteStack();
   return (
     <AlertDialogContent>

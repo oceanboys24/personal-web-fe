@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import AddStackComponent from "./component/stack/add-stack";
+import AddStackComponent from "./components/StackComponent/AddStackComponent";
 import {
   Table,
   TableBody,
@@ -20,7 +20,7 @@ import {
 } from "../ui/table";
 import { AlertDialog, AlertDialogTrigger } from "../ui/alert-dialog";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { DeleteStackComponent } from "./component/stack/delete-stack";
+import { DeleteStackComponent } from "./components/StackComponent/DeleteStackComponent";
 import useHandleGetStack from "./hooks/StackHooks/useHandleGetStack";
 import SpinnerButton from "../login/components/Spinner";
 import { useState } from "react";

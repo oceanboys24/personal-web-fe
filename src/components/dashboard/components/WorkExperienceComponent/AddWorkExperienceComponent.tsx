@@ -5,22 +5,28 @@ import { Input } from "@/components/ui/input";
 import { FiTrash } from "react-icons/fi";
 import useHandleTask from "../../hooks/SharedHooks/useHandleTask";
 import useHandleTags from "../../hooks/SharedHooks/useHandleTags";
-import ImagePreviewComponent from "../imagePreview";
+import ImagePreviewComponent from "../ImageComponent/imagePreview";
 import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
 import useHandleAddWork from "../../hooks/WorkExperienceHooks/useHandleAddWork";
 import SpinnerButton from "@/components/login/components/Spinner";
 import { Controller } from "react-hook-form";
 import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
-import { StartCalenderComponent } from "../start_calender";
-import { EndCalenderComponent } from "../end_calender";
+import { StartCalenderComponent } from "../CalenderComponent/StartCalenderComponent";
+import { EndCalenderComponent } from "../CalenderComponent/EndCalenderComponent";
+
 
 export default function AddWorkExperienceComponent({
   onClose,
 }: {
   onClose: () => void;
 }) {
+  // Handle Task Form or Input
   const { tasks, handleAddTask, handleRemoveTask } = useHandleTask();
+
+  // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
+
+  // Handle Add Work Experience
   const {
     setValue,
     onSubmitAddWork,
@@ -30,12 +36,16 @@ export default function AddWorkExperienceComponent({
     errors,
     control,
   } = useHandleAddWork();
+
+  // Handle Tags Form or Input
   const { input, setInput, addTag, removeTag, tags } = useHandleTags((tags) => {
     setValue("stack", tags);
   });
 
+  // Handle Upload Image
   const { register: registerImage, handleFileChange } = useUploadImage({});
 
+  // Handle Submit Add Work Experience
   const onSubmit = async (data: any) => {
     await onSubmitAddWork(data);
     onClose();
