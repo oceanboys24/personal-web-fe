@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/config/axios";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export default function useHandleDeleteStack() {
@@ -19,7 +19,7 @@ export default function useHandleDeleteStack() {
           description: "Success Delete Stack",
         });
       },
-      onError: (error: any) => {
+      onError: () => {
         toast.error("", {
           description: "Cannot Delete STACK",
         });

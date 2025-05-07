@@ -5,7 +5,6 @@ import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProjectSchema, ProjectValid } from "../../schema/ProjectSchema";
 
-
 export default function useHandleAddProject() {
   const queryClient = useQueryClient();
 
@@ -33,7 +32,7 @@ export default function useHandleAddProject() {
         description: "Success Create Project",
       });
     },
-    onError: (error: any) => {
+    onError: () => {
       toast.error("", {
         description: "Failed Create Project",
       });
@@ -51,7 +50,7 @@ export default function useHandleAddProject() {
         queryKey: ["data-image"],
       });
     } catch (error) {
-      console.log("Cannot SEND");
+      console.log("Cannot SEND", error);
     }
   };
 

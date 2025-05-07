@@ -14,7 +14,7 @@ export function useUploadImage({
   isDirtyImage?: boolean;
   setIsDirtyImage?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { register, setValue, reset, resetField } = useForm<FormDataType>();
+  const { register, reset, resetField } = useForm<FormDataType>();
 
   const queryClient = useQueryClient();
 
@@ -35,7 +35,7 @@ export function useUploadImage({
       queryClient.setQueryData(["data-image"], data);
       setIsDirtyImage?.(true);
     },
-    onError: (error: any) => {
+    onError: () => {
       toast.error("Upload Failed", {
         description: "Must be an image file",
       });

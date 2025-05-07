@@ -1,12 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import {
-  WorkExperience,
-} from "../../types/WorkExperienceTypes";
+import { WorkExperience } from "../../types/WorkExperienceTypes";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { WorkExperienceSchema, WorkExperienceSchemaValid } from "../../schema/WorkExperienceSchema";
+import {
+  WorkExperienceSchema,
+  WorkExperienceSchemaValid,
+} from "../../schema/WorkExperienceSchema";
 
 export default function useHandleAddWork() {
   const queryClient = useQueryClient();
@@ -38,7 +39,7 @@ export default function useHandleAddWork() {
         description: "Success Create Work Experience",
       });
     },
-    onError: (error: any) => {
+    onError: () => {
       toast.error("", {
         description: "Cannot Create Work Experience",
       });

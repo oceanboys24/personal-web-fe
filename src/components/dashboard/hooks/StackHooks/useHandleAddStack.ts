@@ -30,7 +30,7 @@ export default function useHandleAddStack() {
         description: "Success Create Stack",
       });
     },
-    onError: (error: any) => {
+    onError: () => {
       toast.error("", {
         description: "Failed Create Stack",
       });
@@ -45,7 +45,7 @@ export default function useHandleAddStack() {
       }
       await mutateAsync(data);
     } catch (error) {
-      console.log("Cannot SEND");
+      console.log("Cannot SEND", error);
     }
   };
 

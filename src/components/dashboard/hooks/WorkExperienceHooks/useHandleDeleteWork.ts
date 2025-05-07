@@ -19,7 +19,7 @@ export default function useHandleDeleteWork() {
           description: "Success Delete Work Experience",
         });
       },
-      onError: (error: any) => {
+      onError: () => {
         toast.error("", {
           description: "Cannot Delete Work Experience",
         });

@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
-import {
-  WorkExperience,
-} from "../../types/WorkExperienceTypes";
+
 import useHandleGetWorkExperience from "./useHandleGetWork";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { WorkExperienceSchemaEdit, WorkExperienceSchemaValidEdit } from "../../schema/WorkExperienceSchema";
+import {
+  WorkExperienceSchemaEdit,
+  WorkExperienceSchemaValidEdit,
+} from "../../schema/WorkExperienceSchema";
 
 type ImageUrl = {
   link: string;

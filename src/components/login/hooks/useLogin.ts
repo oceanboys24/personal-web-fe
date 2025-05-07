@@ -2,10 +2,9 @@ import { useForm } from "react-hook-form";
 import { AdminUserZod, LoginSchemaAdmin } from "../types/Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { axiosInstance } from "@/config/axios";
 
 export default function useLogin() {
@@ -45,7 +44,6 @@ export default function useLogin() {
   });
 
   const onSubmit = async (data: AdminUserZod) => {
-  
     mutateAsync(data);
   };
 

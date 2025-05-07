@@ -110,11 +110,11 @@ export default function EditWorkExperienceComponent({ id }: { id: string }) {
                       <div className="w-full">
                         <Input
                           placeholder="Task"
-                          {...register(`task.${index}`)}
+                          {...register(`task.${index as number}`)}
                         />
-                        {errors.task?.[index] && (
+                        {errors.task?.[index as number] && (
                           <span className="text-red-500 text-sm">
-                            {errors.task?.[index].message}
+                            {errors.task?.[index as number]?.message}
                           </span>
                         )}
                       </div>

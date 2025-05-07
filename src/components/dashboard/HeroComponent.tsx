@@ -27,7 +27,6 @@ export default function HeroComponentDashboard() {
     registerEdit,
     DataHero,
     isLoading,
-    watch,
     isDirty,
     control,
     errors,
@@ -39,15 +38,13 @@ export default function HeroComponentDashboard() {
     isDirtyImage,
     setIsDirtyImage,
   });
-  // Watch Form
-  const formValues = watch();
 
   // Render Edit
   useEffect(() => {
     if (DataHero) {
       reset(DataHero);
     }
-  }, [DataHero]);
+  }, [DataHero, reset]);
 
   if (isLoading) {
     return <SpinnerButton />;

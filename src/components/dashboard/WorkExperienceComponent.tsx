@@ -2,7 +2,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -76,7 +75,7 @@ export default function WorkExperience() {
         </TableHeader>
         <TableBody>
           {DataWork && DataWork.length > 0 ? (
-            DataWork.map((work, index) => (
+            DataWork.map((work) => (
               <TableRow key={work.id}>
                 <TableCell className="font-medium">{work.role}</TableCell>
                 <TableCell>{work.company}</TableCell>
