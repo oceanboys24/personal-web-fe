@@ -4,7 +4,7 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { Hero, HeroSchema, HeroSchemaType } from "../types/hero";
+import { Hero, HeroSchema, HeroSchemaType } from "../types/HeroTypes";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { axiosInstance } from "@/config/axios";
@@ -48,7 +48,7 @@ export default function useHandleEditHero({
       toast.success("", {
         description: "Success Edit",
       });
-      setIsDirtyImage(false)
+      setIsDirtyImage(false);
     },
   });
 

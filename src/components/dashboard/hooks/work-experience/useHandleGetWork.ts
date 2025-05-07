@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/config/axios";
 import { useQuery } from "@tanstack/react-query";
-import { WorkExperience } from "../../types/work-experience";
+import { WorkExperience } from "../../types/WorkExperienceTypes";
 
 export default function useHandleGetWorkExperience() {
   const {

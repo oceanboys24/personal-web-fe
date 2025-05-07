@@ -4,7 +4,7 @@ import {
   WorkExperience,
   WorkExperienceSchema,
   WorkExperienceSchemaValid,
-} from "../../types/work-experience";
+} from "../../types/WorkExperienceTypes";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";

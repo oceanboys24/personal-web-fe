@@ -3,7 +3,7 @@ import {
   WorkExperience,
   WorkExperienceSchemaEdit,
   WorkExperienceSchemaValidEdit,
-} from "../../types/work-experience";
+} from "../../types/WorkExperienceTypes";
 import useHandleGetWorkExperience from "./useHandleGetWork";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";

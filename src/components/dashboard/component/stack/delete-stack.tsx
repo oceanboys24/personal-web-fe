@@ -8,7 +8,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import useHandleDeleteStack from "../../hooks/stack/useHandleDeleteStack";
-import { Stack } from "../../types/stack";
+import { Stack } from "../../types/StackTypes";
 import SpinnerButton from "@/components/login/components/Spinner";
 
 export function DeleteStackComponent({ id }: { id: string }) {

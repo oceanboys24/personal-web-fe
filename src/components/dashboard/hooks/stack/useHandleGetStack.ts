@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Stack } from "../../types/stack";
+import { Stack } from "../../types/StackTypes";
 import { axiosInstance } from "@/config/axios";
 
 export default function useHandleGetStack() {
@@ -13,5 +13,3 @@ export default function useHandleGetStack() {
 
   return { isLoadingStack, DataStack };
 }
-
-

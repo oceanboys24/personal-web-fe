@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
-import { Project } from "../../types/project";
+import { Project } from "../../types/ProjectTypes";
 
 export default function useHandleGetProject() {
   const {

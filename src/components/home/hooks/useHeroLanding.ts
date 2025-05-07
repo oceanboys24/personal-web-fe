@@ -1,4 +1,4 @@
-import { Hero } from "@/components/dashboard/types/hero";
+import { Hero } from "@/components/dashboard/types/HeroTypes";
 import { axiosInstance } from "@/config/axios";
 import { useQuery } from "@tanstack/react-query";
 

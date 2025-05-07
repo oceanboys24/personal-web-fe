@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Project } from "../../types/project";
+import { Project } from "../../types/ProjectTypes";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ProjectSchema,
   ProjectValid,
-} from "@/components/dashboard/types/project";
+} from "@/components/dashboard/types/ProjectTypes";
 
 export default function useHandleAddProject() {
   const queryClient = useQueryClient();

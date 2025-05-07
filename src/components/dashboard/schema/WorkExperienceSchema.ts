@@ -1,15 +1,5 @@
 import { z } from "zod";
 
-export interface WorkExperience {
-  id: string;
-  role: string;
-  company: string;
-  task: string[];
-  stack: string[];
-  image_url: string;
-  start_date: string;
-  end_date: string;
-}
 export const WorkExperienceSchema = z.object({
   role: z.string().min(1, { message: "Role is Required" }),
   company: z.string().min(1, { message: "Company is Required" }),

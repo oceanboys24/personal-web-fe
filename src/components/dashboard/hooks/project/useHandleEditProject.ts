@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { ProjectSchemaEdit, ProjectValidEdit } from "../../types/project";
+import { ProjectSchemaEdit, ProjectValidEdit } from "../../types/ProjectTypes";
 import useHandleGetProject from "./useHandleGetProject";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
