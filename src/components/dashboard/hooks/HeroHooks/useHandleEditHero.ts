@@ -56,7 +56,7 @@ export default function useHandleEditHero({
   const { data: DataHero, isLoading } = useQuery<Hero>({
     queryKey: ["Hero"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:3000/v1/hero");
+      const response = await axios.get("/v1/hero");
       return response.data.data;
     },
   });
