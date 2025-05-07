@@ -22,7 +22,7 @@ export default function WorkExperienceComponent() {
           >
             {/* Image */}
             <div className="mb-2 ">
-              <Image
+              <img
                 src={work.image_url || "https://api.dicebear.com/9.x/glass/svg"}
                 width={500}
                 height={500}

@@ -18,7 +18,7 @@ export default function HeroComponent() {
       {/* Image */}
 
       <div className="flex w-full justify-center">
-        <Image
+        <img
           src={DataHeroLanding?.image_url || ""}
           width={500}
           height={500}

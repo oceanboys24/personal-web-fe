@@ -28,8 +28,8 @@ export default function StackComponent() {
             {DataStack?.map((stack) => (
               <div key={stack.id}>
                 <div className="mx-8 flex items-center border p-2 bg-white/30 backdrop-blur-sm rounded-2xl w-16 h-16 mb-3">
-                  <Image
-                    src={stack.image_url}
+                  <img
+                    src={stack?.image_url}
                     alt="icons"
                     width={100}
                     height={100}
