@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -17,7 +15,7 @@ import ImagePreviewComponent from "./component/imagePreview";
 
 import SpinnerButton from "../login/components/Spinner";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useHandleEditHero from "./hooks/useHandleEditHero";
 import { Controller } from "react-hook-form";
 import { useUploadImage } from "./hooks/useUploadImage";
@@ -25,7 +23,9 @@ import { useUploadImage } from "./hooks/useUploadImage";
 export default function HeroComponent() {
   // Handle Dirty Image
   const [isDirtyImage, setIsDirtyImage] = useState(false);
+  // Handle Preview Image
   const { preview, HandleImagePreview } = useHandleImage();
+  // Handle Edit Hero
   const {
     onSubmitEdit,
     HandleSubmitEdit,
@@ -39,13 +39,15 @@ export default function HeroComponent() {
     reset,
     isPendingEdit,
   } = useHandleEditHero({ setIsDirtyImage });
+  // Watch Input File is Dirty
   const { register, handleFileChange } = useUploadImage({
     isDirtyImage,
     setIsDirtyImage,
   });
-
+  // Watch Form 
   const formValues = watch();
-
+  
+  // Render Edit 
   useEffect(() => {
     if (DataHero) {
       reset(DataHero);

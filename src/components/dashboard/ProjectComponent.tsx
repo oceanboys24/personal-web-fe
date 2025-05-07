@@ -28,9 +28,11 @@ import useHandleGetProject from "./hooks/project/useHandleGetProject";
 import { useState } from "react";
 
 export default function ProjectComponent() {
+  // Fetching Project
   const { DataProject, isLoadingProject } = useHandleGetProject();
+  // Handle Open Close Dialog
   const [open, setOpen] = useState(false);
-
+  // Waiting Fetch
   if (isLoadingProject) {
     return <SpinnerButton />;
   }

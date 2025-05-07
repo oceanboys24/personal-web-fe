@@ -28,15 +28,15 @@ import SpinnerButton from "../login/components/Spinner";
 import { useState } from "react";
 
 export default function WorkExperience() {
+  // Fetching Data Work Experience
   const { isLoadingWork, DataWork } = useHandleGetWorkExperience();
-  // Open Close Dialog
+  // Handle Open Close Dialog
   const [open, setOpen] = useState(false);
 
-  // Loading Fetching Data
+  // Loading Fetching Data Experience
   if (isLoadingWork) {
     return <SpinnerButton />;
   }
-
   return (
     <Card className="w-[550px] min-h-[450px] p-5">
       {/* Add Work Experience */}

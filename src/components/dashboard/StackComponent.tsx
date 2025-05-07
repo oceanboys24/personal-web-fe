@@ -1,5 +1,4 @@
 "use client";
-
 import { IoMdAdd } from "react-icons/io";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
@@ -27,14 +26,16 @@ import SpinnerButton from "../login/components/Spinner";
 import { useState } from "react";
 
 export default function StackComponent() {
+  // Fetching Stack
   const { isLoadingStack, DataStack } = useHandleGetStack();
-  // Auto Close After Submit
+  // Handle Open Close Dialog
   const [open, setOpen] = useState(false);
 
-  //Fetching Data
+  //Fetching Data Stack
   if (isLoadingStack) {
     return <SpinnerButton />;
   }
+  
   return (
     <Card className="w-[550px] min-h-[450px] p-5 bg-gray-50">
       {/* Add Work Experience */}

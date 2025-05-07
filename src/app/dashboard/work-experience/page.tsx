@@ -1,4 +1,4 @@
-import WorkExperience from "@/components/dashboard/work-experience";
+import WorkExperience from "@/components/dashboard/WorkExperienceComponent";
 
 export default function WorkDashboardComponent() {
   return (

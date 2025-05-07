@@ -1,5 +1,5 @@
-import ProjectComponent from "@/components/dashboard/project";
-import WorkExperience from "@/components/dashboard/work-experience";
+import ProjectComponent from "@/components/dashboard/ProjectComponent";
+import WorkExperience from "@/components/dashboard/WorkExperienceComponent";
 
 export default function ProjectDashboardComponent() {
   return (

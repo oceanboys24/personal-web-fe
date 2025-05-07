@@ -1,4 +1,4 @@
-import StackComponent from "@/components/dashboard/stack";
+import StackComponent from "@/components/dashboard/StackComponent";
 
 export default function StackDashboardComponent() {
   return (
