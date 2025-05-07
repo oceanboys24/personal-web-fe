@@ -1,6 +1,5 @@
 "use client";
 import {
-  AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
@@ -8,7 +7,6 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import useHandleDeleteProject from "../../hooks/ProjectHooks/useHandleDeleteProject";
 import SpinnerButton from "@/components/login/components/Spinner";

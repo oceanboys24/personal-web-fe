@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import useHandleImage from "./hooks/SharedHooks/useHandleImage";
-import ImagePreviewComponent from "./components/ImageComponent/imagePreview";
+import ImagePreviewComponent from "./components/ImageComponent/ImagePreview";
 
 import SpinnerButton from "../login/components/Spinner";
 

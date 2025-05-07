@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { FiTrash } from "react-icons/fi";
 import useHandleTask from "../../hooks/SharedHooks/useHandleTask";
 import useHandleTags from "../../hooks/SharedHooks/useHandleTags";
-import ImagePreviewComponent from "../ImageComponent/imagePreview";
+import ImagePreviewComponent from "../ImageComponent/ImagePreview";
 import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
 import useHandleAddWork from "../../hooks/WorkExperienceHooks/useHandleAddWork";
 import SpinnerButton from "@/components/login/components/Spinner";
@@ -13,7 +13,6 @@ import { Controller } from "react-hook-form";
 import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
 import { StartCalenderComponent } from "../CalenderComponent/StartCalenderComponent";
 import { EndCalenderComponent } from "../CalenderComponent/EndCalenderComponent";
-
 
 export default function AddWorkExperienceComponent({
   onClose,

@@ -1,17 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
 import useHandleTags from "../../hooks/SharedHooks/useHandleTags";
-import ImagePreviewComponent from "../ImageComponent/imagePreview";
+import ImagePreviewComponent from "../ImageComponent/ImagePreview";
 import useHandleEditProject from "../../hooks/ProjectHooks/useHandleEditProject";
 import { useEffect } from "react";
 import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
