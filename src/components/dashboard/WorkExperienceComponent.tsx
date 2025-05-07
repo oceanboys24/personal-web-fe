@@ -22,10 +22,10 @@ import {
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import AddWorkExperienceComponent from "./components/WorkExperienceComponent/AddWorkExperienceComponent";
 import EditWorkExperienceComponent from "./components/WorkExperienceComponent/EditWorkExperienceComponent";
-import { AlertDeleteComponent } from "./components/WorkExperienceComponent/DeleteWorkExperienceComponent";
 import useHandleGetWorkExperience from "./hooks/WorkExperienceHooks/useHandleGetWork";
 import SpinnerButton from "../login/components/Spinner";
 import { useState } from "react";
+import { AlertDeleteWorkExperienceComponent } from "./components/WorkExperienceComponent/DeleteWorkExperienceComponent";
 
 export default function WorkExperience() {
   // Fetching Data Work Experience
@@ -104,7 +104,7 @@ export default function WorkExperience() {
                         <MdOutlineDeleteOutline />
                       </Button>
                     </AlertDialogTrigger>
-                    <AlertDeleteComponent id={work.id} />
+                    <AlertDeleteWorkExperienceComponent id={work.id} />
                   </AlertDialog>
                 </TableCell>
               </TableRow>

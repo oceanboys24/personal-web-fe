@@ -11,7 +11,7 @@ import {
 import useHandleDeleteWork from "../../hooks/WorkExperienceHooks/useHandleDeleteWork";
 import SpinnerButton from "@/components/login/components/Spinner";
 
-export function AlertDeleteProjectComponent({ id }: { id: string }) {
+export function AlertDeleteWorkExperienceComponent({ id }: { id: string }) {
   // Handle Delete Work Component
   const { DeleteWork, isPendingDeleteWork } = useHandleDeleteWork();
   return (
