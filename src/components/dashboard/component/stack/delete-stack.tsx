@@ -7,7 +7,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import useHandleDeleteStack from "../../hooks/stack/useHandleDeleteStack";
+import useHandleDeleteStack from "../../hooks/StackHooks/useHandleDeleteStack";
 import { Stack } from "../../types/StackTypes";
 import SpinnerButton from "@/components/login/components/Spinner";
 

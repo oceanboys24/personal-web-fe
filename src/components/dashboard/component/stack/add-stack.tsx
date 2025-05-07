@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import useHandleImage from "../../hooks/useHandleImage";
+import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
 import ImagePreviewComponent from "../imagePreview";
-import useHandleAddStack from "../../hooks/stack/useHandleAddStack";
-import { useUploadImage } from "../../hooks/useUploadImage";
+import useHandleAddStack from "../../hooks/StackHooks/useHandleAddStack";
+import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
 import SpinnerButton from "@/components/login/components/Spinner";
 
 export default function AddStackComponent({

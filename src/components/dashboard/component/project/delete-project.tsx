@@ -10,7 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import useHandleDeleteProject from "../../hooks/project/useHandleDeleteProject";
+import useHandleDeleteProject from "../../hooks/ProjectHooks/useHandleDeleteProject";
 import SpinnerButton from "@/components/login/components/Spinner";
 
 export function AlertDeleteProjectComponent({ id }: { id: string }) {

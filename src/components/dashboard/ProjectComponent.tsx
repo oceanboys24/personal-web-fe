@@ -24,7 +24,7 @@ import AddProjectComponent from "./component/project/add-project";
 import EditProjectComponent from "./component/project/edit-project";
 import { AlertDeleteProjectComponent } from "./component/project/delete-project";
 import SpinnerButton from "../login/components/Spinner";
-import useHandleGetProject from "./hooks/project/useHandleGetProject";
+import useHandleGetProject from "./hooks/ProjectHooks/useHandleGetProject";
 import { useState } from "react";
 
 export default function ProjectComponent() {

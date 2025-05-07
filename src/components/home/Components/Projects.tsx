@@ -1,4 +1,4 @@
-import useHandleGetProject from "@/components/dashboard/hooks/project/useHandleGetProject";
+import useHandleGetProject from "@/components/dashboard/hooks/ProjectHooks/useHandleGetProject";
 import SpinnerButton from "@/components/login/components/Spinner";
 import { FaGithub } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";

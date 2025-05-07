@@ -1,4 +1,4 @@
-import useHandleGetWorkExperience from "@/components/dashboard/hooks/work-experience/useHandleGetWork";
+import useHandleGetWorkExperience from "@/components/dashboard/hooks/WorkExperienceHooks/useHandleGetWork";
 import SpinnerButton from "@/components/login/components/Spinner";
 import Image from "next/image";
 import { handleDateRange } from "../hooks/useHandlingDate";

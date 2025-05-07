@@ -21,7 +21,7 @@ import {
 import { AlertDialog, AlertDialogTrigger } from "../ui/alert-dialog";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { DeleteStackComponent } from "./component/stack/delete-stack";
-import useHandleGetStack from "./hooks/stack/useHandleGetStack";
+import useHandleGetStack from "./hooks/StackHooks/useHandleGetStack";
 import SpinnerButton from "../login/components/Spinner";
 import { useState } from "react";
 
@@ -35,7 +35,7 @@ export default function StackComponent() {
   if (isLoadingStack) {
     return <SpinnerButton />;
   }
-  
+
   return (
     <Card className="w-[550px] min-h-[450px] p-5 bg-gray-50">
       {/* Add Work Experience */}

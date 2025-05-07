@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import useHandleImage from "../../hooks/useHandleImage";
-import useHandleTags from "../../hooks/useHandleTags";
+import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
+import useHandleTags from "../../hooks/SharedHooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
-import useHandleAddProject from "../../hooks/project/useHandleAddProject";
-import { useUploadImage } from "../../hooks/useUploadImage";
+import useHandleAddProject from "../../hooks/ProjectHooks/useHandleAddProject";
+import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
 import SpinnerButton from "@/components/login/components/Spinner";
 
 export default function AddProjectComponent({

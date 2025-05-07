@@ -9,12 +9,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import useHandleImage from "../../hooks/useHandleImage";
-import useHandleTags from "../../hooks/useHandleTags";
+import useHandleImage from "../../hooks/SharedHooks/useHandleImage";
+import useHandleTags from "../../hooks/SharedHooks/useHandleTags";
 import ImagePreviewComponent from "../imagePreview";
-import useHandleEditProject from "../../hooks/project/useHandleEditProject";
+import useHandleEditProject from "../../hooks/ProjectHooks/useHandleEditProject";
 import { useEffect } from "react";
-import { useUploadImage } from "../../hooks/useUploadImage";
+import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
 import SpinnerButton from "@/components/login/components/Spinner";
 
 export default function EditProjectComponent({

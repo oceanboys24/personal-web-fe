@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
-import useHandleGetStack from "@/components/dashboard/hooks/stack/useHandleGetStack";
+import useHandleGetStack from "@/components/dashboard/hooks/StackHooks/useHandleGetStack";
 import SpinnerButton from "@/components/login/components/Spinner";
 
 interface Stack {

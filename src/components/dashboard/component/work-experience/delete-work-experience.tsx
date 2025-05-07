@@ -10,7 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import useHandleDeleteWork from "../../hooks/work-experience/useHandleDeleteWork";
+import useHandleDeleteWork from "../../hooks/WorkExperienceHooks/useHandleDeleteWork";
 import { Delete } from "lucide-react";
 import SpinnerButton from "@/components/login/components/Spinner";
 

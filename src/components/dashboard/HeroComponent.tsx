@@ -1,24 +1,19 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import useHandleImage from "./hooks/useHandleImage";
+import useHandleImage from "./hooks/SharedHooks/useHandleImage";
 import ImagePreviewComponent from "./component/imagePreview";
 
 import SpinnerButton from "../login/components/Spinner";
 
 import { useEffect, useState } from "react";
-import useHandleEditHero from "./hooks/useHandleEditHero";
 import { Controller } from "react-hook-form";
-import { useUploadImage } from "./hooks/useUploadImage";
+import { useUploadImage } from "./hooks/SharedHooks/useUploadImage";
+import useHandleEditHero from "./hooks/HeroHooks/useHandleEditHero";
 
 export default function HeroComponent() {
   // Handle Dirty Image
@@ -44,10 +39,10 @@ export default function HeroComponent() {
     isDirtyImage,
     setIsDirtyImage,
   });
-  // Watch Form 
+  // Watch Form
   const formValues = watch();
-  
-  // Render Edit 
+
+  // Render Edit
   useEffect(() => {
     if (DataHero) {
       reset(DataHero);
