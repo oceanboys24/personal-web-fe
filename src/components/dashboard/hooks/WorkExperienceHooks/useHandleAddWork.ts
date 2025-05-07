@@ -2,12 +2,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import {
   WorkExperience,
-  WorkExperienceSchema,
-  WorkExperienceSchemaValid,
 } from "../../types/WorkExperienceTypes";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { WorkExperienceSchema, WorkExperienceSchemaValid } from "../../schema/WorkExperienceSchema";
 
 export default function useHandleAddWork() {
   const queryClient = useQueryClient();

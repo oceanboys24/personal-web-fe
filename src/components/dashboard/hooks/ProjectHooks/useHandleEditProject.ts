@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import { ProjectSchemaEdit, ProjectValidEdit } from "../../types/ProjectTypes";
-import useHandleGetProject from "./useHandleGetProject";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ProjectValidEdit, ProjectSchemaEdit } from "../../schema/ProjectSchema";
+import useHandleGetProject from "./useHandleGetProject";
 
 interface ImageEditUrl {
   link: string;

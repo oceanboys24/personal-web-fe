@@ -15,7 +15,7 @@ import { Controller } from "react-hook-form";
 import { useUploadImage } from "./hooks/SharedHooks/useUploadImage";
 import useHandleEditHero from "./hooks/HeroHooks/useHandleEditHero";
 
-export default function HeroComponent() {
+export default function HeroComponentDashboard() {
   // Handle Dirty Image
   const [isDirtyImage, setIsDirtyImage] = useState(false);
   // Handle Preview Image

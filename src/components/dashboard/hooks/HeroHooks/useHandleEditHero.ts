@@ -1,15 +1,16 @@
 import {
-  QueryClient,
+  
   useMutation,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { Hero, HeroSchema, HeroSchemaType } from "../types/HeroTypes";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { HeroSchema, HeroSchemaType } from "../../schema/HeroSchema";
+import { Hero } from "../../types/HeroTypes";
 
 export default function useHandleEditHero({
   setIsDirtyImage,

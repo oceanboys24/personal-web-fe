@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { StackSchema, StackSchemaValid } from "../../types/StackTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
+import { StackSchema, StackSchemaValid } from "../../schema/StackSchema";
 
 export default function useHandleAddStack() {
   const queryClient = useQueryClient();
