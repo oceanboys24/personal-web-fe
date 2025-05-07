@@ -11,8 +11,8 @@ import { useEffect } from "react";
 import { useHandleGetWorkExperienceById } from "../../hooks/WorkExperienceHooks/useHandleGetWork";
 import { useUploadImage } from "../../hooks/SharedHooks/useUploadImage";
 import SpinnerButton from "@/components/login/components/Spinner";
-import { EndCalenderComponent } from "../end_calender";
 import { StartCalenderComponent } from "../CalenderComponent/StartCalenderComponent";
+import { EndCalenderComponent } from "../CalenderComponent/EndCalenderComponent";
 
 export default function EditWorkExperienceComponent({ id }: { id: string }) {
   // Handle Preview Image
@@ -51,9 +51,9 @@ export default function EditWorkExperienceComponent({ id }: { id: string }) {
     setValue("task", [...currentTask, ""]);
   };
 
-  const handleRemoveTaskEdit = (index: number) => {
+  const handleRemoveTaskEdit = (index: number | null | undefined) => {
     const currentTask = watch("task") || [];
-    const updatedTask = currentTask.filter((_, i) => i !== index);
+    const updatedTask = currentTask.filter((_: any, i: number) => i !== index);
     setValue("task", updatedTask);
   };
 
@@ -104,32 +104,34 @@ export default function EditWorkExperienceComponent({ id }: { id: string }) {
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                {tasksList.map((task, index) => (
-                  <div className="flex flex-row gap-2" key={index}>
-                    <div className="w-full">
-                      <Input
-                        placeholder="Task"
-                        {...register(`task.${index}`)}
-                      />
-                      {errors.task?.[index] && (
-                        <span className="text-red-500 text-sm">
-                          {errors.task?.[index].message}
-                        </span>
+                {tasksList.map(
+                  (task: any, index: Number | null | undefined) => (
+                    <div className="flex flex-row gap-2" key={index as number}>
+                      <div className="w-full">
+                        <Input
+                          placeholder="Task"
+                          {...register(`task.${index}`)}
+                        />
+                        {errors.task?.[index] && (
+                          <span className="text-red-500 text-sm">
+                            {errors.task?.[index].message}
+                          </span>
+                        )}
+                      </div>
+                      {index !== 0 && (
+                        <Button
+                          className="w-10 text-xs "
+                          type="button"
+                          onClick={() => {
+                            handleRemoveTaskEdit(index as number);
+                          }}
+                        >
+                          <FiTrash />
+                        </Button>
                       )}
                     </div>
-                    {index !== 0 && (
-                      <Button
-                        className="w-10 text-xs "
-                        type="button"
-                        onClick={() => {
-                          handleRemoveTaskEdit(index);
-                        }}
-                      >
-                        <FiTrash />
-                      </Button>
-                    )}
-                  </div>
-                ))}
+                  )
+                )}
                 <div className="flex flex-row justify-between">
                   <Button onClick={handleTaskTaskEdit} type="button">
                     Add Task
