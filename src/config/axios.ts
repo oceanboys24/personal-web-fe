@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://202.10.42.175:3000",
+  baseURL: "https://api.alfiandirizki.com",
 });
 
 axiosInstance.interceptors.request.use(

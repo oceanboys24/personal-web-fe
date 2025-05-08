@@ -1,10 +1,4 @@
-import {
-  
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
-import axios from "axios";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
@@ -56,7 +50,8 @@ export default function useHandleEditHero({
   const { data: DataHero, isLoading } = useQuery<Hero>({
     queryKey: ["Hero"],
     queryFn: async () => {
-      const response = await axios.get("/v1/hero");
+      const response = await axiosInstance.get("/v1/hero");
+
       return response.data.data;
     },
   });

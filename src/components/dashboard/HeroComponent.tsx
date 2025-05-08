@@ -38,13 +38,13 @@ export default function HeroComponentDashboard() {
     isDirtyImage,
     setIsDirtyImage,
   });
-
   // Render Edit
   useEffect(() => {
     if (DataHero) {
       reset(DataHero);
     }
   }, [DataHero, reset]);
+
 
   if (isLoading) {
     return <SpinnerButton />;

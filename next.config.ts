@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["s3.nevaobjects.id"],
   },
-  allowedDevOrigins: ["http://202.10.42.175:3000"],
+  allowedDevOrigins: ["https://api.alfiandirizki.com"],
 };
 
 export default nextConfig;
