@@ -25,6 +25,8 @@ import useHandleGetWorkExperience from "./hooks/WorkExperienceHooks/useHandleGet
 import SpinnerButton from "../login/components/Spinner";
 import { useState } from "react";
 import { AlertDeleteWorkExperienceComponent } from "./components/WorkExperienceComponent/DeleteWorkExperienceComponent";
+import { BiDetail } from "react-icons/bi";
+import DetailWorkExperienceComponent from "./components/WorkExperienceComponent/DetailWorkExperienceComponent";
 
 export default function WorkExperience() {
   // Fetching Data Work Experience
@@ -81,6 +83,22 @@ export default function WorkExperience() {
                 <TableCell className="font-medium">{work.role}</TableCell>
                 <TableCell>{work.company}</TableCell>
                 <TableCell className="text-right flex gap-2 justify-end">
+                  {/* Details Stack  */}
+                  <div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button>
+                          <BiDetail />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="min-w-[30%]">
+                        <DialogTitle className="text-center">
+                          Details Stack
+                        </DialogTitle>
+                        <DetailWorkExperienceComponent work={work} />
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                   {/* Edit Work Experience */}
                   <div>
                     <Dialog>

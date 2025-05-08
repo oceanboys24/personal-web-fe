@@ -26,6 +26,8 @@ import { AlertDeleteProjectComponent } from "./components/ProjectComponent/Delet
 import SpinnerButton from "../login/components/Spinner";
 import useHandleGetProject from "./hooks/ProjectHooks/useHandleGetProject";
 import { useState } from "react";
+import { BiDetail } from "react-icons/bi";
+import DetailProjectComponent from "./components/ProjectComponent/DetailProjectComponent";
 
 export default function ProjectComponent() {
   // Fetching Project
@@ -71,6 +73,22 @@ export default function ProjectComponent() {
             <TableRow key={index}>
               <TableCell className="font-medium">{project.name}</TableCell>
               <TableCell className="text-right flex gap-2 justify-end">
+                {/* Details Project  */}
+                <div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button>
+                        <BiDetail />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="min-w-[30%]">
+                      <DialogTitle className="text-center">
+                        Details Stack
+                      </DialogTitle>
+                      <DetailProjectComponent project={project} />
+                    </DialogContent>
+                  </Dialog>
+                </div>
                 {/* Edit Work Experience */}
                 <div>
                   <Dialog>
