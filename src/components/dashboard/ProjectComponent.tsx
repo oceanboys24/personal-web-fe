@@ -83,13 +83,13 @@ export default function ProjectComponent() {
                     </DialogTrigger>
                     <DialogContent className="min-w-[30%]">
                       <DialogTitle className="text-center">
-                        Details Stack
+                        Details Project
                       </DialogTitle>
                       <DetailProjectComponent project={project} />
                     </DialogContent>
                   </Dialog>
                 </div>
-                {/* Edit Work Experience */}
+                {/* Edit Project */}
                 <div>
                   <Dialog>
                     <DialogTrigger asChild>

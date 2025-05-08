@@ -83,7 +83,7 @@ export default function WorkExperience() {
                 <TableCell className="font-medium">{work.role}</TableCell>
                 <TableCell>{work.company}</TableCell>
                 <TableCell className="text-right flex gap-2 justify-end">
-                  {/* Details Stack  */}
+                  {/* Details Work Experience  */}
                   <div>
                     <Dialog>
                       <DialogTrigger asChild>
@@ -93,7 +93,7 @@ export default function WorkExperience() {
                       </DialogTrigger>
                       <DialogContent className="min-w-[30%]">
                         <DialogTitle className="text-center">
-                          Details Stack
+                          Details Work Experience
                         </DialogTitle>
                         <DetailWorkExperienceComponent work={work} />
                       </DialogContent>
