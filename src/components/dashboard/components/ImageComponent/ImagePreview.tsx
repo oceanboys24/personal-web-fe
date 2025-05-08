@@ -7,7 +7,7 @@ export default function ImagePreviewComponent({
 }: {
   preview?: string | null;
   imageUrl?: string;
-  isUploading: boolean;
+  isUploading?: boolean;
 }) {
   const src = preview || imageUrl;
   if (!src) {
