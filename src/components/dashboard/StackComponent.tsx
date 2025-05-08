@@ -24,13 +24,14 @@ import { DeleteStackComponent } from "./components/StackComponent/DeleteStackCom
 import useHandleGetStack from "./hooks/StackHooks/useHandleGetStack";
 import SpinnerButton from "../login/components/Spinner";
 import { useState } from "react";
+import { CiEdit } from "react-icons/ci";
+import EditStackComponent from "./components/StackComponent/EditStackComponent";
 
 export default function StackComponent() {
   // Fetching Stack
   const { isLoadingStack, DataStack } = useHandleGetStack();
   // Handle Open Close Dialog
   const [open, setOpen] = useState(false);
-
   //Fetching Data Stack
   if (isLoadingStack) {
     return <SpinnerButton />;
@@ -38,8 +39,9 @@ export default function StackComponent() {
 
   return (
     <Card className="w-[550px] min-h-[450px] dark:bg-black p-5 bg-gray-50">
+      <h1 className="text-center">A list of Stack.</h1>
       {/* Add Work Experience */}
-      <div>
+      <div className="mt-[-20px]">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button className="w-12" onClick={() => setOpen(true)}>
@@ -58,7 +60,6 @@ export default function StackComponent() {
       </div>
 
       <Table>
-        <TableCaption>A list of Stack.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Name</TableHead>
@@ -70,6 +71,22 @@ export default function StackComponent() {
             <TableRow key={i}>
               <TableCell className="font-medium">{stack.name}</TableCell>
               <TableCell className="text-right flex gap-2 justify-end">
+                {/* Edit Stack  */}
+                <div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button>
+                        <CiEdit />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="min-w-[30%]">
+                      <DialogTitle className="text-center">
+                        Edit Stack
+                      </DialogTitle>
+                      <EditStackComponent id={stack.id} stack={stack} />
+                    </DialogContent>
+                  </Dialog>
+                </div>
                 {/* Delete Work Experience */}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>

@@ -127,9 +127,9 @@ export default function EditProjectComponent({
                 />
                 <Input type="text" {...register("image_url")} hidden />
                 {errors.image_url && (
-                  <span className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm">
                     {errors.image_url.message}
-                  </span>
+                  </p>
                 )}
                 {(preview || DataProject![idProject].image_url) && (
                   <ImagePreviewComponent

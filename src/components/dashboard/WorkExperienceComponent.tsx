@@ -38,8 +38,9 @@ export default function WorkExperience() {
   }
   return (
     <Card className="w-[550px] min-h-[450px] p-5 dark:bg-black">
+      <h1 className="text-center">A list of Work Experience.</h1>
       {/* Add Work Experience */}
-      <div>
+      <div className="mt-[-20px]">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button

@@ -39,8 +39,9 @@ export default function ProjectComponent() {
 
   return (
     <Card className="w-[550px] min-h-[450px] p-5 dark:bg-black">
-      {/* Add Work Experience */}
-      <div>
+      <h1 className="text-center">A list of Project.</h1>
+      {/* Add Project */}
+      <div className="mt-[-20px]">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button className="w-12" onClick={() => setOpen(true)}>
@@ -59,7 +60,6 @@ export default function ProjectComponent() {
       </div>
 
       <Table>
-        <TableCaption>A list of Project.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Name</TableHead>

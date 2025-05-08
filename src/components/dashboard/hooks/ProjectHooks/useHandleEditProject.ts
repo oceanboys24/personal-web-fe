@@ -3,7 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/config/axios";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ProjectValidEdit, ProjectSchemaEdit } from "../../schema/ProjectSchema";
+import {
+  ProjectValidEdit,
+  ProjectSchemaEdit,
+} from "../../schema/ProjectSchema";
 import useHandleGetProject from "./useHandleGetProject";
 
 interface ImageEditUrl {
@@ -45,7 +48,6 @@ export default function useHandleEditProject(id: string, idProject: number) {
   const onSubmitEdit = async (data: ProjectValidEdit) => {
     if (imageUrl) {
       data.image_url = imageUrl.link;
-      console.log(data.image_url);
     } else {
       data.image_url = DataProject?.[idProject]?.image_url || "";
     }
