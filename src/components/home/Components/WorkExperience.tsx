@@ -25,7 +25,7 @@ export default function WorkExperienceComponent() {
                 src={work.image_url || "https://api.dicebear.com/9.x/glass/svg"}
                 width={500}
                 height={500}
-                className="w-16 h-16 object-contain dark:bg-white dark:rounded-lg p-1 "
+                className="w-16 h-16 object-contain dark:bg-gray-500 dark:rounded-lg p-1 "
                 alt="Picture of the author"
               />
             </div>

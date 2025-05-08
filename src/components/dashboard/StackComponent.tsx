@@ -37,7 +37,7 @@ export default function StackComponent() {
   }
 
   return (
-    <Card className="w-[550px] min-h-[450px] p-5 bg-gray-50">
+    <Card className="w-[550px] min-h-[450px] dark:bg-black p-5 bg-gray-50">
       {/* Add Work Experience */}
       <div>
         <Dialog open={open} onOpenChange={setOpen}>

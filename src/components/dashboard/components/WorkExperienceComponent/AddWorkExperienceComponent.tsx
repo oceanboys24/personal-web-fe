@@ -42,7 +42,11 @@ export default function AddWorkExperienceComponent({
   });
 
   // Handle Upload Image
-  const { register: registerImage, handleFileChange } = useUploadImage({});
+  const {
+    register: registerImage,
+    handleFileChange,
+    isUploading,
+  } = useUploadImage({});
 
   // Handle Submit Add Work Experience
   const onSubmit = async (data: any) => {
@@ -145,7 +149,12 @@ export default function AddWorkExperienceComponent({
                   handleFileChange(e);
                 }}
               />
-              {preview && <ImagePreviewComponent preview={preview} />}
+              {preview && (
+                <ImagePreviewComponent
+                  isUploading={isUploading}
+                  preview={preview}
+                />
+              )}
             </div>
             <div className="flex flex-row justify-between">
               {/* Start Date */}

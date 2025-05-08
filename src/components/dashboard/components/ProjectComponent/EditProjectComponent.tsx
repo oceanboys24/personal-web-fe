@@ -133,6 +133,7 @@ export default function EditProjectComponent({
                 )}
                 {(preview || DataProject![idProject].image_url) && (
                   <ImagePreviewComponent
+                    isUploading={isUploading}
                     preview={preview || DataProject![idProject].image_url}
                   />
                 )}

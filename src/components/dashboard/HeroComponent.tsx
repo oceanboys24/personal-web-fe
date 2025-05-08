@@ -34,7 +34,7 @@ export default function HeroComponentDashboard() {
     isPendingEdit,
   } = useHandleEditHero({ setIsDirtyImage });
   // Watch Input File is Dirty
-  const { register, handleFileChange } = useUploadImage({
+  const { register, handleFileChange, isUploading } = useUploadImage({
     isDirtyImage,
     setIsDirtyImage,
   });
@@ -45,13 +45,12 @@ export default function HeroComponentDashboard() {
     }
   }, [DataHero, reset]);
 
-
   if (isLoading) {
     return <SpinnerButton />;
   }
 
   return (
-    <Card className="w-[900px] min-h-[450px] bg-gray-50 shadow-2xl/20">
+    <Card className="w-[900px]  min-h-[450px] bg-gray-50 dark:bg-black shadow-2xl/20">
       <form onSubmit={HandleSubmitEdit(onSubmitEdit)}>
         <CardHeader>
           <CardTitle className="text-center text-xl mb-5">Edit Hero</CardTitle>
@@ -121,6 +120,7 @@ export default function HeroComponentDashboard() {
                   />
                   {(preview || DataHero?.image_url) && (
                     <ImagePreviewComponent
+                      isUploading={isUploading}
                       preview={preview}
                       imageUrl={DataHero?.image_url}
                     />
@@ -158,6 +158,7 @@ export default function HeroComponentDashboard() {
                         <div className="flex items-center space-x-2">
                           <Label htmlFor="is_available">Is Available</Label>
                           <Switch
+                            className="cursor-pointer"
                             id="is_available"
                             checked={field.value}
                             onCheckedChange={field.onChange}
@@ -170,6 +171,7 @@ export default function HeroComponentDashboard() {
                 <div className="w-full flex  items-end  justify-end">
                   <Button
                     disabled={isPendingEdit || (!isDirty && !isDirtyImage)}
+                    className="cursor-pointer"
                   >
                     {isPendingEdit ? <SpinnerButton /> : "Save Changes"}
                   </Button>

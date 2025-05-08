@@ -64,7 +64,12 @@ export default function AddStackComponent({
                   HandleImagePreview(e);
                 }}
               />
-              {preview && <ImagePreviewComponent preview={preview} />}
+              {preview && (
+                <ImagePreviewComponent
+                  preview={preview}
+                  isUploading={isUploading}
+                />
+              )}
             </div>
           </div>
         </CardContent>

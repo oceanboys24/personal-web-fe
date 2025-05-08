@@ -118,7 +118,12 @@ export default function AddProjectComponent({
                   HandleImagePreview(e), handleFileChange(e);
                 }}
               />
-              {preview && <ImagePreviewComponent preview={preview} />}
+              {preview && (
+                <ImagePreviewComponent
+                  isUploading={isUploading}
+                  preview={preview}
+                />
+              )}
             </div>
           </div>
         </CardContent>

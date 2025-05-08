@@ -37,7 +37,7 @@ export default function WorkExperience() {
     return <SpinnerButton />;
   }
   return (
-    <Card className="w-[550px] min-h-[450px] p-5">
+    <Card className="w-[550px] min-h-[450px] p-5 dark:bg-black">
       {/* Add Work Experience */}
       <div>
         <Dialog open={open} onOpenChange={setOpen}>

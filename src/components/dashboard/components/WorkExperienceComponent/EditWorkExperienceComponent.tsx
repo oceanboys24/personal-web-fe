@@ -173,6 +173,7 @@ export default function EditWorkExperienceComponent({ id }: { id: string }) {
                 />
                 {(preview || DataWorkSingle?.image_url) && (
                   <ImagePreviewComponent
+                    isUploading={isUploading}
                     preview={preview || DataWorkSingle?.image_url}
                   />
                 )}
