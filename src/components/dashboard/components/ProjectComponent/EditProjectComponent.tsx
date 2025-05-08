@@ -72,30 +72,23 @@ export default function EditProjectComponent({
                 </span>
               )}
 
-              <div className="flex flex-col">
-                <Input
+              <div className="flex flex-wrap items-center border p-2 rounded">
+                {tags.map((tag, index) => (
+                  <div
+                    key={index}
+                    onClick={() => removeTag(index)}
+                    className="flex items-center bg-gray-200 rounded px-2 py-1 mr-2 mb-2 cursor-pointer"
+                  >
+                    {tag} ✖
+                  </div>
+                ))}
+                <input
+                  className="flex-1 min-w-[100px] outline-none"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={addTag}
                   placeholder="Press Enter to add Stack"
                 />
-                {errors.stack && (
-                  <span className="text-red-500 text-sm">
-                    {errors.stack.message}
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-row flex-wrap p-3">
-                {tags?.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-gray-200 p-1 rounded-xl"
-                    onClick={() => removeTag(index)}
-                    style={{ marginRight: 8, cursor: "pointer" }}
-                  >
-                    {tag} ✖
-                  </span>
-                ))}
               </div>
             </div>
             <div className="w-full flex flex-col gap-3">

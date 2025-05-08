@@ -107,29 +107,23 @@ export default function AddWorkExperienceComponent({
                 Add Task
               </Button>
             </div>
-            <div className="flex flex-row">
-              <Input
+            <div className="flex flex-wrap items-center border p-2 rounded">
+              {tags.map((tag, index) => (
+                <div
+                  key={index}
+                  onClick={() => removeTag(index)}
+                  className="flex items-center bg-gray-200 rounded px-2 py-1 mr-2 mb-2 cursor-pointer"
+                >
+                  {tag} ✖
+                </div>
+              ))}
+              <input
+                className="flex-1 min-w-[100px] outline-none"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={addTag}
                 placeholder="Press Enter to add Stack"
               />
-            </div>
-            <div className="flex flex-row flex-wrap">
-              {tags.map((tag, index) => (
-                <div
-                  className="flex items-center bg-gray-100 rounded-2xl p-1 justify-center mr-2  "
-                  key={index}
-                >
-                  <span
-                    key={index}
-                    onClick={() => removeTag(index)}
-                    style={{ marginRight: 8, cursor: "pointer" }}
-                  >
-                    {tag} ✖
-                  </span>
-                </div>
-              ))}
             </div>
             <Controller
               name="stack"
