@@ -1,15 +1,14 @@
 "use client";
 
 import Marquee from "react-fast-marquee";
-import Image from "next/image";
 import useHandleGetStack from "@/components/dashboard/hooks/StackHooks/useHandleGetStack";
-import SpinnerButton from "@/components/login/components/Spinner";
+import SkeletonStackComponent from "./Skeleton/SkeletonStack";
 
 export default function StackComponent() {
   const { DataStack, isLoadingStack } = useHandleGetStack();
 
   if (isLoadingStack) {
-    return <SpinnerButton />;
+    return <SkeletonStackComponent />;
   }
 
   return (

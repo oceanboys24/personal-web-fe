@@ -2,12 +2,13 @@ import useHandleGetProject from "@/components/dashboard/hooks/ProjectHooks/useHa
 import SpinnerButton from "@/components/login/components/Spinner";
 import { FaGithub } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import SkeletonProjectComponent from "./Skeleton/SkeletonProject";
 
 export default function ProjectsComponent() {
   const { DataProject, isLoadingProject } = useHandleGetProject();
 
   if (isLoadingProject) {
-    return <SpinnerButton />;
+    return <SkeletonProjectComponent />;
   }
 
   return (

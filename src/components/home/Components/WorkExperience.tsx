@@ -1,13 +1,12 @@
 import useHandleGetWorkExperience from "@/components/dashboard/hooks/WorkExperienceHooks/useHandleGetWork";
-import SpinnerButton from "@/components/login/components/Spinner";
-import Image from "next/image";
 import { handleDateRange } from "../hooks/useHandlingDate";
+import SkeletonWorkExperienceComponent from "./Skeleton/SkeletonWorkExperience";
 
 export default function WorkExperienceComponent() {
   const { DataWork, isLoadingWork } = useHandleGetWorkExperience();
 
   if (isLoadingWork) {
-    return <SpinnerButton />;
+    return <SkeletonWorkExperienceComponent />;
   }
 
   return (
