@@ -11,9 +11,9 @@ export default function SkeletonHeroComponent() {
 
       {/* Content Card */}
       <div className="flex flex-col gap-4 md:justify-center md:items-center justify-center items-center">
-        <Skeleton className="2xl:w-[1200px] 2xl:h-[100px] xl:w-[800px] xl:h-[75px] lg:w-[600px] lg:h-[50px] md:w-[400px] md:h-[100px] w-[300px] h-[75px] " />
-        <Skeleton className="2xl:w-[1200px] 2xl:h-[300px] xl:w-[800px] xl:h-[200px] lg:w-[600px] lg:h-[150px]  md:w-[600px] md:h-[300px]  w-[350px] h-[125px] " />
-        <Skeleton className="2xl:w-[1200px] 2xl:h-[100px] xl:w-[800px] xl:h-[75px] lg:w-[600px] lg:h-[50px]  md:w-[400px] md:h-[100px]  w-[300px] h-[75px] " />
+        <Skeleton className="2xl:w-[800px] 2xl:h-[100px] xl:w-[800px] xl:h-[75px] lg:w-[600px] lg:h-[50px] md:w-[400px] md:h-[100px] w-[300px] h-[75px] " />
+        <Skeleton className="2xl:w-[800px] 2xl:h-[300px] xl:w-[800px] xl:h-[200px] lg:w-[600px] lg:h-[150px]  md:w-[600px] md:h-[300px]  w-[350px] h-[125px] " />
+        <Skeleton className="2xl:w-[800px] 2xl:h-[100px] xl:w-[800px] xl:h-[75px] lg:w-[600px] lg:h-[50px]  md:w-[400px] md:h-[100px]  w-[300px] h-[75px] " />
       </div>
     </div>
   );
