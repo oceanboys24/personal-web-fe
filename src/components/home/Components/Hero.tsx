@@ -6,15 +6,15 @@ import { FaWhatsapp } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
 import { RiFileDownloadLine } from "react-icons/ri";
 import useHeroLanding from "../hooks/useHeroLanding";
-import SpinnerButton from "@/components/login/components/Spinner";
+import SkeletonHeroComponent from "./Skeleton/SkeletonHero";
 
 export default function HeroComponent() {
   const { DataHeroLanding, isLoadingHero } = useHeroLanding();
   if (isLoadingHero) {
-    return <SpinnerButton />;
+    return <SkeletonHeroComponent />;
   }
   return (
-    <div className="lg:flex lg:gap-10 xl:p-10 xl:gap-20 mb-30 items-center lg:flex-row  lg:justify-between lg:items-center xl:">
+    <div className="lg:flex lg:gap-10 xl:p-10 xl:gap-20 mb-30 items-center lg:flex-row  lg:justify-between lg:items-center ">
       {/* Image */}
 
       <div className="flex w-full justify-center">
