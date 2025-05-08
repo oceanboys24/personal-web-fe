@@ -33,11 +33,13 @@ export default function useLogin() {
       const messageError = error.response.data.error;
       toast.error("", {
         description: messageError,
+        descriptionClassName: "dark:text-md",
       });
     },
     onSuccess: () => {
       toast.success("", {
         description: "Success Login",
+        descriptionClassName: "dark:text-md",
       });
       router.push("/dashboard");
     },

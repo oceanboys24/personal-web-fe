@@ -31,7 +31,8 @@ export default function useHandleEditHero({
       return response.data;
     },
     onError: (error: any) => {
-      const messageError = error.response.data.error;
+      const messageError =
+        error?.response?.data?.error || "Something went wrong.";
       toast.error("", {
         description: messageError,
       });
@@ -40,8 +41,9 @@ export default function useHandleEditHero({
       queryClient.invalidateQueries({
         queryKey: ["Hero"],
       });
-      toast.success("", {
-        description: "Success Edit",
+      toast.success("Success Edit", {
+        description: "Changes have been saved.",
+        descriptionClassName: "dark:text-md dark:font-bold",
       });
       setIsDirtyImage(false);
     },

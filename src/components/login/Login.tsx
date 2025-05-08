@@ -19,7 +19,7 @@ export default function LoginComponent() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Card className="w-[350px]">
+      <Card className="w-[350px] dark:bg-black">
         <CardHeader>
           <CardTitle className="dark:text-white">Login CMS</CardTitle>
           <CardDescription>Please Login to access Dashboard</CardDescription>
