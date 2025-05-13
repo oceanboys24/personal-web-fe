@@ -15,8 +15,11 @@ export default function DashboardLayout({
       <TokenChecker />
       <SidebarProvider>
         <AppSidebar />
-        <main className="w-full">
-          <SidebarTrigger /> {children}
+        <main className="w-full ">
+          <div className="p-2 w-full flex flex-row">
+            <SidebarTrigger />
+          </div>
+          {children}
         </main>
       </SidebarProvider>
     </QueryClientProvider>

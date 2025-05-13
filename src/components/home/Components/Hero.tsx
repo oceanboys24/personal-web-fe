@@ -16,8 +16,7 @@ export default function HeroComponent() {
   return (
     <div className="lg:flex lg:gap-10 xl:p-10 xl:gap-20 mb-30 items-center lg:flex-row  lg:justify-between lg:items-center ">
       {/* Image */}
-
-      <div className="flex w-full justify-center">
+      <div className="flex w-full lg:min-w-[300px] justify-center ">
         <img
           src={DataHeroLanding?.image_url || ""}
           width={500}

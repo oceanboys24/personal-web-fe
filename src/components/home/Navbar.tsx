@@ -22,7 +22,7 @@ export default function NavbarComponent() {
     }
   };
   return (
-    <div className="flex 2xl:px-100   bg-white dark:bg-gray-900 px-3 md:px-6 md:py-4  fixed top-0  z-30 w-full mnb justify-between flex-row py-3 2 xl:px-[97px] mb-10">
+    <div className="flex 2xl:px-100  bg-white dark:bg-gray-900 px-3 md:px-6 md:py-4  fixed top-0  z-30 w-full mnb justify-between flex-row py-3 2 xl:px-[97px] mb-10">
       <div className="flex justify-start">
         <Image
           src="/logo.png"

@@ -6,17 +6,19 @@ import WorkExperienceComponent from "./Components/WorkExperience";
 
 export default function MainContent() {
   return (
-    <div className="flex flex-col p-10 pt-20 2xl:px-90">
-      {/* Card Container */}
-      <HeroComponent />
-      {/* Tech Stack */}
-      <StackComponent />
-      {/* Work Experience */}
-      <WorkExperienceComponent />
-      {/* Projects */}
-      <ProjectComponent />
-      {/* Qoutes */}
-      <QuoteComponent />
+    <div className="flex flex-col justify-center items-center p-10 pt-20 2xl:px-90">
+      <div className="flex flex-col w-full">
+        {/* Card Container */}
+        <HeroComponent />
+        {/* Tech Stack */}
+        <StackComponent />
+        {/* Work Experience */}
+        <WorkExperienceComponent />
+        {/* Projects */}
+        <ProjectComponent />
+        {/* Qoutes */}
+        <QuoteComponent />
+      </div>
     </div>
   );
 }

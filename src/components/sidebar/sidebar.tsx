@@ -39,7 +39,9 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="text-center text-lg font-bold">
-        Dashboard{" "}
+        <Link href="/dashboard">
+          <span>Dashboard Admin</span>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup />
