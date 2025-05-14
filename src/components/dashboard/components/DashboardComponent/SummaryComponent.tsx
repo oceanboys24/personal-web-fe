@@ -3,43 +3,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BriefcaseIcon, CodeIcon, FolderIcon } from "lucide-react";
+import useHandleSummar from "../../hooks/DashboardHooks/useHandleSummary";
+import SpinnerButton from "@/components/login/components/Spinner";
 
 export default function ExperienceCard() {
-  // Sample data - replace with your actual data
-  const experience = {
-    years: 5,
-    companies: ["Tech Solutions Inc.", "Digital Innovations", "Freelance"],
-  };
-
-  const techStack = [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Tailwind CSS",
-    "GraphQL",
-    "MongoDB",
-    "PostgreSQL",
-  ];
-
-  const projects = [
-    {
-      name: "E-commerce Platform",
-      description: "Full-stack online store with payment integration",
-    },
-    {
-      name: "Portfolio Website",
-      description: "Responsive personal portfolio with animations",
-    },
-    {
-      name: "Task Management App",
-      description: "Collaborative project management tool",
-    },
-    {
-      name: "Social Media Dashboard",
-      description: "Analytics dashboard with data visualization",
-    },
-  ];
+  const {
+    summaryWork,
+    summaryStack,
+    summaryProject,
+    isLoadingProject,
+    isLoadingStack,
+    isLoadingWork,
+  } = useHandleSummar();
 
   return (
     <Card className="w-full h-full  shadow-md ">
@@ -69,17 +44,18 @@ export default function ExperienceCard() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-medium">Work Experience</h3>
-                <Badge variant="outline" className="font-bold">
-                  {experience.years} Years
-                </Badge>
               </div>
               <ul className="space-y-1 text-sm">
-                {experience.companies.map((company, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <div className="h-1.5 w-1.5 rounded-full bg-primary"></div>
-                    {company}
-                  </li>
-                ))}
+                {isLoadingProject ? (
+                  <SpinnerButton />
+                ) : (
+                  summaryWork?.map((company, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                      {company?.company}
+                    </li>
+                  ))
+                )}
               </ul>
             </div>
           </TabsContent>
@@ -88,15 +64,19 @@ export default function ExperienceCard() {
             <div className="space-y-3">
               <h3 className="text-base font-medium">Tech Stack</h3>
               <div className="flex flex-wrap gap-2">
-                {techStack.map((tech, index) => (
-                  <Badge
-                    key={index}
-                    variant="secondary"
-                    className="font-normal"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
+                {isLoadingStack ? (
+                  <SpinnerButton />
+                ) : (
+                  summaryStack?.map((tech, index) => (
+                    <Badge
+                      key={index}
+                      variant="secondary"
+                      className="font-normal"
+                    >
+                      {tech.name}
+                    </Badge>
+                  ))
+                )}
               </div>
             </div>
           </TabsContent>
@@ -106,17 +86,21 @@ export default function ExperienceCard() {
               <h3 className="text-base font-medium">Projects</h3>
               <div className="max-h-[100px] overflow-y-auto pr-2 custom-scrollbar">
                 <ul className="space-y-2 text-sm">
-                  {projects.map((project, index) => (
-                    <li
-                      key={index}
-                      className="border-l-2 border-primary pl-3 py-1"
-                    >
-                      <div className="font-medium">{project.name}</div>
-                      <div className="text-xs text-muted-foreground">
-                        {project.description}
-                      </div>
-                    </li>
-                  ))}
+                  {isLoadingProject ? (
+                    <SpinnerButton />
+                  ) : (
+                    summaryProject?.map((project, index) => (
+                      <li
+                        key={index}
+                        className="border-l-2 border-primary pl-3 py-1"
+                      >
+                        <div className="font-medium">{project.name}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {project.description}
+                        </div>
+                      </li>
+                    ))
+                  )}
                 </ul>
               </div>
             </div>
